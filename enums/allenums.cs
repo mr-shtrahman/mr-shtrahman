@@ -56,4 +56,21 @@ namespace mr_shtrahman.enums
         Jerusalem,
     }
 
+    public enum Difficulty
+    {
+        Esey,
+        medium,
+        Hard,
+        SuitableForChildren,
+        Accessible,
+    }
+
+    public enum Cloudiness
+    {
+        Sunny,
+        Bright,
+        Overcast,
+        Cloudy,
+    }
+
 }

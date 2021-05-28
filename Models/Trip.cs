@@ -12,16 +12,16 @@ namespace mr_shtrahman.Models
         public string Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         public double Price { get; set; }
         public short rating { get; set; }
         public Destination Destination { get; set; }
         public TripType TripType { get; set; }
+        public Difficulty Difficulty { get; set; }
         public string Location { get; set; }
         public string details { get; set; }
+        public int ClosestShopsId { get; set; }
         public Shop ClosestShops { get; set; }
+        public Weather Weather { get; set; }
         public List<Prodact> RelventProdacts{ get; set; }
-
-
     }
 }
