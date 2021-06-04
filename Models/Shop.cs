@@ -19,6 +19,8 @@ namespace mr_shtrahman.Models
         public DateTime OpeningTime { get; set; }
         public Area Area { get; set; }
         public City City { get; set; }
+        public Img Img { get; set; }
+
         public List<Prodact> Prodacts { get; set; }
         public List<Trip> Trips { get; set; }
 

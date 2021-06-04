@@ -21,7 +21,8 @@ namespace mr_shtrahman.Models
         public string details { get; set; }
         public int ClosestShopsId { get; set; }
         public Shop ClosestShops { get; set; }
-        public Weather Weather { get; set; }
+        public Img Img { get; set; }
         public List<Prodact> RelventProdacts{ get; set; }
+        public List<VisitorsAttendance> WhanPepoleArrive { get; set; }
     }
 }

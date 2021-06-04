@@ -20,6 +20,7 @@ namespace mr_shtrahman.Models
         public string Color { get; set; }
         public string details { get; set; }
         public string Description { get; set; }
+        public Img Img { get; set; }
         public List<Shop> Shops { get; set; }
 
         public List<Trip> Trips{ get; set; }
