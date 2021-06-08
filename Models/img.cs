@@ -19,7 +19,7 @@ namespace mr_shtrahman.Models
         [ForeignKey("Shop")]
         public int ShopId { get; set; }
 
-        [ForeignKey("Prodact")]
-        public int ProdactID { get; set; }
+        [ForeignKey("Product")]
+        public int ProductID { get; set; }
     }
 }

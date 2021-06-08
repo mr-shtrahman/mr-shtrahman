@@ -22,7 +22,7 @@ namespace mr_shtrahman.Models
         public int ClosestShopsId { get; set; }
         public Shop ClosestShops { get; set; }
         public Img Img { get; set; }
-        public List<Prodact> RelventProdacts{ get; set; }
-        public List<VisitorsAttendance> WhanPepoleArrive { get; set; }
+        public List<Product> RelventProducts { get; set; }
+        public List<VisitorsAttendance> VisitorsAttendance { get; set; }
     }
 }

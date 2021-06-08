@@ -7,7 +7,7 @@ using mr_shtrahman.enums;
 
 namespace mr_shtrahman.Models
 {
-    public class Prodact
+    public class Product
     {
         public string Id { get; set; }
         [Required]
