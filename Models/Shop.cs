@@ -13,12 +13,21 @@ namespace mr_shtrahman.Models
 
         [Required] 
         public string Name { get; set; }
+
+        [Required] 
+        public Area Area { get; set; }
+
+        [Required] 
+        public City City { get; set; }
+
+        [Required] 
+        public string Street { get; set; }
+        
+        [Required] 
+        public int StreetNum { get; set; }
         public string PhoneNum { get; set; }
         public short rating { get; set; }
-        public string Location { get; set; }
         public DateTime OpeningTime { get; set; }
-        public Area Area { get; set; }
-        public City City { get; set; }
         public Img Img { get; set; }
 
         public List<Product> Products { get; set; }

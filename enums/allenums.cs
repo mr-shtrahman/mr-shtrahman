@@ -15,7 +15,7 @@ namespace mr_shtrahman.enums
     {
         shoes,
         Clothes,
-        camping,
+        Camping,
         Bags,
         Gadgets,
         IsraelNationalTrail
@@ -36,16 +36,18 @@ namespace mr_shtrahman.enums
         Field,
         Family,
         PhotographyAroundTheWorld,
-        romantic,
+        Romantic,
         Urban,
-        Cruz,
+        Cruise,
         tracks,
     }
 
     public enum City
     {
         TelAviv,
-        Jerusalem,
+        Jerusalem, 
+        Modiin
+
     }
 
     public enum Area
@@ -58,19 +60,10 @@ namespace mr_shtrahman.enums
 
     public enum Difficulty
     {
-        Esey,
+        Easy,
         medium,
         Hard,
         SuitableForChildren,
         Accessible,
     }
-
-    public enum Cloudiness
-    {
-        Sunny,
-        Bright,
-        Overcast,
-        Cloudy,
-    }
-
 }
