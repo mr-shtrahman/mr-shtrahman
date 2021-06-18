@@ -10,10 +10,11 @@ namespace mr_shtrahman.enums
         S,
         M,
         L,
+        OneSize
     }
     public enum Category
     {
-        shoes,
+        Shoes,
         Clothes,
         Camping,
         Bags,
@@ -39,7 +40,7 @@ namespace mr_shtrahman.enums
         Romantic,
         Urban,
         Cruise,
-        tracks,
+        Tracks,
     }
 
     public enum City
@@ -61,7 +62,7 @@ namespace mr_shtrahman.enums
     public enum Difficulty
     {
         Easy,
-        medium,
+        Medium,
         Hard,
         SuitableForChildren,
         Accessible,

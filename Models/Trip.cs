@@ -13,12 +13,12 @@ namespace mr_shtrahman.Models
         [Required]
         public string Name { get; set; }
         public double Price { get; set; }
-        public short rating { get; set; }
+        public short Rating { get; set; }
         public Destination Destination { get; set; }
         public TripType TripType { get; set; }
         public Difficulty Difficulty { get; set; }
         public string Location { get; set; }
-        public string details { get; set; }
+        public string Details { get; set; }
         public int ClosestShopsId { get; set; }
         public Shop ClosestShops { get; set; }
         public Img Img { get; set; }
