@@ -15,7 +15,7 @@ namespace mr_shtrahman.Models
         public DateTime Date { get; set; }
         [Required]
         public int Attendance { get; set; }
-        [ForeignKey("Trip")]
+        public int TripId { get; set; }
         public Trip Trip { get; set; }
     }
 }
