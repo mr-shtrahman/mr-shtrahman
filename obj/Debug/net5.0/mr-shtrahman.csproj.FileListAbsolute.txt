@@ -149,11 +149,6 @@ A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Imgs\De
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Imgs\Details.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Imgs\Edit.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Imgs\Index.cshtml.g.cs
-A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Create.cshtml.g.cs
-A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Delete.cshtml.g.cs
-A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Details.cshtml.g.cs
-A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Edit.cshtml.g.cs
-A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Index.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\VisitorsAttendances\Create.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\VisitorsAttendances\Delete.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\VisitorsAttendances\Details.cshtml.g.cs
@@ -169,3 +164,8 @@ A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\D
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Details.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Edit.cshtml.g.cs
 A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Index.cshtml.g.cs
+A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Create.cshtml.g.cs
+A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Delete.cshtml.g.cs
+A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Details.cshtml.g.cs
+A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Edit.cshtml.g.cs
+A:\degree\web-app\mr-shtrahman\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Index.cshtml.g.cs

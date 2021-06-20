@@ -12,6 +12,7 @@ namespace mr_shtrahman.Models
         public string Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [DataType(DataType.Currency)]
         public double Price { get; set; }
         public short Rating { get; set; }
         public Destination Destination { get; set; }

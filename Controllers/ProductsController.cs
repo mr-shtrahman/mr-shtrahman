@@ -9,22 +9,22 @@ using mr_shtrahman.Models;
 
 namespace mr_shtrahman.Controllers
 {
-    public class ProductsController : Controller
+    public class Products1Controller : Controller
     {
         private readonly Context _context;
 
-        public ProductsController(Context context)
+        public Products1Controller(Context context)
         {
             _context = context;
         }
 
-        // GET: Products
+        // GET: Products1
         public async Task<IActionResult> Index()
         {
             return View(await _context.Product.ToListAsync());
         }
 
-        // GET: Products/Details/5
+        // GET: Products1/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -42,13 +42,13 @@ namespace mr_shtrahman.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
+        // GET: Products1/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        // POST: Products1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +64,7 @@ namespace mr_shtrahman.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
+        // GET: Products1/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace mr_shtrahman.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
+        // POST: Products1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +115,7 @@ namespace mr_shtrahman.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
+        // GET: Products1/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -133,7 +133,7 @@ namespace mr_shtrahman.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        // POST: Products1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
