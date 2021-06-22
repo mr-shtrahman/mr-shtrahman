@@ -27,6 +27,9 @@ namespace mr_shtrahman.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // TODO: Add to here for data seeding
+
+
         }
     }
 }
