@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using mr_shtrahman.Models;
 
-namespace mr_shtrahman.Data
-{
-    public class Context: DbContext
+    public class Context : DbContext
     {
-        public Context(DbContextOptions<Context> options)
-           : base(options)
+        public Context (DbContextOptions<Context> options)
+            : base(options)
         {
         }
 
@@ -23,10 +22,4 @@ namespace mr_shtrahman.Data
 
         public DbSet<mr_shtrahman.Models.Shop> Shop { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-        }
     }
-}
