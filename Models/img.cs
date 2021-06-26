@@ -15,11 +15,14 @@ namespace mr_shtrahman.Models
         [Required]
         public string Description { get; set; }
         [ForeignKey("Trip")]
+        [Display(Name = "Trip ")]
         public int TripId { get; set; }
         [ForeignKey("Shop")]
+        [Display(Name = "Shop")]
         public int ShopId { get; set; }
 
         [ForeignKey("Product")]
+        [Display(Name = "Product")]
         public int ProductID { get; set; }
     }
 }

@@ -7148,19 +7148,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jack\\.nuget\\packages\\": {}
+    "C:\\Users\\tshuv\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jack\\source\\repos\\mr-shtrahman\\mr-shtrahman.csproj",
+      "projectUniqueName": "A:\\degree\\web-app\\mr-shtrahman\\mr-shtrahman\\mr-shtrahman.csproj",
       "projectName": "mr-shtrahman",
-      "projectPath": "C:\\Users\\jack\\source\\repos\\mr-shtrahman\\mr-shtrahman.csproj",
-      "packagesPath": "C:\\Users\\jack\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jack\\source\\repos\\mr-shtrahman\\obj\\",
+      "projectPath": "A:\\degree\\web-app\\mr-shtrahman\\mr-shtrahman\\mr-shtrahman.csproj",
+      "packagesPath": "C:\\Users\\tshuv\\.nuget\\packages\\",
+      "outputPath": "A:\\degree\\web-app\\mr-shtrahman\\mr-shtrahman\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\jack\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tshuv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

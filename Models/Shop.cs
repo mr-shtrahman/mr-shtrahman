@@ -11,25 +11,29 @@ namespace mr_shtrahman.Models
     {
         public string Id { get; set; }
 
-        [Required] 
+        [Required]
         public string Name { get; set; }
 
-        [Required] 
+        [Required]
         public Area Area { get; set; }
 
-        [Required] 
+        [Required]
         public City City { get; set; }
 
-        [Required] 
+        [Required]
         public string Street { get; set; }
-        
-        [Required] 
+
+        [Required]
+        [Display(Name = "StreetNum")]
         public int StreetNum { get; set; }
+
+        [Display(Name = "Phone Num")]
         public string PhoneNum { get; set; }
         public short rating { get; set; }
+
+        [Display(Name = "Opening Time")]
         public DateTime OpeningTime { get; set; }
         public Img Img { get; set; }
-
         public List<Product> Products { get; set; }
         public List<Trip> Trips { get; set; }
 

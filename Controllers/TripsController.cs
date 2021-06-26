@@ -46,6 +46,9 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
+            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
+            ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
+            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -54,10 +57,15 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ClosestShopsId")] Trip trip)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ClosestShopsId")] Trip trip, string[] products, string[] visitorsAttendances, string imgId)
         {
             if (ModelState.IsValid)
             {
+                trip.VisitorsAttendance = new List<VisitorsAttendance>();
+                trip.RelventProducts = new List<Product>();
+                trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
+                trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
+                trip.Img = (Img)_context.Img.Where(x => x.Id == imgId);
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -78,6 +86,9 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
+            ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
+            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
             return View(trip);
         }
 
@@ -86,7 +97,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ClosestShopsId")] Trip trip)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ClosestShopsId")] Trip trip, string[] products, string[] visitorsAttendances, string imgId)
         {
             if (id != trip.Id)
             {
@@ -97,6 +108,11 @@ namespace mr_shtrahman.Controllers
             {
                 try
                 {
+                    trip.VisitorsAttendance = new List<VisitorsAttendance>();
+                    trip.RelventProducts = new List<Product>();
+                    trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
+                    trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
+                    trip.Img = (Img)_context.Img.Where(x => x.Id == imgId);
                     _context.Update(trip);
                     await _context.SaveChangesAsync();
                 }

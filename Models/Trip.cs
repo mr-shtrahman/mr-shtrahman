@@ -20,10 +20,16 @@ namespace mr_shtrahman.Models
         public Difficulty Difficulty { get; set; }
         public string Location { get; set; }
         public string Details { get; set; }
+
+        [Display(Name = "closest shops")]
         public int ClosestShopsId { get; set; }
         public Shop ClosestShops { get; set; }
         public Img Img { get; set; }
+
+        [Display(Name = "Relvent Products")]
         public List<Product> RelventProducts { get; set; }
+
+        [Display(Name = "Visitors Attendance")]
         public List<VisitorsAttendance> VisitorsAttendance { get; set; }
     }
 }
