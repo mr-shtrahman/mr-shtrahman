@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using mr_shtrahman.Models;
 
-    public class Context : DbContext
+namespace mr_shtrahman.Data
+{
+    public class Context: DbContext
     {
-        public Context (DbContextOptions<Context> options)
-            : base(options)
+        public Context(DbContextOptions<Context> options)
+           : base(options)
         {
         }
 
@@ -21,4 +22,14 @@ using mr_shtrahman.Models;
         public DbSet<mr_shtrahman.Models.Product> Product { get; set; }
 
         public DbSet<mr_shtrahman.Models.Shop> Shop { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // TODO: Add to here for data seeding
+
+
+        }
     }
+}
