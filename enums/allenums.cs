@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace mr_shtrahman.enums
         S,
         M,
         L,
+        [Display(Name = "One Size")]
         OneSize
     }
     public enum Category
@@ -19,14 +21,18 @@ namespace mr_shtrahman.enums
         Camping,
         Bags,
         Gadgets,
+        [Display(Name = "Israel National Trail")]
         IsraelNationalTrail
     }
     public enum Destination
     {
         Europe,
         Asia,
+        [Display(Name = "Central America")]
         CentralAmerica,
+        [Display(Name = "South America")]
         SouthAmerica,
+        [Display(Name = "North America")]
         NorthAmerica,
         Africa,
         Australia,
@@ -36,6 +42,7 @@ namespace mr_shtrahman.enums
     {
         Field,
         Family,
+        [Display(Name = "Photography Around The World")]
         PhotographyAroundTheWorld,
         Romantic,
         Urban,
@@ -64,6 +71,7 @@ namespace mr_shtrahman.enums
         Easy,
         Medium,
         Hard,
+        [Display(Name = "Suitable For Children")]
         SuitableForChildren,
         Accessible,
     }

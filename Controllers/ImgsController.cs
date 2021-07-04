@@ -54,7 +54,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Src,Description,TripId,ShopId,ProductID")] Img img)
+        public async Task<IActionResult> Create([Bind("Id,Src,Description,TripId,ShopId,ProductId")] Img img)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Src,Description,TripId,ShopId,ProductID")] Img img)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Src,Description,TripId,ShopId,ProductId")] Img img)
         {
             if (id != img.Id)
             {
