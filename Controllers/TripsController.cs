@@ -65,8 +65,6 @@ namespace mr_shtrahman.Controllers
                 trip.RelventProducts = new List<Product>();
                 trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
                 trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
-                //var x = _context.Img.Where(x => x.Id == imgId);
-                //trip.Img = x;
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -113,7 +111,6 @@ namespace mr_shtrahman.Controllers
                     trip.RelventProducts = new List<Product>();
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
                     trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
-                    //trip.Img = (Img)_context.Img.Where(x => x.Id == imgId);
                     _context.Update(trip);
                     await _context.SaveChangesAsync();
                 }

@@ -23,6 +23,6 @@ namespace mr_shtrahman.Models
 
         [ForeignKey("Product")]
         [Display(Name = "Product")]
-        public int? ProductID { get; set; }
+        public int? ProductId { get; set; }
     }
 }
