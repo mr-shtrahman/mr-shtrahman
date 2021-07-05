@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using mr_shtrahman.Data;
 
 namespace mr_shtrahman.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20210705210854_add id")]
+    partial class addid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,10 +95,7 @@ namespace mr_shtrahman.Migrations
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ImgId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImgId1")
+                    b.Property<string>("ImgId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -114,7 +113,7 @@ namespace mr_shtrahman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImgId1");
+                    b.HasIndex("ImgId");
 
                     b.ToTable("Product");
                 });
@@ -130,10 +129,7 @@ namespace mr_shtrahman.Migrations
                     b.Property<int>("City")
                         .HasColumnType("int");
 
-                    b.Property<int>("ImgId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImgId1")
+                    b.Property<string>("ImgId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -158,7 +154,7 @@ namespace mr_shtrahman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImgId1");
+                    b.HasIndex("ImgId");
 
                     b.ToTable("Shop");
                 });
@@ -272,7 +268,7 @@ namespace mr_shtrahman.Migrations
                 {
                     b.HasOne("mr_shtrahman.Models.Img", "Img")
                         .WithMany()
-                        .HasForeignKey("ImgId1");
+                        .HasForeignKey("ImgId");
 
                     b.Navigation("Img");
                 });
@@ -281,7 +277,7 @@ namespace mr_shtrahman.Migrations
                 {
                     b.HasOne("mr_shtrahman.Models.Img", "Img")
                         .WithMany()
-                        .HasForeignKey("ImgId1");
+                        .HasForeignKey("ImgId");
 
                     b.Navigation("Img");
                 });

@@ -24,6 +24,8 @@ namespace mr_shtrahman.Models
         [Display(Name = "closest shops")]
         public int ClosestShopsId { get; set; }
         public Shop ClosestShops { get; set; }
+
+        public int ImgId { get; set; }
         public Img Img { get; set; }
 
         [Display(Name = "Relvent Products")]

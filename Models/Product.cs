@@ -21,6 +21,8 @@ namespace mr_shtrahman.Models
         public string Color { get; set; }
         public string Details { get; set; }
         public string Description { get; set; }
+
+        public int ImgId { get; set; }
         public Img Img { get; set; }
         public List<Shop> Shops { get; set; }
 

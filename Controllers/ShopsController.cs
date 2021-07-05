@@ -57,7 +57,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Area,City,Street,StreetNum,PhoneNum,rating,OpeningTime")] Shop shop, string[] trips, string[] shops, string imgId)
+        public async Task<IActionResult> Create([Bind("Id,Name,Area,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,6 @@ namespace mr_shtrahman.Controllers
                 shop.Products = new List<Product>();
                 shop.Trips.AddRange(_context.Trip.Where(trip => trips.Contains(trip.Id)));
                 shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
-                shop.Img = (Img)_context.Img.Where(x => x.Id == imgId);
 
                 _context.Add(shop);
                 await _context.SaveChangesAsync();
@@ -100,7 +99,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Area,City,Street,StreetNum,PhoneNum,rating,OpeningTime")] Shop shop, string[] trips, string[] shops, string imgId)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Area,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
         {
             if (id != shop.Id)
             {
@@ -115,7 +114,6 @@ namespace mr_shtrahman.Controllers
                     shop.Products = new List<Product>();
                     shop.Trips.AddRange(_context.Trip.Where(trip => trips.Contains(trip.Id)));
                     shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
-                    shop.Img = (Img)_context.Img.Where(x => x.Id == imgId);
 
                     _context.Update(shop);
                     await _context.SaveChangesAsync();

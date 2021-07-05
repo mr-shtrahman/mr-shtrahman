@@ -29,10 +29,12 @@ namespace mr_shtrahman.Models
 
         [Display(Name = "Phone Num")]
         public string PhoneNum { get; set; }
-        public short rating { get; set; }
+        public short Rating { get; set; }
 
         [Display(Name = "Opening Time")]
         public DateTime OpeningTime { get; set; }
+
+        public int ImgId { get; set; }
         public Img Img { get; set; }
         public List<Product> Products { get; set; }
         public List<Trip> Trips { get; set; }
