@@ -58,14 +58,6 @@ namespace mr_shtrahman.enums
 
     }
 
-    public enum Area
-    {
-        South,
-        North,
-        TelAviv,
-        Jerusalem,
-    }
-
     public enum Difficulty
     {
         Easy,

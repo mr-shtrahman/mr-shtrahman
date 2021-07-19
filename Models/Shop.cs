@@ -15,9 +15,6 @@ namespace mr_shtrahman.Models
         public string Name { get; set; }
 
         [Required]
-        public Area Area { get; set; }
-
-        [Required]
         public City City { get; set; }
 
         [Required]

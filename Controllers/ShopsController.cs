@@ -57,7 +57,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Area,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
+        public async Task<IActionResult> Create([Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Area,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
         {
             if (id != shop.Id)
             {
