@@ -24,10 +24,10 @@ namespace mr_shtrahman.Models
         public string Street { get; set; }
 
         [Required]
-        [Display(Name = "StreetNum")]
+        [Display(Name = "Street Number")]
         public int StreetNum { get; set; }
 
-        [Display(Name = "Phone Num")]
+        [Display(Name = "Phone Number")]
         public string PhoneNum { get; set; }
         public short Rating { get; set; }
 

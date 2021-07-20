@@ -21,14 +21,15 @@ namespace mr_shtrahman.Models
         public string Location { get; set; }
         public string Details { get; set; }
 
-        [Display(Name = "closest shops")]
+        [Display(Name = "Closest shops")]
         public int ClosestShopsId { get; set; }
+
         public Shop ClosestShops { get; set; }
 
         public int ImgId { get; set; }
         public Img Img { get; set; }
 
-        [Display(Name = "Relvent Products")]
+        [Display(Name = "Relevant Products")]
         public List<Product> RelventProducts { get; set; }
 
         [Display(Name = "Visitors Attendance")]
