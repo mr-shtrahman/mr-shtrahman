@@ -26,43 +26,50 @@ namespace mr_shtrahman.enums
     }
     public enum Destination
     {
-        Europe,
-        Asia,
-        [Display(Name = "Central America")]
-        CentralAmerica,
-        [Display(Name = "South America")]
-        SouthAmerica,
-        [Display(Name = "North America")]
-        NorthAmerica,
-        Africa,
-        Australia,
+        [Display(Name = "Golan Heights")]
+        GolanHeights,
+        Galilee,
+        Carmel,
+        [Display(Name = "Central Israel")]
+        CentralIsrael,
+        Jerusalem,
+        [Display(Name = "The Dead Sea")]
+        TheDeadSea,
+        Negev,
+        Eilat
     }
 
     public enum TripType
     {
         Field,
         Family,
-        [Display(Name = "Photography Around The World")]
-        PhotographyAroundTheWorld,
+        Photography,
         Romantic,
         Urban,
-        Cruise,
         Tracks,
+        Camping, 
+        Circular,
+        [Display(Name = "Water Entering Option")]
+        WaterEnteringOption
     }
 
     public enum City
     {
+        [Display(Name = "Tel Aviv")]
         TelAviv,
-        Jerusalem, 
-        Modiin
-
+        [Display(Name = "Jerusalem")]
+        Jerusalem,
+        [Display(Name = "Rishon Le Tsyion")]
+        RishonLeTsyion,
+        [Display(Name = "Be'er Sheva")]
+        BeerSheva
     }
 
     public enum Difficulty
     {
         Easy,
         Medium,
-        Hard,
+        Difficult,
         [Display(Name = "Suitable For Children")]
         SuitableForChildren,
         Accessible,

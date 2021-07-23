@@ -1,10 +1,23 @@
-﻿@model IEnumerable<mr_shtrahman.Models.Shop>
+﻿
+@model IEnumerable<mr_shtrahman.Models.Shop>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1 style="text-align: center; margin: 20px;">OUR SHOPS</h1>
+
+<form asp-action="Search" class="input-group">
+    <div class="form-outline">
+        <input name="query" 
+               placeholder="search for a shop..." 
+               type="search" 
+               class="form-control" />
+    </div>
+    <button type="submit" value="search" class="btn btn-primary">
+        Search
+    </button>
+</form>
 
 @foreach (var item in Model)
 {
@@ -31,7 +44,7 @@
                         Sat: 10:30-22:00
                     </div>
                     <div class="col-sm">
-                        <img />
+                        <a asp-action="Details/1" asp-controller="Img"></a>
                     </div>
                 </div>
                 <span>Rating: @Html.DisplayFor(modelItem => item.Rating)</span>

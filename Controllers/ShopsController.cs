@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,7 +24,18 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Shop.ToListAsync());
+            var m2mWithSearchContext = _context.Shop.Include(s => s.Img);
+            return View(await m2mWithSearchContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> Search(string query)
+        {
+
+            var m2mWithSearchContext = _context.Shop.Include(s => s.Img).
+                                                     Where(s => s.Name.Contains(query) ||
+                                                           query == null);
+
+            return View("Index", await m2mWithSearchContext.ToListAsync());
         }
 
         // GET: Shops/Details/5
