@@ -35,7 +35,5 @@ namespace mr_shtrahman.Models
         public Img Img { get; set; }
         public List<Product> Products { get; set; }
         public List<Trip> Trips { get; set; }
-
-
     }
 }

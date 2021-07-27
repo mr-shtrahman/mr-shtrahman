@@ -25,6 +25,8 @@ namespace mr_shtrahman.Controllers
         public async Task<IActionResult> Index()
         {
             var m2mWithSearchContext = _context.Shop.Include(s => s.Img);
+  
+
             return View(await m2mWithSearchContext.ToListAsync());
         }
 
@@ -61,7 +63,7 @@ namespace mr_shtrahman.Controllers
         {
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 

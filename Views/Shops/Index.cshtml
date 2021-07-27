@@ -44,7 +44,9 @@
                         Sat: 10:30-22:00
                     </div>
                     <div class="col-sm">
-                        <a asp-action="Details/1" asp-controller="Img"></a>
+                        <img src=@Html.DisplayFor(modelItem => item.Img.Src) 
+                             width="50%" height="50%" style="margin:10px;" 
+                             alt=@Html.DisplayFor(modelItem => item.Img.Description)>
                     </div>
                 </div>
                 <span>Rating: @Html.DisplayFor(modelItem => item.Rating)</span>
