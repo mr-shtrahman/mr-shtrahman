@@ -1,0 +1,41 @@
+body {
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+    margin: 50px;
+}
+
+.header {
+    height: 500px;
+    text-align: center;
+    background: url('../Assets/landscape.jpg');
+    color: white;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.card-header {
+    background-color: #0C182E;
+    color: white;
+    text-align: end;
+}
+
+.card-header * {
+    margin-right: 15px;
+}
+
+.card {
+    border: solid 1px #0C182E;
+    width: 100%;
+    margin-top: 20px;
+}
