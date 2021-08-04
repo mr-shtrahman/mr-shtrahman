@@ -31,7 +31,22 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OpeningTime)
+                @Html.DisplayNameFor(model => model.OpeningSundayTilThursday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClosingSundayTilThursday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpeningFriday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClosingFriday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpeningSaturday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClosingSaturday)
             </th>
             <th></th>
         </tr>
@@ -58,7 +73,22 @@
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningTime)
+                @Html.DisplayFor(modelItem => item.OpeningSundayTilThursday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingSundayTilThursday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningFriday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingFriday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningSaturday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingSaturday)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
