@@ -28,7 +28,7 @@
     <div class="card">
         <div class="card-header">
             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <a asp-action="Delete" asp-route-id="@item.Id" style="margin-left: 5px;">Delete</a>
         </div>
         <div class="card-body">
             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
@@ -57,4 +57,4 @@
         </div>
     </div>
 }
-<a asp-action="Create" style="font-size: 250%; font-weight: 600; display: flex; flex-direction: row-reverse;">+</a>
+<a asp-action="Create" class="add-shop">+</a>
