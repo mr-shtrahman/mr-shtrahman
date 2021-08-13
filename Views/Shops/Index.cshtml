@@ -42,14 +42,15 @@
                         <span>Phone: </span>@Html.DisplayFor(modelItem => item.PhoneNum)
                     </div>
                     <div class="col-sm">
-                        Sun-Thu: 9:30-21:30 <br />
-                        Fri: 9:00-15:00 <br />
-                        Sat: 10:30-22:00
+                        Sun-Thu: @Html.DisplayFor(modelItem => item.OpeningSundayTilThursday)-
+                        @Html.DisplayFor(modelItem => item.ClosingSundayTilThursday)<br />
+                        Fri: @Html.DisplayFor(modelItem => item.OpeningFriday)-
+                        @Html.DisplayFor(modelItem => item.ClosingFriday)<br />
+                        Sat: @Html.DisplayFor(modelItem => item.OpeningSaturday)-
+                        @Html.DisplayFor(modelItem => item.ClosingSaturday)
                     </div>
                     <div class="col-sm">
-                        <img src=@Html.DisplayFor(modelItem => item.Img.Src)
-                             width="50%" height="50%" style="margin:10px;"
-                             alt=@Html.DisplayFor(modelItem => item.Img.Description)>
+                        @Html.DisplayFor(modelItem => item.Img.Src)
                     </div>
                 </div>
                 <span>Rating: @Html.DisplayFor(modelItem => item.Rating)</span>

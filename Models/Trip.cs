@@ -14,8 +14,12 @@ namespace mr_shtrahman.Models
         public string Name { get; set; }
         [DataType(DataType.Currency)]
         public double Price { get; set; }
+        
+        [Range(0, 5)]
         public short Rating { get; set; }
         public Destination Destination { get; set; }
+
+        [Display(Name = "Trip Type")]
         public TripType TripType { get; set; }
         public Difficulty Difficulty { get; set; }
         public string Location { get; set; }
