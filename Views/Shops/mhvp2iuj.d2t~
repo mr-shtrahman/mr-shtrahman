@@ -43,7 +43,7 @@ function swapImage(){
                         <select id="imageSelect" asp-for="Img" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()"></select>
                         <span asp-validation-for="Img" class="text-danger"></span>
                     </div>
-                    <div class="col-sm-6 shop-img">
+                    <div class="col-sm-6">
                         <img id="imageToSwap" src="~/Assets/download.jpg" />
                     </div>
                 </div>
