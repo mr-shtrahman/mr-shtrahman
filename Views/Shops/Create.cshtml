@@ -43,8 +43,10 @@ function swapImage(){
                         <select id="imageSelect" asp-for="Img" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()"></select>
                         <span asp-validation-for="Img" class="text-danger"></span>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-6 shop-img">
-                        <img id="imageToSwap" src="~/Assets/download.jpg" />
+                        <img id="imageToSwap" src="" />
                     </div>
                 </div>
             </div>
@@ -126,7 +128,7 @@ function swapImage(){
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label class="control-label">Trips this shop offers: </label>
+                        <label class="control-label">Trips nearby: </label>
                         <select asp-for="Trips" asp-items="@ViewBag.Trips" class="form-control"></select>
                         <span asp-validation-for="Trips" class="text-danger"></span>
                     </div>
