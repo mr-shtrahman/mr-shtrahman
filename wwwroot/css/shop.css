@@ -8,11 +8,12 @@ h1 {
 }
 
 .header {
-    height: 500px;
-    text-align: center;
+    height: 300px;
+    text-align: bottom;
     background: url('../Assets/landscape.jpg');
+    background-position: center;
     color: white;
-    padding: 100px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;

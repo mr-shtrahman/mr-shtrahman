@@ -24,20 +24,18 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            var m2mWithSearchContext = _context.Shop.Include(s => s.Img);
-  
-
-            return View(await m2mWithSearchContext.ToListAsync());
+            var shopsWithImgs = _context.Shop.Include(s => s.Img);
+            return View(await shopsWithImgs.ToListAsync());
         }
 
         public async Task<IActionResult> Search(string query)
         {
 
-            var m2mWithSearchContext = _context.Shop.Include(s => s.Img).
+            var shopsWithSearchContext = _context.Shop.Include(s => s.Img).
                                                      Where(s => s.Name.Contains(query) ||
                                                            query == null);
 
-            return View("Index", await m2mWithSearchContext.ToListAsync());
+            return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
         // GET: Shops/Details/5
