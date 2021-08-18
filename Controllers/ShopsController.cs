@@ -165,8 +165,11 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-
-            return View(shop);
+            else
+            {
+                await DeleteConfirmed(id);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Shops/Delete/5

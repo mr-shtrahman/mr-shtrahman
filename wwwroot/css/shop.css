@@ -48,11 +48,11 @@ h1 {
     flex-direction: row-reverse;
 }
 
-/*CSS for CREATE PAGE*/
+/*CSS for CREATE/DELETE PAGE*/
 
-.control-label {
-    font-weight: 600;
-}
+.control-label, .data-name{
+    font-weight: 700;
+=}
 
 .data-section {
     border: solid 1px silver;
