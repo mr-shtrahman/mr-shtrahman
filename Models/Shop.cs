@@ -24,7 +24,7 @@ namespace mr_shtrahman.Models
         public string Street { get; set; }
 
         [Required]
-        [Display(Name = "StreetNum")]
+        [Display(Name = "Street Number")]
         public int StreetNum { get; set; }
 
         [DataType(DataType.PhoneNumber)]
@@ -63,7 +63,5 @@ namespace mr_shtrahman.Models
         public Img Img { get; set; }
         public List<Product> Products { get; set; }
         public List<Trip> Trips { get; set; }
-
-
     }
 }

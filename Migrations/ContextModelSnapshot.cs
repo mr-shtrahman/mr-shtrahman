@@ -124,11 +124,17 @@ namespace mr_shtrahman.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Area")
-                        .HasColumnType("int");
-
                     b.Property<int>("City")
                         .HasColumnType("int");
+
+                    b.Property<string>("ClosingFriday")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClosingSaturday")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClosingSundayTilThursday")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ImgId")
                         .HasColumnType("int");
@@ -140,8 +146,14 @@ namespace mr_shtrahman.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("OpeningTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("OpeningFriday")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OpeningSaturday")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OpeningSundayTilThursday")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNum")
                         .HasColumnType("nvarchar(max)");

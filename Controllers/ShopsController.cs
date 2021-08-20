@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,7 +24,18 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Shop.ToListAsync());
+            var shopsWithImgs = _context.Shop.Include(s => s.Img);
+            return View(await shopsWithImgs.ToListAsync());
+        }
+
+        public async Task<IActionResult> Search(string query)
+        {
+
+            var shopsWithSearchContext = _context.Shop.Include(s => s.Img).
+                                                     Where(s => s.Name.Contains(query) ||
+                                                           query == null);
+
+            return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
         // GET: Shops/Details/5
@@ -48,7 +61,7 @@ namespace mr_shtrahman.Controllers
         {
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -152,8 +165,11 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-
-            return View(shop);
+            else
+            {
+                await DeleteConfirmed(id);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Shops/Delete/5
