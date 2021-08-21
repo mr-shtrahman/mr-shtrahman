@@ -24,35 +24,36 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-@foreach (var item in Model)
-{
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" 
-             src="~/Assets/download (2).jpg"
-             alt=@Html.DisplayFor(modelItem => item.Img.Description) >
-        <div class="card-body">
-            <div class="card-title row">
-                <h5 class="col">@Html.DisplayFor(modelItem => item.Name)</h5>
-                <span class="col">@Html.DisplayFor(modelItem => item.Price)</span>
+<div class="row justify-content-between">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4" style="margin-top: 10px">
+            <div class="card" style="height: 35rem">
+                <img class="card-img-top"
+                     src="~/Assets/download (2).jpg"
+                     alt=@Html.DisplayFor(modelItem => item.Img.Description)>
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <div class="row">
+                        <div class="col">@Html.DisplayFor(modelItem => item.Difficulty)</div>
+                        <div class="col">@Html.DisplayFor(modelItem => item.TripType)</div>
+                        <div class="col">@Html.DisplayFor(modelItem => item.Price)</div>
+                    </div>
+                    <hr />
+                    <p class="card-text">
+                        <div>@Html.DisplayFor(modelItem => item.Destination)</div>
+                        <div>@Html.DisplayFor(modelItem => item.Location)</div>
+                        <div>@Html.DisplayFor(modelItem => item.Details)</div>
+                    </p>
+                    <hr />
+                    <div>Rating: @Html.DisplayFor(modelItem => item.Rating)</div>
+                </div>
+                @*<div>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>*@
             </div>
-            <hr/>
-            <p class="card-text">
-                <div>@Html.DisplayFor(modelItem => item.Destination)</div>
-                <div>@Html.DisplayFor(modelItem => item.Location)</div>
-                <div>@Html.DisplayFor(modelItem => item.Details)</div>
-            </p>
-            <hr />
-            <div class="row">
-                <div class="col">@Html.DisplayFor(modelItem => item.Difficulty)</div>
-                <div class="col">@Html.DisplayFor(modelItem => item.TripType)</div>
-            </div>
-            <hr/>
-            <div>Rating: @Html.DisplayFor(modelItem => item.Rating)</div>
         </div>
-        <div>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </div>
-    </div>
-}
+    }
+</div>

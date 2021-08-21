@@ -15,6 +15,8 @@ namespace mr_shtrahman.Models
         [Required]
         [DataType(DataType.Currency)]
         public double Price{ get; set; }
+
+        [Range(0, 5)]
         public short Rating{ get; set; }
         public Category Category { get; set; }
         public Size Size { get; set; }

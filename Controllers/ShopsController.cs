@@ -24,18 +24,18 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            var m2mWithSearchContext = _context.Shop.Include(s => s.Img);
-            return View(await m2mWithSearchContext.ToListAsync());
+            var shopsWithImgs = _context.Shop.Include(s => s.Img);
+            return View(await shopsWithImgs.ToListAsync());
         }
 
         public async Task<IActionResult> Search(string query)
         {
 
-            var m2mWithSearchContext = _context.Shop.Include(s => s.Img).
+            var shopsWithSearchContext = _context.Shop.Include(s => s.Img).
                                                      Where(s => s.Name.Contains(query) ||
                                                            query == null);
 
-            return View("Index", await m2mWithSearchContext.ToListAsync());
+            return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
         // GET: Shops/Details/5
@@ -61,7 +61,7 @@ namespace mr_shtrahman.Controllers
         {
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -70,7 +70,9 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
+        public async Task<IActionResult> Create(
+            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
+            string[] trips, string[] shops, string imgId)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +114,9 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningTime,ImgId")] Shop shop, string[] trips, string[] shops, string imgId)
+        public async Task<IActionResult> Edit(string id,
+            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
+            string[] trips, string[] shops, string imgId)
         {
             if (id != shop.Id)
             {
@@ -161,8 +165,11 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-
-            return View(shop);
+            else
+            {
+                await DeleteConfirmed(id);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Shops/Delete/5
