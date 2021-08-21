@@ -1,55 +1,196 @@
 ﻿
+<link rel="stylesheet" href="~/css/shop.css">
+
 @model IEnumerable<mr_shtrahman.Models.Shop>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1 style="text-align: center; margin: 20px;">OUR SHOPS</h1>
+<div class="header">
+    <h1>OUR SHOPS</h1>
 
-<form asp-action="Search" class="input-group">
-    <div class="form-outline">
-        <input name="query" 
-               placeholder="search for a shop..." 
-               type="search" 
-               class="form-control" />
-    </div>
-    <button type="submit" value="search" class="btn btn-primary">
-        Search
-    </button>
-</form>
-
+    <form asp-action="Search" class="input-group search">
+        <div class="form-outline">
+            <input name="query"
+                   placeholder="search shops"
+                   type="search"
+                   class="form-control" />
+        </div>
+        <button type="submit" value="search" class="btn btn-dark">
+            Search
+        </button>
+    </form>
+</div>
 @foreach (var item in Model)
 {
-
-    <div class="card" style="width: 100%; margin-top: 20px;">
-        <div class="card-header" style="text-align: end;">
-            <a asp-action="Edit" asp-route-id="@item.Id" style="margin-right: 5px;">Edit</a>
-            <a asp-action="Delete" asp-route-id="@item.Id" style="margin-left: 5px;">Delete</a>
+    <div class="card">
+        <div class="card-header">
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            <a href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
         </div>
         <div class="card-body">
             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
             <div class="card-text container">
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm-4">
                         @Html.DisplayFor(modelItem => item.City),
                         @Html.DisplayFor(modelItem => item.Street)
                         @Html.DisplayFor(modelItem => item.StreetNum)
                         <br />
                         <span>Phone: </span>@Html.DisplayFor(modelItem => item.PhoneNum)
                     </div>
-                    <div class="col-sm">
-                        Sun-Thu: 9:30-21:30 <br />
-                        Fri: 9:00-15:00 <br />
-                        Sat: 10:30-22:00
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col">
+                                <span>Sun-Thu: </span>
+                            </div>
+                            <div class="col">
+                                @Html.DisplayFor(modelItem => item.OpeningSundayTilThursday)
+                                <span> - </span>
+                                @Html.DisplayFor(modelItem => item.ClosingSundayTilThursday)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span>Friday: </span>
+                            </div>
+                            <div class="col">
+                                @Html.DisplayFor(modelItem => item.OpeningFriday)
+                                <span> - </span>
+                                @Html.DisplayFor(modelItem => item.ClosingFriday)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span>Saturday: </span>
+                            </div>
+                            <div class="col">
+                                @Html.DisplayFor(modelItem => item.OpeningSaturday)
+                                <span> - </span>
+                                @Html.DisplayFor(modelItem => item.ClosingSaturday)
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <a asp-action="Details/1" asp-controller="Img"></a>
+                    <div class="col-sm-5">
+                        @Html.DisplayFor(modelItem => item.Img.Src)
                     </div>
                 </div>
                 <span>Rating: @Html.DisplayFor(modelItem => item.Rating)</span>
             </div>
         </div>
     </div>
+
+    <form class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Shop</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="deleteModalBody">
+                    Are you sure you want to delete this shop?
+                    <br />
+                    <a data-toggle="collapse" href="#collapseShopData" role="button" aria-expanded="false" aria-controls="collapseShopData">
+                        Show more details...
+                    </a>
+                    <div class="collapse" id="collapseShopData">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col data-name">
+                                    @Html.DisplayNameFor(modelItem => item.Name)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col data-name">
+                                    @Html.DisplayNameFor(modelItem => item.City)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col data-name">
+                                    @Html.DisplayNameFor(modelItem => item.Street)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.Street)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col data-name">
+                                    @Html.DisplayNameFor(modelItem => item.StreetNum)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.StreetNum)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col data-name">
+                                    @Html.DisplayNameFor(modelItem => item.PhoneNum)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.PhoneNum)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col data-name">
+                                    @Html.DisplayNameFor(modelItem => item.Rating)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.Rating)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <span>Sun-Thu: </span>
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.OpeningSundayTilThursday)
+                                    <span> - </span>
+                                    @Html.DisplayFor(modelItem => item.ClosingSundayTilThursday)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <span>Friday: </span>
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.OpeningFriday)
+                                    <span> - </span>
+                                    @Html.DisplayFor(modelItem => item.ClosingFriday)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <span>Saturday: </span>
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.OpeningSaturday)
+                                    <span> - </span>
+                                    @Html.DisplayFor(modelItem => item.ClosingSaturday)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for=@item.Id />
+                        <a asp-action="Index" id="delete" class="btn btn-secondary">Cancel</a>
+                        <input type="submit" asp-action="Delete" asp-route-id="@item.Id" value="Delete" class="btn btn-danger" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
 }
-   <a asp-action="Create" style="font-size: 250%; font-weight: 600; display: flex; flex-direction: row-reverse;">+</a>
+
+<a asp-action="Create" class="add-shop">+</a>
