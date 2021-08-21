@@ -72,6 +72,7 @@
     {
         <div class="col-sm-4" style="margin-top: 10px">
             <div class="card" style="height: 35rem">
+                <span>@Html.DisplayFor(modelItem => item.Img)</span>
                 <img class="card-img-top"
                      src=@Html.DisplayFor(modelItem => item.Img.Src)
                      alt=@Html.DisplayFor(modelItem => item.Img.Description)>
@@ -92,10 +93,10 @@
                     <div>Rating: @Html.DisplayFor(modelItem => item.Rating)</div>
                 </div>
                 @*<div>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </div>*@
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </div>*@
             </div>
         </div>
     }

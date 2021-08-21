@@ -22,7 +22,17 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Trip.ToListAsync());
+            var tripsWithImgs = _context.Trip.Include(s => s.Img);
+            return View(await tripsWithImgs.ToListAsync());
+        }
+        public async Task<IActionResult> Search(string query)
+        {
+
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.Name.Contains(query) ||
+                                                         query == null);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
         // GET: Trips/Details/5
