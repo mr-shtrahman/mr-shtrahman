@@ -1,22 +1,65 @@
-﻿@model IEnumerable<mr_shtrahman.Models.Trip>
+﻿<link rel="stylesheet" href="~/css/trip.css">
+
+@model IEnumerable<mr_shtrahman.Models.Trip>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="header">
-    <h1>OUR SHOPS</h1>
+    <h1>OUR TRIPS</h1>
 
     <form asp-action="Search" class="input-group search">
         <div class="form-outline">
             <input name="query"
-                   placeholder="search shops"
+                   placeholder="search trips"
                    type="search"
                    class="form-control" />
         </div>
         <button type="submit" value="search" class="btn btn-dark">
             Search
         </button>
+        <div class="btn-group" role="group">
+            <div class="btn-group" role="group">
+                <button id="destinationFilter" 
+                        type="button" 
+                        class="btn btn-light dropdown-toggle"
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                    Destination
+                </button>
+                <div class="dropdown-menu" aria-labelledby="destinationFilter">
+                    <a class="dropdown-item" href="#">Dropdown link</a>
+                    <a class="dropdown-item" href="#">Dropdown link</a>
+                </div>
+            </div>
+            <div class="btn-group" role="group">
+                <button id="tripTypeFilter" 
+                        type="button"
+                        class="btn btn-light dropdown-toggle"
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                    Trip Type
+                </button>
+                <div class="dropdown-menu" aria-labelledby="tripTypeFilter">
+                    <a class="dropdown-item" href="#">Dropdown link</a>
+                    <a class="dropdown-item" href="#">Dropdown link</a>
+                </div>
+            </div>
+            <div class="btn-group" role="group">
+                <button id="difficultyFilter" 
+                        type="button" 
+                        class="btn btn-light dropdown-toggle"
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                    Difficulty
+                </button>
+                <div class="dropdown-menu" aria-labelledby="difficultyFilter">
+                    <a class="dropdown-item" href="#">Dropdown link</a>
+                    <a class="dropdown-item" href="#">Dropdown link</a>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -30,7 +73,7 @@
         <div class="col-sm-4" style="margin-top: 10px">
             <div class="card" style="height: 35rem">
                 <img class="card-img-top"
-                     src="~/Assets/download (2).jpg"
+                     src=@Html.DisplayFor(modelItem => item.Img.Src)
                      alt=@Html.DisplayFor(modelItem => item.Img.Description)>
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
