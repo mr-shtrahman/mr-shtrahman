@@ -35,6 +35,16 @@ namespace mr_shtrahman.Controllers
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
+        public async Task<IActionResult> FilterByDestination(string query)
+        {
+
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.Name.Contains(query) ||
+                                                         query == null);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
+
         // GET: Trips/Details/5
         public async Task<IActionResult> Details(string id)
         {

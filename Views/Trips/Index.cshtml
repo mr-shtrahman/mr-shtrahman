@@ -1,6 +1,7 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
 
 @model IEnumerable<mr_shtrahman.Models.Trip>
+@using mr_shtrahman.enums
 
 @{
     ViewData["Title"] = "Index";
@@ -19,45 +20,26 @@
         <button type="submit" value="search" class="btn btn-dark">
             Search
         </button>
+    </form>
+    <form asp-action="Filter" class="input-group filter">
         <div class="btn-group" role="group">
             <div class="btn-group" role="group">
-                <button id="destinationFilter" 
-                        type="button" 
-                        class="btn btn-light dropdown-toggle"
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" aria-expanded="false">
-                    Destination
-                </button>
-                <div class="dropdown-menu" aria-labelledby="destinationFilter">
-                    <a class="dropdown-item" href="#">Dropdown link</a>
-                    <a class="dropdown-item" href="#">Dropdown link</a>
-                </div>
+                <select asp-items="Html.GetEnumSelectList<Destination>()"
+                        class="form-control">
+                    <option value="" selected disabled hidden>Destination</option>
+                </select>
             </div>
             <div class="btn-group" role="group">
-                <button id="tripTypeFilter" 
-                        type="button"
-                        class="btn btn-light dropdown-toggle"
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" aria-expanded="false">
-                    Trip Type
-                </button>
-                <div class="dropdown-menu" aria-labelledby="tripTypeFilter">
-                    <a class="dropdown-item" href="#">Dropdown link</a>
-                    <a class="dropdown-item" href="#">Dropdown link</a>
-                </div>
+                <select asp-items="Html.GetEnumSelectList<TripType>()"
+                        class="form-control">
+                    <option value="" selected disabled hidden>Trip type</option>
+                </select>
             </div>
             <div class="btn-group" role="group">
-                <button id="difficultyFilter" 
-                        type="button" 
-                        class="btn btn-light dropdown-toggle"
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" aria-expanded="false">
-                    Difficulty
-                </button>
-                <div class="dropdown-menu" aria-labelledby="difficultyFilter">
-                    <a class="dropdown-item" href="#">Dropdown link</a>
-                    <a class="dropdown-item" href="#">Dropdown link</a>
-                </div>
+                <select asp-items="Html.GetEnumSelectList<Difficulty>()"
+                        class="form-control">
+                    <option value="" selected disabled hidden>Difficulty</option>
+                </select>
             </div>
         </div>
     </form>
@@ -93,10 +75,10 @@
                     <div>Rating: @Html.DisplayFor(modelItem => item.Rating)</div>
                 </div>
                 @*<div>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </div>*@
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>*@
             </div>
         </div>
     }
