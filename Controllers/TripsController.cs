@@ -35,16 +35,32 @@ namespace mr_shtrahman.Controllers
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
-        public async Task<IActionResult> FilterByDestination(string query)
+        public async Task<IActionResult> FilterByDestination(string dest)
         {
 
             var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
-                                                  Where(s => s.Name.Contains(query) ||
-                                                         query == null);
+                                                  Where(s => s.Destination.ToString() == dest);
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
+        public async Task<IActionResult> FilterByType(string type)
+        {
+
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.TripType.ToString() == type);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> FilterByDifficulty(string diff)
+        {
+
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.Difficulty.ToString() == diff);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
         // GET: Trips/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -164,8 +180,12 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                await DeleteConfirmed(id);
+            }
 
-            return View(trip);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Trips/Delete/5

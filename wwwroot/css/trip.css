@@ -62,3 +62,17 @@ h1 {
     font-size: smaller;
     font-style: italic;
 }
+
+.card-actions  {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: smaller;
+}
+
+.card-actions * {
+    margin: 5px;
+}
+
+.data-name {
+    font-weight: 700;
+}
