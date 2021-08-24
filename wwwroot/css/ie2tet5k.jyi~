@@ -44,21 +44,14 @@ h1 {
     margin: 10px;
 }
 
-.card-subtitle, h4 {
-    font-weight: 700;
-    font-style: italic;
+.card-subtitle {
+    font-weight: 600;
 }
 
-.card-title {
-    height: 6rem;
-    font-size: 85%;
+.card {
+    height: 30rem;
 }
 
-.card-text {
-    height: 11rem;
-}
-
-.address {
-    font-size: smaller;
-    font-style: italic;
+.card-subtitle > span {
+    font-weight: 100;
 }

@@ -53,24 +53,26 @@
     @foreach (var item in Model)
     {
         <div class="col-sm-4" style="margin-top: 10px">
-            <div class="card" style="height: 35rem">
-                <span>@Html.DisplayFor(modelItem => item.Img)</span>
+            <div class="card">
                 <img class="card-img-top"
-                     src=@Html.DisplayFor(modelItem => item.Img.Src)
+                     src='~/Assets/hiking.jpg'
                      alt=@Html.DisplayFor(modelItem => item.Img.Description)>
                 <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    <div class="row">
-                        <div class="col">@Html.DisplayFor(modelItem => item.Difficulty)</div>
-                        <div class="col">@Html.DisplayFor(modelItem => item.TripType)</div>
-                        <div class="col">@Html.DisplayFor(modelItem => item.Price)</div>
-                    </div>
+                    <div class="card-title">
+                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                        <div class="row">
+                            <div class="col">@Html.DisplayFor(modelItem => item.Difficulty)</div>|
+                            <div class="col">@Html.DisplayFor(modelItem => item.TripType)</div>|
+                            <div class="col">@Html.DisplayFor(modelItem => item.Price)</div>
+                        </div>
+                     </div>
                     <hr />
-                    <p class="card-text">
-                        <div>@Html.DisplayFor(modelItem => item.Destination)</div>
-                        <div>@Html.DisplayFor(modelItem => item.Location)</div>
-                        <div>@Html.DisplayFor(modelItem => item.Details)</div>
-                    </p>
+                    <div class="card-text">
+                        <div class="card-subtitle">@Html.DisplayFor(modelItem => item.Destination)</div>
+                        <div class="address"> @Html.DisplayFor(modelItem => item.Location)</div>
+                        <br/>
+                        <p>@Html.DisplayFor(modelItem => item.Details)</p>
+                    </div>
                     <hr />
                     <div>Rating: @Html.DisplayFor(modelItem => item.Rating)</div>
                 </div>
