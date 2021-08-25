@@ -22,15 +22,11 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            ViewData["Products"] = _context.Product.ToList();
-
             var tripsWithImgs = _context.Trip.Include(s => s.Img);
             return View(await tripsWithImgs.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
         {
-            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-
             var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
                                                   Where(s => s.Name.Contains(query) ||
                                                          query == null);
@@ -40,8 +36,6 @@ namespace mr_shtrahman.Controllers
 
         public async Task<IActionResult> FilterByDestination(string dest)
         {
-            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-
             var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
                                                   Where(s => s.Destination.ToString() == dest);
 
@@ -50,8 +44,6 @@ namespace mr_shtrahman.Controllers
 
         public async Task<IActionResult> FilterByType(string type)
         {
-            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-
             var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
                                                   Where(s => s.TripType.ToString() == type);
 
@@ -59,9 +51,7 @@ namespace mr_shtrahman.Controllers
         }
 
         public async Task<IActionResult> FilterByDifficulty(string diff)
-        {
-            ViewData["Products"] = new SelectList(_context.Product, "Id", "Name");
-            
+        {            
             var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
                                                   Where(s => s.Difficulty.ToString() == diff);
 
@@ -74,6 +64,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Products"] = _context.Product.ToList();
 
             var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);
