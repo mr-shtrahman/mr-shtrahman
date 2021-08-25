@@ -7148,19 +7148,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mikim\\.nuget\\packages\\": {}
+    "C:\\Users\\jack\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mikim\\OneDrive\\Desktop\\School\\Web Applications\\mr-shtrahman\\mr-shtrahman.csproj",
+      "projectUniqueName": "C:\\Users\\jack\\Source\\Repos\\mr-shtrahman-db-remove\\mr-shtrahman.csproj",
       "projectName": "mr-shtrahman",
-      "projectPath": "C:\\Users\\mikim\\OneDrive\\Desktop\\School\\Web Applications\\mr-shtrahman\\mr-shtrahman.csproj",
-      "packagesPath": "C:\\Users\\mikim\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mikim\\OneDrive\\Desktop\\School\\Web Applications\\mr-shtrahman\\obj\\",
+      "projectPath": "C:\\Users\\jack\\Source\\Repos\\mr-shtrahman-db-remove\\mr-shtrahman.csproj",
+      "packagesPath": "C:\\Users\\jack\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jack\\Source\\Repos\\mr-shtrahman-db-remove\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mikim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jack\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7219,7 +7219,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
