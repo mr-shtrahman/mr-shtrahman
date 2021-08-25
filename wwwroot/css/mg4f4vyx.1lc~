@@ -1,4 +1,4 @@
-﻿body {
+body {
     text-align: left;
 }
 
@@ -119,39 +119,10 @@ h6 {
 }
 
 .add-trip {
-    width: 22%;
+    width: 25%;
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-}
-
-.rate:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
-}
-
-.rate:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-}
-
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-
-#gold-star ~ label {
-    color: #ffc700;
 }

@@ -75,20 +75,20 @@
                     <hr />
                     <div class="row">
                         <div class="rate">
-                            @for (int i = 1; i <= (5 - item.Rating); i++)
-                            {
-                                <input type="radio" id="gray-star" name="rate" value="5" />
-                                <label for="gray-star" title="text">star</label>
-                            }
                             @for (int i = 1; i <= item.Rating; i++)
                             {
                                 <input type="radio" id="gold-star" name="rate" value="5" />
                                 <label for="gold-star" title="text">star</label>
                             }
+                            @for (int i = 1; i <= (5 - item.Rating); i++)
+                            {
+                                <input type="radio" id="gray-star" name="rate" value="5" />
+                                <label for="gray-star" title="text">star</label>
+                            }
                         </div>
                         <div class="card-actions col">
-                            <a class="btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn-outline-dark btn-sm" href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
                         </div>
                     </div>
                 </div>
