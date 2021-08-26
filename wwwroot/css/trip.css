@@ -23,7 +23,7 @@ h1 {
 .header {
     width: 100%;
     height: 400px;
-    background: url('../Assets/hiking.jpg');
+    background: url('../Assets/general/hiking1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -55,6 +55,15 @@ h1 {
 .btn-group * {
     width: 150px;
     margin: 10px;
+}
+
+.add-trip {
+    width: 22%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .card-subtitle, h4 {
@@ -111,15 +120,6 @@ h6 {
     margin: 10px;
     height: 20rem;
     width: 20rem;
-}
-
-.add-trip {
-    width: 22%;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .rate {

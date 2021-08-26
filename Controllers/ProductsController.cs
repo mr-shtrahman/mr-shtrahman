@@ -34,18 +34,10 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Products/Category/Shoes
-        public async Task<IActionResult> Category(string id)
+        public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
-
             var categoryProducts = _context.Product.Include(p => p.Img).
-                                      Where(p => p.Category == product.Category);
+                                      Where(p => p.Category == category);
 
             return View(await categoryProducts.ToListAsync());
         }
