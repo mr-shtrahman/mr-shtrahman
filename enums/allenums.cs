@@ -68,7 +68,6 @@ namespace mr_shtrahman.enums
         Ariel,
         [Display(Name = "Modi'in")]
         Modiin,
-        [Display(Name = "Ashdod")]
         Ashdod,
         [Display(Name = "Bet Shemesh")]
         BetShemesh,
