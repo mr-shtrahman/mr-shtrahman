@@ -22,13 +22,13 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            var tripsWithImgs = _context.Trip.Include(s => s.Img);
+            var tripsWithImgs = _context.Trip.Include(t => t.Img);
             return View(await tripsWithImgs.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
         {
-            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
-                                                  Where(s => s.Name.Contains(query) ||
+            var tripsWithSearchContext = _context.Trip.Include(t => t.Img).
+                                                  Where(t => t.Name.Contains(query) ||
                                                          query == null);
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
@@ -65,7 +65,7 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            ViewData["Products"] = _context.Product.ToList();
+            ViewData["Products"] = _context.Product.ToList(); // TODO get all product recommended for this trip
 
             var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);

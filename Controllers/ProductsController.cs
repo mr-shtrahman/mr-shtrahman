@@ -22,7 +22,32 @@ namespace mr_shtrahman.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            var productWithImgs = _context.Product.Include(p => p.Img);
+            return View(await productWithImgs.ToListAsync());
+        }
+        public async Task<IActionResult> Search(string query)
+        {
+            var productWithImgs = _context.Product.Include(p => p.Img).
+                                                  Where(p => p.Name.Contains(query) ||
+                                                         query == null); ;
+            return View(await productWithImgs.ToListAsync());
+        }
+
+        // GET: Products/Category/Shoes
+        public async Task<IActionResult> Category(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            var categoryProducts = _context.Product.Include(p => p.Img).
+                                      Where(p => p.Category == product.Category);
+
+            return View(await categoryProducts.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -32,6 +57,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Shops"] = _context.Shop.ToList(); // TODO get all shops where a product can be found
 
             var product = await _context.Product
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -48,7 +75,7 @@ namespace mr_shtrahman.Controllers
         {
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Shops"] = new SelectList(_context.Shop, nameof(Shop.Id), nameof(Shop.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -90,7 +117,7 @@ namespace mr_shtrahman.Controllers
 
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Shops"] = new SelectList(_context.Shop, nameof(Shop.Id), nameof(Shop.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 
             return View(product);
         }
@@ -150,8 +177,12 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                await DeleteConfirmed(id);
+            }
 
-            return View(product);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Products/Delete/5
