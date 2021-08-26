@@ -36,6 +36,8 @@ a:hover {
     margin-bottom: 20px;
 }
 
+/*CATEGORIES PAGE*/
+
 .add-product {
     width: 25%;
     display: flex;
@@ -46,6 +48,13 @@ a:hover {
     font-size: medium;
 }
 
+.card {
+    margin-top: 10px;
+}
+.card-img-top {
+    height: 15rem;
+}
+
 .category {
     text-align: center;
 }
@@ -53,3 +62,5 @@ a:hover {
 .category > a {
     width: 100%;
 }
+
+/*PRODUCTS PAGE*/

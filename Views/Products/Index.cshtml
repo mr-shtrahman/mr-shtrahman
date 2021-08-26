@@ -7,6 +7,8 @@
     ViewData["Title"] = "Index";
 }
 
+
+
 <div class="header">
     <h1>OUR PRODUCTS</h1>
 </div>
@@ -17,9 +19,9 @@
     {
         <div class="col-sm-6 category" style="margin-top: 10px">
             <div class="card">
-                @*src=@Html.DisplayFor(modelItem => item.Img.Src)*@
-                <img class="card-img-top"
-                     src='~/Assets/general/hiking1.jpg'>
+                <input type="hidden" value=@category name="dynamicImageUrl"/>
+                <img class="card-img-top" name="@category.ToString().ToLower()"
+                     src="">
             </div>
             <a class="btn btn-dark btn-lg" 
                asp-action="Category" asp-route-category=@category>
@@ -28,3 +30,11 @@
         </div>
     }
 </div>
+
+<script type="text/javascript">
+    document.getElementsByName('dynamicImageUrl').forEach(c => {
+        var currentCategory = c.value.toLowerCase();
+        var path = "/Assets/categories/" + currentCategory + ".jpg";
+        document.getElementsByName(currentCategory)[0].src = path;
+    });
+</script>
