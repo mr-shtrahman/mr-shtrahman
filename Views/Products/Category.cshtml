@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <form class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -122,16 +122,17 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
-                </div>
-                <div class="modal-footer">
-                    <form asp-action="Delete">
-                        <input type="hidden" asp-for=@item.Id />
-                        <a asp-action="Index" id="delete" class="btn btn-secondary">Cancel</a>
-                        <input type="submit" asp-action="Delete" asp-route-id="@item.Id" value="Delete" class="btn btn-danger" />
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for=@item.Id />
+                            <a asp-action="Index" id="delete" class="btn btn-secondary">Cancel</a>
+                            <input type="submit" asp-action="Delete" asp-route-id="@item.Id" value="Delete" class="btn btn-danger" />
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+
+        </div>
     }
 </div>
