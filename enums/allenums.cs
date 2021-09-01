@@ -17,8 +17,7 @@ namespace mr_shtrahman.enums
         Camping,
         Bags,
         Gadgets,
-        [Display(Name = "Israel National Trail")]
-        IsraelNationalTrail
+        Soldiers
     }
     public enum Destination
     {

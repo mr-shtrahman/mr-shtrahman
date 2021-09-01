@@ -308,7 +308,6 @@ C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\n
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Imgs\Edit.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Imgs\Index.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Create.cshtml.g.cs
-C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Delete.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Details.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Edit.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Index.cshtml.g.cs
@@ -320,7 +319,6 @@ C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\n
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Edit.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Index.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Create.cshtml.g.cs
-C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Delete.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Details.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Edit.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Index.cshtml.g.cs
@@ -339,3 +337,4 @@ C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\n
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\ref\mr-shtrahman.dll
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\mr-shtrahman.pdb
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\mr-shtrahman.genruntimeconfig.cache
+C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Category.cshtml.g.cs
