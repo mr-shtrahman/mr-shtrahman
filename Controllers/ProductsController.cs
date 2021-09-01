@@ -169,10 +169,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-            else
-            {
                 await DeleteConfirmed(id);
-            }
+            
 
             return RedirectToAction(nameof(Index));
         }
@@ -180,8 +178,13 @@ namespace mr_shtrahman.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
