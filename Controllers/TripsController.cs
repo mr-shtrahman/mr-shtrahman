@@ -26,7 +26,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -57,7 +57,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ClosestShopsId,Img")] Trip trip, string[] products, string[] visitorsAttendances)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,Img")] Trip trip, int[] products, int[] visitorsAttendances)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -96,7 +96,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ClosestShopsId,ImgId")] Trip trip, string[] products, string[] visitorsAttendances)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] products, int[] visitorsAttendances)
         {
             if (id != trip.Id)
             {
@@ -131,7 +131,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult>  Delete(int? id)
         {
             if (id == null)
             {
@@ -151,7 +151,7 @@ namespace mr_shtrahman.Controllers
         // POST: Trips/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var trip = await _context.Trip.FindAsync(id);
             _context.Trip.Remove(trip);
@@ -159,7 +159,7 @@ namespace mr_shtrahman.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TripExists(string id)
+        private bool TripExists(int id)
         {
             return _context.Trip.Any(e => e.Id == id);
         }

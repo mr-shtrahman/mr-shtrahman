@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using mr_shtrahman.enums;
@@ -12,7 +13,7 @@ namespace mr_shtrahman.Models
         private const string OpeningClosingTimeRegex = @"^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$";
         private const string OpeningClosingTimeErrMsg = "try in format of hh:mm";
 
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -59,9 +60,10 @@ namespace mr_shtrahman.Models
         [RegularExpression(OpeningClosingTimeRegex, ErrorMessage = OpeningClosingTimeErrMsg)]
         public string ClosingSaturday { get; set; }
 
+        [Column("ImgId")]
         public int ImgId { get; set; }
+        [ForeignKey("ImgId")] 
         public Img Img { get; set; }
         public List<Product> Products { get; set; }
-        public List<Trip> Trips { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace mr_shtrahman.Models
 {
     public class Img
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Src { get; set; }
         [Required]
@@ -17,6 +17,7 @@ namespace mr_shtrahman.Models
         [ForeignKey("Trip")]
         [Display(Name = "Trip")]
         public int? TripId { get; set; }
+
         [ForeignKey("Shop")]
         [Display(Name = "Shop")]
         public int? ShopId { get; set; }

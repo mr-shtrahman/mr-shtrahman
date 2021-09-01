@@ -39,7 +39,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Shops/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -59,7 +59,6 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Create
         public IActionResult Create()
         {
-            ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
@@ -72,13 +71,11 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-            string[] trips, string[] shops, string imgId)
+             int[] shops, int imgId)
         {
             if (ModelState.IsValid)
             {
-                shop.Trips = new List<Trip>();
                 shop.Products = new List<Product>();
-                shop.Trips.AddRange(_context.Trip.Where(trip => trips.Contains(trip.Id)));
                 shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
 
                 _context.Add(shop);
@@ -89,7 +86,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Shops/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -102,7 +99,6 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
 
@@ -114,9 +110,9 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id,
+        public async Task<IActionResult> Edit(int id,
             [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-            string[] trips, string[] shops, string imgId)
+            int[] shops, int imgId)
         {
             if (id != shop.Id)
             {
@@ -127,9 +123,7 @@ namespace mr_shtrahman.Controllers
             {
                 try
                 {
-                    shop.Trips = new List<Trip>();
                     shop.Products = new List<Product>();
-                    shop.Trips.AddRange(_context.Trip.Where(trip => trips.Contains(trip.Id)));
                     shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
 
                     _context.Update(shop);
@@ -152,7 +146,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Shops/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult>  Delete(int? id)
         {
             if (id == null)
             {
@@ -167,7 +161,7 @@ namespace mr_shtrahman.Controllers
             }
             else
             {
-                await DeleteConfirmed(id);
+                //await DeleteConfirmed(id);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -175,7 +169,7 @@ namespace mr_shtrahman.Controllers
         // POST: Shops/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var shop = await _context.Shop.FindAsync(id);
             _context.Shop.Remove(shop);
@@ -183,7 +177,7 @@ namespace mr_shtrahman.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ShopExists(string id)
+        private bool ShopExists(int id)
         {
             return _context.Shop.Any(e => e.Id == id);
         }

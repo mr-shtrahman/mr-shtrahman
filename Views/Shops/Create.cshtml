@@ -20,12 +20,6 @@ function swapImage(){
     </div>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            @*todo: needs to be autofilled*@
-            <label asp-for="Id" class="control-label"></label>
-            <input asp-for="Id" class="form-control" />
-            <span asp-validation-for="Id" class="text-danger"></span>
-        </div>
         <div class="data-section">
             <div class="form-group">
                 <div class="row">
@@ -127,11 +121,6 @@ function swapImage(){
         <div class="data-section">
             <div class="form-group">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <label class="control-label">Trips nearby: </label>
-                        <select asp-for="Trips" asp-items="@ViewBag.Trips" class="form-control"></select>
-                        <span asp-validation-for="Trips" class="text-danger"></span>
-                    </div>
                     <div class="col-sm-6">
                         <label class="control-label">Products you can find here: </label>
                         <select asp-for="Products" asp-items="@ViewBag.Product" class="form-control"></select>

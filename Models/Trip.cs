@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using mr_shtrahman.enums;
@@ -9,7 +10,7 @@ namespace mr_shtrahman.Models
 {
     public class Trip
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [DataType(DataType.Currency)]
@@ -25,12 +26,10 @@ namespace mr_shtrahman.Models
         public string Location { get; set; }
         public string Details { get; set; }
 
-        [Display(Name = "Closest shops")]
-        public int ClosestShopsId { get; set; }
-
-        public Shop ClosestShops { get; set; }
-
+        [Column("ImgId")]
         public int ImgId { get; set; }
+        
+        [ForeignKey("ImgId")]
         public Img Img { get; set; }
 
         [Display(Name = "Relevant Products")]
