@@ -22,9 +22,41 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Trip.ToListAsync());
+            var tripsWithImgs = _context.Trip.Include(t => t.Img);
+            return View(await tripsWithImgs.ToListAsync());
+        }
+        public async Task<IActionResult> Search(string query)
+        {
+            var tripsWithSearchContext = _context.Trip.Include(t => t.Img).
+                                                  Where(t => t.Name.Contains(query) ||
+                                                         query == null);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
+        public async Task<IActionResult> FilterByDestination(string dest)
+        {
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.Destination.ToString() == dest);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> FilterByType(string type)
+        {
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.TripType.ToString() == type);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> FilterByDifficulty(string diff)
+        {            
+            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+                                                  Where(s => s.Difficulty.ToString() == diff);
+
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
         // GET: Trips/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -32,6 +64,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Products"] = _context.Product.ToList(); // TODO get all product recommended for this trip
 
             var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -48,7 +82,7 @@ namespace mr_shtrahman.Controllers
         {
             ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -87,7 +121,7 @@ namespace mr_shtrahman.Controllers
             }
             ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View(trip);
         }
 
@@ -144,8 +178,12 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                await DeleteConfirmed(id);
+            }
 
-            return View(trip);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Trips/Delete/5

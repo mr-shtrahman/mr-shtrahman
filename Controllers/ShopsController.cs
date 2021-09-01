@@ -60,7 +60,7 @@ namespace mr_shtrahman.Controllers
         public IActionResult Create()
         {
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null), nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -100,7 +100,7 @@ namespace mr_shtrahman.Controllers
             }
 
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 
             return View(shop);
         }

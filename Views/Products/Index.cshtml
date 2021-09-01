@@ -1,77 +1,40 @@
-﻿@model IEnumerable<mr_shtrahman.Models.Product>
+﻿<link rel="stylesheet" href="~/css/product.css">
+
+@model IEnumerable<mr_shtrahman.Models.Product>
+@using mr_shtrahman.enums
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Details)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="header">
+    <h1>OUR PRODUCTS</h1>
+</div>
+<a asp-action="Create" class="btn btn-lg btn-outline-info add-product">ADD PRODUCT +</a>
+
+<div class="row justify-content-between">
+    @foreach (var category in Enum.GetValues(typeof(Category)))
+    {
+        <div class="col-sm-6 category" style="margin-top: 10px">
+            <div class="card">
+                <input type="hidden" value=@category name="dynamicImageUrl"/>
+                <img class="card-img-top" name="@category.ToString().ToLower()"
+                     src="">
+            </div>
+            <a class="btn btn-dark btn-lg" 
+               asp-action="Category" asp-route-category=@category>
+            @category.ToString().ToUpper()
+            </a>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    document.getElementsByName('dynamicImageUrl').forEach(c => {
+        var currentCategory = c.value.toLowerCase();
+        var path = "/Assets/categories/" + currentCategory + ".jpg";
+        document.getElementsByName(currentCategory)[0].src = path;
+    });
+</script>
