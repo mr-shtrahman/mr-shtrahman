@@ -1,0 +1,26 @@
+.logo-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(20,28,75);
+    flex-direction: row;
+    padding: 0 !important;
+}
+
+nav {
+    background-color: rgb(20,28,75);
+    padding: 0;
+}
+
+img {
+    width: 12rem;
+    height: 5rem;
+}
+
+.nav-item {
+    width: 100px;
+    font-size: large;
+}
+
+.pos-f-t {
+    margin-bottom: 1rem;
+}
