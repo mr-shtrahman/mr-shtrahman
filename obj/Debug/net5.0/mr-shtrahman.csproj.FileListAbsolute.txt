@@ -316,7 +316,6 @@ C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\n
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Create.cshtml.g.cs
-C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Delete.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Details.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Edit.cshtml.g.cs
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Shops\Index.cshtml.g.cs

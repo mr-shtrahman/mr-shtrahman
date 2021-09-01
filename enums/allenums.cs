@@ -26,12 +26,18 @@ namespace mr_shtrahman.enums
         GolanHeights,
         Galilee,
         Carmel,
+        Haifa,
+        [Display(Name = "Tel Aviv")]
+        TelAviv,
         [Display(Name = "Central Israel")]
         CentralIsrael,
         Jerusalem,
         [Display(Name = "The Dead Sea")]
         TheDeadSea,
-        Negev,
+        [Display(Name = "Northern Negev")]
+        NorthNegev,
+        [Display(Name = "Central Negev")]
+        CentralNegev,
         Eilat
     }
 
@@ -53,12 +59,33 @@ namespace mr_shtrahman.enums
     {
         [Display(Name = "Tel Aviv")]
         TelAviv,
-        [Display(Name = "Jerusalem")]
         Jerusalem,
         [Display(Name = "Rishon Le Tsyion")]
         RishonLeTsyion,
         [Display(Name = "Be'er Sheva")]
-        BeerSheva
+        BeerSheva,
+        Eilat,
+        Ariel,
+        [Display(Name = "Modi'in")]
+        Modiin,
+        Ashdod,
+        [Display(Name = "Bet Shemesh")]
+        BetShemesh,
+        [Display(Name = "Bat Yam")]
+        BatYam,
+        Herzliya,
+        Holon,
+        Haifa,
+        Tveria,
+        Carmiel, 
+        [Display(Name = "Kfar Saba")]
+        KfarSaba,
+        Netanya,
+        [Display(Name = "Petah Tikva")]
+        PetahTikva,
+        Rehovot,
+        [Display(Name = "Ra'anana")]
+        Raanana
     }
 
     public enum Difficulty

@@ -44,12 +44,15 @@
         </div>
     </form>
 </div>
-<a asp-action="Create" class="btn btn-lg btn-outline-info add-trip">ADD TRIP +</a>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 
 <div class="row justify-content-between">
     @foreach (var item in Model)
     {
-        <div class="col-sm-6" style="margin-top: 10px">
+        <div class="col-sm" style="margin-top: 10px">
             <div class="card">
                 @*src=@Html.DisplayFor(modelItem => item.Img.Src)*@
                 <img class="card-img-top"
@@ -59,8 +62,8 @@
                     <div class="card-title">
                         <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                         <div class="row">
-                            <div class="col">@Html.DisplayFor(modelItem => item.Difficulty)</div>
-                            <div class="col">@Html.DisplayFor(modelItem => item.TripType)</div>
+                            <div class="col">@Html.DisplayFor(modelItem => item.Difficulty)</div>|
+                            <div class="col">@Html.DisplayFor(modelItem => item.TripType)</div>|
                             <div class="col">@Html.DisplayFor(modelItem => item.Price)</div>
                         </div>
                     </div>
@@ -74,26 +77,17 @@
                     <a class="details btn-lg" asp-action="Details" asp-route-id="@item.Id">Go There</a>
                     <hr />
                     <div class="row">
-                        <div class="rate">
-                            @for (int i = 1; i <= (5 - item.Rating); i++)
-                            {
-                                <input type="radio" id="gray-star" name="rate" value="5" />
-                                <label for="gray-star" title="text">star</label>
-                            }
-                            @for (int i = 1; i <= item.Rating; i++)
-                            {
-                                <input type="radio" id="gold-star" name="rate" value="5" />
-                                <label for="gold-star" title="text">star</label>
-                            }
-                        </div>
+                        <span class="col">Rating: @Html.DisplayFor(modelItem => item.Rating)</span>
                         <div class="card-actions col">
-                            <a class="btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn-outline-dark btn-sm" href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <form class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -191,5 +185,8 @@
                 </div>
             </div>
         </form>
+
     }
+
 </div>
+    <a asp-action="Create" class="btn btn-lg btn-info">ADD NEW TRIP</a>
