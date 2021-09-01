@@ -159,18 +159,21 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-            else
-            {
-                //await DeleteConfirmed(id);
-            }
+               
+            await DeleteConfirmed(id);
+            
             return RedirectToAction(nameof(Index));
         }
 
         // POST: Shops/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var shop = await _context.Shop.FindAsync(id);
             _context.Shop.Remove(shop);
             await _context.SaveChangesAsync();
