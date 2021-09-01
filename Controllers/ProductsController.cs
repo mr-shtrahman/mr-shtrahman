@@ -29,7 +29,7 @@ namespace mr_shtrahman.Controllers
         {
             var productWithImgs = _context.Product.Include(p => p.Img).
                                                   Where(p => p.Name.Contains(query) ||
-                                                         query == null); ;
+                                                         query == null);
             return View(await productWithImgs.ToListAsync());
         }
 
