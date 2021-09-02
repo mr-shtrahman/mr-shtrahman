@@ -22,8 +22,10 @@ namespace mr_shtrahman.Controllers
         // GET: Imgs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Img.ToListAsync());
+            var context = _context.Img.Include(i => i.Trip);
+            return View(await context.ToListAsync());
         }
+
 
         // GET: Imgs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -34,6 +36,7 @@ namespace mr_shtrahman.Controllers
             }
 
             var img = await _context.Img
+                .Include(i => i.Trip)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (img == null)
             {
@@ -54,7 +57,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Src,Description,TripId,ShopId,ProductId")] Img img)
+        public async Task<IActionResult> Create([Bind("Id,Src,Description")] Img img)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace mr_shtrahman.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(img);
         }
 
@@ -86,7 +90,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Src,Description,TripId,ShopId,ProductId")] Img img)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Src,Description")] Img img)
         {
             if (id != img.Id)
             {
@@ -117,7 +121,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Imgs/Delete/5
-        public async Task<IActionResult>  Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

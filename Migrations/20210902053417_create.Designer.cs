@@ -10,7 +10,7 @@ using mr_shtrahman.Data;
 namespace mr_shtrahman.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210901192202_create")]
+    [Migration("20210902053417_create")]
     partial class create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace mr_shtrahman.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ProductShop", b =>
@@ -73,9 +73,12 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TripId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("TripId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TripId");
 
                     b.ToTable("Img");
                 });
@@ -196,8 +199,7 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ImgId")
-                        .HasColumnType("int")
-                        .HasColumnName("ImgId");
+                        .HasColumnType("int");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -216,8 +218,6 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImgId");
 
                     b.ToTable("Trip");
                 });
@@ -275,6 +275,15 @@ namespace mr_shtrahman.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("mr_shtrahman.Models.Img", b =>
+                {
+                    b.HasOne("mr_shtrahman.Models.Trip", "Trip")
+                        .WithMany()
+                        .HasForeignKey("TripId");
+
+                    b.Navigation("Trip");
+                });
+
             modelBuilder.Entity("mr_shtrahman.Models.Product", b =>
                 {
                     b.HasOne("mr_shtrahman.Models.Img", "Img")
@@ -287,17 +296,6 @@ namespace mr_shtrahman.Migrations
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.Shop", b =>
-                {
-                    b.HasOne("mr_shtrahman.Models.Img", "Img")
-                        .WithMany()
-                        .HasForeignKey("ImgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Img");
-                });
-
-            modelBuilder.Entity("mr_shtrahman.Models.Trip", b =>
                 {
                     b.HasOne("mr_shtrahman.Models.Img", "Img")
                         .WithMany()

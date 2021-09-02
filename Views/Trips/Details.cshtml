@@ -6,41 +6,43 @@
     ViewData["Title"] = "Details";
 }
 
-@*<div class="header" style="background: url(@Html.DisplayNameFor(model => model.Img.Src))">*@
-<div class="header">
-    <h1>@Html.DisplayFor(model => model.Name)</h1>
-    <a asp-action="Index">Go Back</a>
-</div>
-<div class="container">
-    <div class="data-section">
-        <h6>A LITTLE ABOUT THIS TRIP</h6>
-        <p>
-            @Html.DisplayFor(model => model.Details);
-        </p>
+    
+    <h1>@ViewBag.Image.Src</h1>@*i dont know what going on here*@
+    <div class="header">
+        <h1>@Html.DisplayFor(model => model.Name)</h1>
+        <a asp-action="Index">Go Back</a>
     </div>
-    <div class="data-section row">
-        <div class="col graph">
-            <h6>WEATHER STATS</h6>
+    <div class="container">
+        <div class="data-section">
+            <h6>A LITTLE ABOUT THIS TRIP</h6>
             <p>
-                this is a placeholder for Orel's weather graph
+                @Html.DisplayFor(model => model.Details);
             </p>
         </div>
-        <div class="col graph">
-            <h6>BUSY HOURS</h6>
-            <p>
-                this is a placeholder for Orel's visitor attendance graph
-            </p>
-        </div>
-    </div>
-    <div class="data-section">
-        <h6>OUR RECOMMENDATIONS</h6>
-        <div class="product-section">
-            <div class="card card-body">
-                @foreach (var product in ViewBag.Products)
-                {
-                    @product.Name
-                }
+        <div class="data-section row">
+            <div class="col graph">
+                <h6>WEATHER STATS</h6>
+                <p>
+                    this is a placeholder for Orel's weather graph
+                </p>
+            </div>
+            <div class="col graph">
+                <h6>BUSY HOURS</h6>
+                <p>
+                    this is a placeholder for Orel's visitor attendance graph
+                </p>
             </div>
         </div>
+        <div class="data-section">
+            <h6>OUR RECOMMENDATIONS</h6>
+            <div class="product-section">
+                <div class="card card-body">
+                    @foreach (var product in ViewBag.Products)
+                    {
+                        @product.Name
+                    }
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>

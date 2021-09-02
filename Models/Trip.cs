@@ -26,11 +26,10 @@ namespace mr_shtrahman.Models
         public string Location { get; set; }
         public string Details { get; set; }
 
-        [Column("ImgId")]
-        public int ImgId { get; set; }
         
-        [ForeignKey("ImgId")]
-        public Img Img { get; set; }
+        [ForeignKey("Img")]
+        [Display(Name = "Img")]
+        public int? ImgId { get; set; }
 
         [Display(Name = "Relevant Products")]
         public List<Product> RelventProducts { get; set; }

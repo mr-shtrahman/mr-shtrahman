@@ -8,6 +8,27 @@ namespace mr_shtrahman.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Trip",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Rating = table.Column<short>(type: "smallint", nullable: false),
+                    Destination = table.Column<int>(type: "int", nullable: false),
+                    TripType = table.Column<int>(type: "int", nullable: false),
+                    Difficulty = table.Column<int>(type: "int", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trip", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Img",
                 columns: table => new
                 {
@@ -22,6 +43,33 @@ namespace mr_shtrahman.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Img", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Img_Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Trip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VisitorsAttendance",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Attendance = table.Column<int>(type: "int", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VisitorsAttendance", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VisitorsAttendance_Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Trip",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,28 +131,25 @@ namespace mr_shtrahman.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trip",
+                name: "ProductTrip",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Rating = table.Column<short>(type: "smallint", nullable: false),
-                    Destination = table.Column<int>(type: "int", nullable: false),
-                    TripType = table.Column<int>(type: "int", nullable: false),
-                    Difficulty = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgId = table.Column<int>(type: "int", nullable: false)
+                    RelventProductsId = table.Column<int>(type: "int", nullable: false),
+                    TripsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trip", x => x.Id);
+                    table.PrimaryKey("PK_ProductTrip", x => new { x.RelventProductsId, x.TripsId });
                     table.ForeignKey(
-                        name: "FK_Trip_Img_ImgId",
-                        column: x => x.ImgId,
-                        principalTable: "Img",
+                        name: "FK_ProductTrip_Product_RelventProductsId",
+                        column: x => x.RelventProductsId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_ProductTrip_Trip_TripsId",
+                        column: x => x.TripsId,
+                        principalTable: "Trip",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,50 +178,10 @@ namespace mr_shtrahman.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProductTrip",
-                columns: table => new
-                {
-                    RelventProductsId = table.Column<int>(type: "int", nullable: false),
-                    TripsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductTrip", x => new { x.RelventProductsId, x.TripsId });
-                    table.ForeignKey(
-                        name: "FK_ProductTrip_Product_RelventProductsId",
-                        column: x => x.RelventProductsId,
-                        principalTable: "Product",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_ProductTrip_Trip_TripsId",
-                        column: x => x.TripsId,
-                        principalTable: "Trip",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VisitorsAttendance",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Attendance = table.Column<int>(type: "int", nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VisitorsAttendance", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VisitorsAttendance_Trip_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Trip",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_Img_TripId",
+                table: "Img",
+                column: "TripId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_ImgId",
@@ -196,11 +201,6 @@ namespace mr_shtrahman.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Shop_ImgId",
                 table: "Shop",
-                column: "ImgId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Trip_ImgId",
-                table: "Trip",
                 column: "ImgId");
 
             migrationBuilder.CreateIndex(
@@ -227,10 +227,10 @@ namespace mr_shtrahman.Migrations
                 name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Trip");
+                name: "Img");
 
             migrationBuilder.DropTable(
-                name: "Img");
+                name: "Trip");
         }
     }
 }

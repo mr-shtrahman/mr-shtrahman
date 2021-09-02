@@ -22,12 +22,13 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            var tripsWithImgs = _context.Trip.Include(t => t.Img);
-            return View(await tripsWithImgs.ToListAsync());
+            //var tripsWithImgs = _context.Trip.Include(t => t.ImgId);
+            //return View(await tripsWithImgs.ToListAsync());
+            return View(await _context.Trip.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
         {
-            var tripsWithSearchContext = _context.Trip.Include(t => t.Img).
+            var tripsWithSearchContext = _context.Trip.Include(t => t.ImgId).
                                                   Where(t => t.Name.Contains(query) ||
                                                          query == null);
 
@@ -36,7 +37,7 @@ namespace mr_shtrahman.Controllers
 
         public async Task<IActionResult> FilterByDestination(string dest)
         {
-            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+            var tripsWithSearchContext = _context.Trip.Include(s => s.ImgId).
                                                   Where(s => s.Destination.ToString() == dest);
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
@@ -44,15 +45,15 @@ namespace mr_shtrahman.Controllers
 
         public async Task<IActionResult> FilterByType(string type)
         {
-            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+            var tripsWithSearchContext = _context.Trip.Include(s => s.ImgId).
                                                   Where(s => s.TripType.ToString() == type);
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
         public async Task<IActionResult> FilterByDifficulty(string diff)
-        {            
-            var tripsWithSearchContext = _context.Trip.Include(s => s.Img).
+        {
+            var tripsWithSearchContext = _context.Trip.Include(s => s.ImgId).
                                                   Where(s => s.Difficulty.ToString() == diff);
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
@@ -66,6 +67,7 @@ namespace mr_shtrahman.Controllers
             }
 
             ViewData["Products"] = _context.Product.ToList(); // TODO get all product recommended for this trip
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
 
             var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -91,7 +93,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,Img")] Trip trip, int[] products, int[] visitorsAttendances)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] products, int[] visitorsAttendances)
         {
             if (ModelState.IsValid)
             {
@@ -100,6 +102,7 @@ namespace mr_shtrahman.Controllers
                 trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
                 trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
                 _context.Add(trip);
+                UpdateIMG(trip);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -146,6 +149,7 @@ namespace mr_shtrahman.Controllers
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
                     trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
                     _context.Update(trip);
+                    UpdateIMG(trip);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -165,7 +169,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Delete/5
-        public async Task<IActionResult>  Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -178,8 +182,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-                await DeleteConfirmed(id);
-            
+            await DeleteConfirmed(id);
+
 
             return RedirectToAction(nameof(Index));
         }
@@ -203,6 +207,22 @@ namespace mr_shtrahman.Controllers
         private bool TripExists(int id)
         {
             return _context.Trip.Any(e => e.Id == id);
+        }
+
+        private bool UpdateIMG(Trip trip)
+        {
+            var ittsr = _context.Img.Where(i => i.Id == trip.ImgId);
+            var img = _context.Img.Where(i => i.Id == trip.ImgId).FirstOrDefault();
+
+            if (img == null)
+            {
+                return false;
+            }
+
+            img.TripId = trip.Id;
+
+            return _context.Update(img).State == EntityState.Modified;
+
         }
     }
 }
