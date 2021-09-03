@@ -61,10 +61,12 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductId");
 
                     b.Property<int?>("ShopId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ShopId");
 
                     b.Property<string>("Src")
                         .IsRequired()
@@ -76,7 +78,13 @@ namespace mr_shtrahman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TripId");
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShopId");
+
+                    b.HasIndex("TripId")
+                        .IsUnique()
+                        .HasFilter("[TripId] IS NOT NULL");
 
                     b.ToTable("Img");
                 });
@@ -101,8 +109,7 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ImgId")
-                        .HasColumnType("int")
-                        .HasColumnName("ImgId");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -118,8 +125,6 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImgId");
 
                     b.ToTable("Product");
                 });
@@ -144,8 +149,7 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ImgId")
-                        .HasColumnType("int")
-                        .HasColumnName("ImgId");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -174,8 +178,6 @@ namespace mr_shtrahman.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImgId");
 
                     b.ToTable("Shop");
                 });
@@ -275,33 +277,23 @@ namespace mr_shtrahman.Migrations
 
             modelBuilder.Entity("mr_shtrahman.Models.Img", b =>
                 {
-                    b.HasOne("mr_shtrahman.Models.Trip", "Trip")
+                    b.HasOne("mr_shtrahman.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("TripId");
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("mr_shtrahman.Models.Shop", "Shop")
+                        .WithMany()
+                        .HasForeignKey("ShopId");
+
+                    b.HasOne("mr_shtrahman.Models.Trip", "Trip")
+                        .WithOne()
+                        .HasForeignKey("mr_shtrahman.Models.Img", "TripId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Shop");
 
                     b.Navigation("Trip");
-                });
-
-            modelBuilder.Entity("mr_shtrahman.Models.Product", b =>
-                {
-                    b.HasOne("mr_shtrahman.Models.Img", "Img")
-                        .WithMany()
-                        .HasForeignKey("ImgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Img");
-                });
-
-            modelBuilder.Entity("mr_shtrahman.Models.Shop", b =>
-                {
-                    b.HasOne("mr_shtrahman.Models.Img", "Img")
-                        .WithMany()
-                        .HasForeignKey("ImgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Img");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.VisitorsAttendance", b =>

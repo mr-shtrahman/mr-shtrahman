@@ -29,7 +29,7 @@ namespace mr_shtrahman.Models
         
         [ForeignKey("Img")]
         [Display(Name = "Img")]
-        public int? ImgId { get; set; }
+        public int ImgId { get; set; }
 
         [Display(Name = "Relevant Products")]
         public List<Product> RelventProducts { get; set; }

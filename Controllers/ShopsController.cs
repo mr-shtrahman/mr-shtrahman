@@ -24,15 +24,13 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            var shopsWithImgs = _context.Shop.Include(s => s.Img);
-            return View(await shopsWithImgs.ToListAsync());
+            return View(await _context.Shop.ToListAsync());
         }
 
         public async Task<IActionResult> Search(string query)
         {
 
-            var shopsWithSearchContext = _context.Shop.Include(s => s.Img).
-                                                     Where(s => s.Name.Contains(query) ||
+            var shopsWithSearchContext = _context.Shop. Where(s => s.Name.Contains(query) ||
                                                            query == null);
 
             return View("Index", await shopsWithSearchContext.ToListAsync());
@@ -45,7 +43,7 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             var shop = await _context.Shop
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (shop == null)
@@ -71,7 +69,7 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-             int[] shops, int imgId)
+             int[] shops)
         {
             if (ModelState.IsValid)
             {
@@ -80,6 +78,7 @@ namespace mr_shtrahman.Controllers
 
                 _context.Add(shop);
                 await _context.SaveChangesAsync();
+                await UpdateIMGAsync(shop);
                 return RedirectToAction(nameof(Index));
             }
             return View(shop);
@@ -100,7 +99,7 @@ namespace mr_shtrahman.Controllers
             }
 
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 
             return View(shop);
         }
@@ -112,7 +111,7 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
             [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-            int[] shops, int imgId)
+            int[] shops) //TODO : miki? products need to be here ? 
         {
             if (id != shop.Id)
             {
@@ -128,6 +127,7 @@ namespace mr_shtrahman.Controllers
 
                     _context.Update(shop);
                     await _context.SaveChangesAsync();
+                    await UpdateIMGAsync(shop);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -176,13 +176,53 @@ namespace mr_shtrahman.Controllers
             }
             var shop = await _context.Shop.FindAsync(id);
             _context.Shop.Remove(shop);
-            await _context.SaveChangesAsync();
+            await deleteShopFormImg(shop.Id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ShopExists(int id)
         {
             return _context.Shop.Any(e => e.Id == id);
+        }
+
+
+        private async Task<bool> UpdateIMGAsync(Shop shop)
+        {
+            var img = _context.Img.Where(i => i.Id == shop.ImgId).FirstOrDefault();
+
+            if (img == null)
+            {
+                return false;
+            }
+
+            img.ShopId = shop.Id;
+            _context.Update(img);
+            await _context.SaveChangesAsync();
+            return _context.Img.Where(i => i.Id == shop.ImgId).FirstOrDefault().ShopId == shop.Id;
+
+        }
+
+        private async Task<bool> deleteShopFormImg(int shopId)
+        {
+            var img = _context.Img.Where(i => i.ShopId == shopId).FirstOrDefault();
+
+            if (img == null)
+            {
+                return false;
+            }
+
+            img.TripId = null;
+            _context.Update(img);
+            await _context.SaveChangesAsync();
+
+            if (_context.Img.Where(i => i.ShopId == shopId).FirstOrDefault() == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

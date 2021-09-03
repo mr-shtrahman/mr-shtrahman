@@ -60,10 +60,9 @@ namespace mr_shtrahman.Models
         [RegularExpression(OpeningClosingTimeRegex, ErrorMessage = OpeningClosingTimeErrMsg)]
         public string ClosingSaturday { get; set; }
 
-        [Column("ImgId")]
+        [ForeignKey("Img")]
+        [Display(Name = "Img")]
         public int ImgId { get; set; }
-        [ForeignKey("ImgId")] 
-        public Img Img { get; set; }
         public List<Product> Products { get; set; }
     }
 }

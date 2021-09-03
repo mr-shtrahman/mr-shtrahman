@@ -25,11 +25,9 @@ namespace mr_shtrahman.Models
         public string Details { get; set; }
         public string Description { get; set; }
 
-        [Column("ImgId")]
+        [ForeignKey("Img")]
+        [Display(Name = "Img")]
         public int ImgId { get; set; }
-
-        [ForeignKey("ImgId")] 
-        public Img Img { get; set; }
         public List<Shop> Shops { get; set; }
 
         public List<Trip> Trips{ get; set; }

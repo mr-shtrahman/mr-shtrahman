@@ -16,12 +16,18 @@ namespace mr_shtrahman.Models
         [ForeignKey("TripId")]
         public Trip Trip { get; set; }
 
-        [ForeignKey("Shop")]
-        [Display(Name = "Shop")]
+        [Column("ShopId")]
         public int? ShopId { get; set; }
 
-        [ForeignKey("Product")]
-        [Display(Name = "Product")]
+        [ForeignKey("ShopId")]
+        public Shop Shop { get; set; }
+
+        [Column("ProductId")]
         public int? ProductId { get; set; }
+
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
+
+
     }
 }
