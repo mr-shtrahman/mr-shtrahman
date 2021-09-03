@@ -21,11 +21,11 @@ namespace mr_shtrahman.Migrations
 
             modelBuilder.Entity("ProductShop", b =>
                 {
-                    b.Property<string>("ProductsId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ShopsId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ShopsId")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductsId", "ShopsId");
 
@@ -36,11 +36,11 @@ namespace mr_shtrahman.Migrations
 
             modelBuilder.Entity("ProductTrip", b =>
                 {
-                    b.Property<string>("RelventProductsId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RelventProductsId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TripsId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TripsId")
+                        .HasColumnType("int");
 
                     b.HasKey("RelventProductsId", "TripsId");
 
@@ -51,35 +51,50 @@ namespace mr_shtrahman.Migrations
 
             modelBuilder.Entity("mr_shtrahman.Models.Img", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductId");
 
                     b.Property<int?>("ShopId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ShopId");
 
                     b.Property<string>("Src")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TripId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("TripId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShopId");
+
+                    b.HasIndex("TripId")
+                        .IsUnique()
+                        .HasFilter("[TripId] IS NOT NULL");
 
                     b.ToTable("Img");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.Product", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -96,9 +111,6 @@ namespace mr_shtrahman.Migrations
                     b.Property<int>("ImgId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImgId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,15 +126,15 @@ namespace mr_shtrahman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImgId1");
-
                     b.ToTable("Product");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.Shop", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("City")
                         .HasColumnType("int");
@@ -138,9 +150,6 @@ namespace mr_shtrahman.Migrations
 
                     b.Property<int>("ImgId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ImgId1")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -170,21 +179,15 @@ namespace mr_shtrahman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImgId1");
-
                     b.ToTable("Shop");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.Trip", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ClosestShopsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClosestShopsId1")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Destination")
                         .HasColumnType("int");
@@ -197,9 +200,6 @@ namespace mr_shtrahman.Migrations
 
                     b.Property<int>("ImgId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ImgId1")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -219,17 +219,15 @@ namespace mr_shtrahman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClosestShopsId1");
-
-                    b.HasIndex("ImgId1");
-
                     b.ToTable("Trip");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.VisitorsAttendance", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Attendance")
                         .HasColumnType("int");
@@ -240,12 +238,9 @@ namespace mr_shtrahman.Migrations
                     b.Property<int>("TripId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TripId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TripId1");
+                    b.HasIndex("TripId");
 
                     b.ToTable("VisitorsAttendance");
                 });
@@ -280,51 +275,36 @@ namespace mr_shtrahman.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("mr_shtrahman.Models.Product", b =>
+            modelBuilder.Entity("mr_shtrahman.Models.Img", b =>
                 {
-                    b.HasOne("mr_shtrahman.Models.Img", "Img")
+                    b.HasOne("mr_shtrahman.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ImgId1");
+                        .HasForeignKey("ProductId");
 
-                    b.Navigation("Img");
-                });
-
-            modelBuilder.Entity("mr_shtrahman.Models.Shop", b =>
-                {
-                    b.HasOne("mr_shtrahman.Models.Img", "Img")
+                    b.HasOne("mr_shtrahman.Models.Shop", "Shop")
                         .WithMany()
-                        .HasForeignKey("ImgId1");
+                        .HasForeignKey("ShopId");
 
-                    b.Navigation("Img");
-                });
+                    b.HasOne("mr_shtrahman.Models.Trip", "Trip")
+                        .WithOne()
+                        .HasForeignKey("mr_shtrahman.Models.Img", "TripId");
 
-            modelBuilder.Entity("mr_shtrahman.Models.Trip", b =>
-                {
-                    b.HasOne("mr_shtrahman.Models.Shop", "ClosestShops")
-                        .WithMany("Trips")
-                        .HasForeignKey("ClosestShopsId1");
+                    b.Navigation("Product");
 
-                    b.HasOne("mr_shtrahman.Models.Img", "Img")
-                        .WithMany()
-                        .HasForeignKey("ImgId1");
+                    b.Navigation("Shop");
 
-                    b.Navigation("ClosestShops");
-
-                    b.Navigation("Img");
+                    b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.VisitorsAttendance", b =>
                 {
                     b.HasOne("mr_shtrahman.Models.Trip", "Trip")
                         .WithMany("VisitorsAttendance")
-                        .HasForeignKey("TripId1");
+                        .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trip");
-                });
-
-            modelBuilder.Entity("mr_shtrahman.Models.Shop", b =>
-                {
-                    b.Navigation("Trips");
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.Trip", b =>

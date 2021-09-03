@@ -3,31 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace mr_shtrahman.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Img",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Src = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false),
-                    ShopId = table.Column<int>(type: "int", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Img", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Rating = table.Column<short>(type: "smallint", nullable: false),
@@ -36,51 +21,65 @@ namespace mr_shtrahman.Migrations
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ImgId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Product_Img_ImgId",
-                        column: x => x.ImgId,
-                        principalTable: "Img",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Shop",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Area = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StreetNum = table.Column<int>(type: "int", nullable: false),
                     PhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    rating = table.Column<short>(type: "smallint", nullable: false),
-                    OpeningTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImgId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Rating = table.Column<short>(type: "smallint", nullable: false),
+                    OpeningSundayTilThursday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OpeningFriday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OpeningSaturday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClosingSundayTilThursday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClosingFriday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClosingSaturday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shop", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Shop_Img_ImgId",
-                        column: x => x.ImgId,
-                        principalTable: "Img",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trip",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Rating = table.Column<short>(type: "smallint", nullable: false),
+                    Destination = table.Column<int>(type: "int", nullable: false),
+                    TripType = table.Column<int>(type: "int", nullable: false),
+                    Difficulty = table.Column<int>(type: "int", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trip", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductShop",
                 columns: table => new
                 {
-                    ProductsId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ShopsId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    ProductsId = table.Column<int>(type: "int", nullable: false),
+                    ShopsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,35 +99,36 @@ namespace mr_shtrahman.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trip",
+                name: "Img",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Rating = table.Column<short>(type: "smallint", nullable: false),
-                    Destination = table.Column<int>(type: "int", nullable: false),
-                    TripType = table.Column<int>(type: "int", nullable: false),
-                    Difficulty = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClosestShopsId = table.Column<int>(type: "int", nullable: false),
-                    ClosestShopsId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ImgId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Src = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: true),
+                    ShopId = table.Column<int>(type: "int", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trip", x => x.Id);
+                    table.PrimaryKey("PK_Img", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Trip_Img_ImgId",
-                        column: x => x.ImgId,
-                        principalTable: "Img",
+                        name: "FK_Img_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Trip_Shop_ClosestShopsId1",
-                        column: x => x.ClosestShopsId1,
+                        name: "FK_Img_Shop_ShopId",
+                        column: x => x.ShopId,
                         principalTable: "Shop",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Img_Trip_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Trip",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -137,8 +137,8 @@ namespace mr_shtrahman.Migrations
                 name: "ProductTrip",
                 columns: table => new
                 {
-                    RelventProductsId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TripsId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    RelventProductsId = table.Column<int>(type: "int", nullable: false),
+                    TripsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -161,27 +161,39 @@ namespace mr_shtrahman.Migrations
                 name: "VisitorsAttendance",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Attendance = table.Column<int>(type: "int", nullable: false),
-                    TripId = table.Column<int>(type: "int", nullable: false),
-                    TripId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TripId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VisitorsAttendance", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VisitorsAttendance_Trip_TripId1",
-                        column: x => x.TripId1,
+                        name: "FK_VisitorsAttendance_Trip_TripId",
+                        column: x => x.TripId,
                         principalTable: "Trip",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_ImgId",
-                table: "Product",
-                column: "ImgId");
+                name: "IX_Img_ProductId",
+                table: "Img",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Img_ShopId",
+                table: "Img",
+                column: "ShopId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Img_TripId",
+                table: "Img",
+                column: "TripId",
+                unique: true,
+                filter: "[TripId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductShop_ShopsId",
@@ -194,28 +206,16 @@ namespace mr_shtrahman.Migrations
                 column: "TripsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shop_ImgId",
-                table: "Shop",
-                column: "ImgId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Trip_ClosestShopsId1",
-                table: "Trip",
-                column: "ClosestShopsId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Trip_ImgId",
-                table: "Trip",
-                column: "ImgId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VisitorsAttendance_TripId1",
+                name: "IX_VisitorsAttendance_TripId",
                 table: "VisitorsAttendance",
-                column: "TripId1");
+                column: "TripId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Img");
+
             migrationBuilder.DropTable(
                 name: "ProductShop");
 
@@ -226,16 +226,13 @@ namespace mr_shtrahman.Migrations
                 name: "VisitorsAttendance");
 
             migrationBuilder.DropTable(
+                name: "Shop");
+
+            migrationBuilder.DropTable(
                 name: "Product");
 
             migrationBuilder.DropTable(
                 name: "Trip");
-
-            migrationBuilder.DropTable(
-                name: "Shop");
-
-            migrationBuilder.DropTable(
-                name: "Img");
         }
     }
 }
