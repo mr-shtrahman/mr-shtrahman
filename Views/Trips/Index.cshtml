@@ -7,6 +7,15 @@
     ViewData["Title"] = "Index";
 }
 
+@*<script type="text/javascript">
+    function loadImage(id) {
+        var imageSrc = "@(((IEnumerable<dynamic>)ViewBag.Images).Where(i => i.TripId == 1).ToList()[0].Src)";
+        console.log(imageSrc);
+        var image = document.getElementById(id);
+        image.src = imageSrc.slice(1);
+    };
+</script>*@
+
 <div class="header">
     <h1>OUR TRIPS</h1>
 
@@ -51,10 +60,9 @@
     {
         <div class="col-sm-6" style="margin-top: 10px">
             <div class="card">
-                @*src=@Html.DisplayFor(modelItem => item.Img.Src)*@
-                <img class="card-img-top"
-                     src='~/Assets/hiking3.jpg'
-                     alt=@Html.DisplayFor(modelItem => item.ImgId)>@*.Description*@
+                <img class="card-img-top" 
+                     src=""
+                     alt="" />
                     <div class="card-body">
                         <div class="card-title">
                             <h4>@Html.DisplayFor(modelItem => item.Name)</h4>

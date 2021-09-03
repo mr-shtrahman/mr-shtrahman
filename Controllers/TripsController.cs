@@ -22,6 +22,7 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
+            ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
             return View(await _context.Trip.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
@@ -117,6 +118,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
             ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
