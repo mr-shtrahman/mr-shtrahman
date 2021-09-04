@@ -119,7 +119,7 @@ namespace mr_shtrahman.Controllers
             }
             ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
-            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && (i.TripId == id || i.TripId == null) && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View(trip);
         }
 
