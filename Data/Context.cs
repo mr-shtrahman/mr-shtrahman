@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using mr_shtrahman.Models;
 
 namespace mr_shtrahman.Data
 {
@@ -28,6 +29,7 @@ namespace mr_shtrahman.Data
             base.OnModelCreating(modelBuilder);
 
             // TODO: Add to here for data seeding
+            modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
 
 
         }

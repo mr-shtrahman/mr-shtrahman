@@ -26,7 +26,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: VisitorsAttendances/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: VisitorsAttendances/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Date,Attendance,TripId")] VisitorsAttendance visitorsAttendance)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Attendance,TripId")] VisitorsAttendance visitorsAttendance)
         {
             if (id != visitorsAttendance.Id)
             {
@@ -117,7 +117,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: VisitorsAttendances/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult>  Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace mr_shtrahman.Controllers
         // POST: VisitorsAttendances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var visitorsAttendance = await _context.VisitorsAttendance.FindAsync(id);
             _context.VisitorsAttendance.Remove(visitorsAttendance);
@@ -145,7 +145,7 @@ namespace mr_shtrahman.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VisitorsAttendanceExists(string id)
+        private bool VisitorsAttendanceExists(int id)
         {
             return _context.VisitorsAttendance.Any(e => e.Id == id);
         }

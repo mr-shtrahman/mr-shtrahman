@@ -22,11 +22,13 @@ namespace mr_shtrahman.Controllers
         // GET: Imgs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Img.ToListAsync());
+            var context = _context.Img.Include(i => i.Trip);
+            return View(await context.ToListAsync());
         }
 
+
         // GET: Imgs/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -34,6 +36,7 @@ namespace mr_shtrahman.Controllers
             }
 
             var img = await _context.Img
+                .Include(i => i.Trip)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (img == null)
             {
@@ -54,7 +57,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Src,Description,TripId,ShopId,ProductId")] Img img)
+        public async Task<IActionResult> Create([Bind("Id,Src,Description")] Img img)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +65,12 @@ namespace mr_shtrahman.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(img);
         }
 
         // GET: Imgs/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +90,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Src,Description,TripId,ShopId,ProductId")] Img img)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Src,Description")] Img img)
         {
             if (id != img.Id)
             {
@@ -117,7 +121,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Imgs/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +141,7 @@ namespace mr_shtrahman.Controllers
         // POST: Imgs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var img = await _context.Img.FindAsync(id);
             _context.Img.Remove(img);
@@ -145,7 +149,7 @@ namespace mr_shtrahman.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ImgExists(string id)
+        private bool ImgExists(int id)
         {
             return _context.Img.Any(e => e.Id == id);
         }
