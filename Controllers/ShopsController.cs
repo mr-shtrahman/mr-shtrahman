@@ -36,6 +36,13 @@ namespace mr_shtrahman.Controllers
             return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
+        // GET: ShopImage
+        public ActionResult ShopImage(string id)
+        {
+            string imageSrc = _context.Img.Where(i => i.ShopId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            return Json(imageSrc);
+        }
+        
         // GET: Shops/Details/5
         public async Task<IActionResult> Details(int? id)
         {

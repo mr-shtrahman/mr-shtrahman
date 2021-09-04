@@ -32,6 +32,13 @@ namespace mr_shtrahman.Controllers
             return View(await productWithImgs.ToListAsync());
         }
 
+        // GET: ProductImage
+        public ActionResult ProductImage(string id)
+        {
+            string imageSrc = _context.Img.Where(i => i.ProductId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            return Json(imageSrc);
+        }
+
         // GET: Products/Category/Shoes
         public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
         {

@@ -63,12 +63,6 @@ h1 {
     width: 50%;
 }
 
-.filter {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
 .btn-group {
     margin: auto;
     align-content: center;
@@ -184,4 +178,5 @@ h6 {
 
 img {
     width: 100% !important;
+    height: 20rem;
 }
