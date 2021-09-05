@@ -185,7 +185,7 @@ namespace mr_shtrahman.Controllers
 
             var trip = await _context.Trip.FindAsync(id);
             _context.Trip.Remove(trip);
-            await deleteTripFormImg(trip.Id);
+            await deleteTripFromImg(trip.Id);
 
             return RedirectToAction(nameof(Index));
         }
@@ -211,7 +211,7 @@ namespace mr_shtrahman.Controllers
 
         }
 
-        private async Task<bool> deleteTripFormImg(int tripId)
+        private async Task<bool> deleteTripFromImg(int tripId)
         {
             var img = _context.Img.Where(i => i.TripId == tripId).FirstOrDefault();
 

@@ -187,7 +187,7 @@ namespace mr_shtrahman.Controllers
             }
             var shop = await _context.Shop.FindAsync(id);
             _context.Shop.Remove(shop);
-            await deleteShopFormImg(shop.Id);
+            await deleteShopFromImg(shop.Id);
             return RedirectToAction(nameof(Index));
         }
 
@@ -213,7 +213,7 @@ namespace mr_shtrahman.Controllers
 
         }
 
-        private async Task<bool> deleteShopFormImg(int shopId)
+        private async Task<bool> deleteShopFromImg(int shopId)
         {
             var img = _context.Img.Where(i => i.ShopId == shopId).FirstOrDefault();
 
