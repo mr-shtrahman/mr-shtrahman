@@ -196,7 +196,7 @@ namespace mr_shtrahman.Controllers
 
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
-            deleteProductFormImg(product.Id);
+            deleteProductFromImg(product.Id);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -224,7 +224,7 @@ namespace mr_shtrahman.Controllers
 
         }
 
-        private async Task<bool> deleteProductFormImg(int productId)
+        private async Task<bool> deleteProductFromImg(int productId)
         {
             var img = _context.Img.Where(i => i.ProductId == productId).FirstOrDefault();
 
