@@ -6,133 +6,162 @@
     ViewData["Title"] = "Category";
 }
 
-<div class="header">
-    <h1>@Model.ToList()[0].Category.ToString().ToUpper()</h1>
-    <a asp-action="Index">Go Back</a>
-</div>
-<a asp-action="Create" class="btn btn-lg btn-outline-info add-product">ADD PRODUCT +</a>
+<body onload="loadImage()">
+    <div class="specific-header">
+        <img name="headerImg" src="">
+        <h1>@Model.ToList()[0].Category.ToString().ToUpper()</h1>
+        <a asp-action="Index">Go Back</a>
+    </div>
+    <a asp-action="Create" class="btn btn-lg btn-outline-info add-product">ADD PRODUCT +</a>
 
-<div class="row justify-content-between">
-    @foreach (var item in Model)
-    {
-        <div class="col-sm-6" style="margin-top: 10px">
-            <div class="card">
-                @*src=@Html.DisplayFor(modelItem => item.Img.Src)*@
-                <img class="card-img-top"
-                     src='~/Assets/products/shoes.jpg'
-                     alt=@Html.DisplayFor(modelItem =>  item.ImgId)>@*todo*@
-                <div class="card-body">
-                    <div class="card-title">
-                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
-                        <div class="row details">
-                            <div class="col">@Html.DisplayFor(modelItem => item.Price)</div>
-                            <div class="col">@Html.DisplayFor(modelItem => item.Color)</div>
-                            <div class="col">@Html.DisplayFor(modelItem => item.Size)</div>
+    <div class="row justify-content-between">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <input type="hidden" value=@item.Id.ToString() name="dynamicImageUrl" />
+                    <img class="card-img-top" id="@item.Id.ToString()"
+                         src="" />
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                            <div class="row details">
+                                <div class="col">@Html.DisplayFor(modelItem => item.Price)</div>
+                                <div class="col">@Html.DisplayFor(modelItem => item.Color)</div>
+                                <div class="col">@Html.DisplayFor(modelItem => item.Size)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-text">
-                        <p> @Html.DisplayFor(modelItem => item.Description)</p>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="rate">
-                            @for (int i = 1; i <= (5 - item.Rating); i++)
-                            {
-                                <input type="radio" id="gray-star" name="rate" value="5" />
-                                <label for="gray-star" title="text">star</label>
-                            }
-                            @for (int i = 1; i <= item.Rating; i++)
-                            {
-                                <input type="radio" id="gold-star" name="rate" value="5" />
-                                <label for="gold-star" title="text">star</label>
-                            }
+                        <div class="card-text">
+                            <p> @Html.DisplayFor(modelItem => item.Description)</p>
                         </div>
-                        <div class="card-actions col">
-                            <a class="btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn-outline-dark btn-sm" href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                        <hr />
+                        <div class="row">
+                            <div class="rate">
+                                @for (int i = 1; i <= (5 - item.Rating); i++)
+                                {
+                                    <input type="radio" id="gray-star" name="rate" value="5" />
+                                    <label for="gray-star" title="text">star</label>
+                                }
+                                @for (int i = 1; i <= item.Rating; i++)
+                                {
+                                    <input type="radio" id="gold-star" name="rate" value="5" />
+                                    <label for="gold-star" title="text">star</label>
+                                }
+                            </div>
+                            <div class="card-actions col">
+                                <a class="btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn-outline-dark btn-sm" href="none" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Delete Product</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="deleteModalBody">
-                        Are you sure you want to delete this product?
-                        <br />
-                        <a data-toggle="collapse" href="#collapseProductData" role="button" aria-expanded="false" aria-controls="collapseProductData">
-                            Show more details...
-                        </a>
-                        <div class="collapse" id="collapseProductData">
-                            <div class="card card-body">
-                                <div class="row">
-                                    <div class="col data-name">
-                                        @Html.DisplayNameFor(modelItem => item.Name)
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="deleteModalBody">
+                            Are you sure you want to delete this product?
+                            <br />
+                            <a data-toggle="collapse" href="#collapseProductData" role="button" aria-expanded="false" aria-controls="collapseProductData">
+                                Show more details...
+                            </a>
+                            <div class="collapse" id="collapseProductData">
+                                <div class="card card-body">
+                                    <div class="row">
+                                        <div class="col data-name">
+                                            @Html.DisplayNameFor(modelItem => item.Name)
+                                        </div>
+                                        <div class="col">
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(modelItem => item.Name)
+                                    <div class="row">
+                                        <div class="col data-name">
+                                            @Html.DisplayNameFor(modelItem => item.Price)
+                                        </div>
+                                        <div class="col">
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col data-name">
-                                        @Html.DisplayNameFor(modelItem => item.Price)
+                                    <div class="row">
+                                        <div class="col data-name">
+                                            @Html.DisplayNameFor(modelItem => item.Color)
+                                        </div>
+                                        <div class="col">
+                                            @Html.DisplayFor(modelItem => item.Color)
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(modelItem => item.Price)
+                                    <div class="row">
+                                        <div class="col data-name">
+                                            @Html.DisplayNameFor(modelItem => item.Size)
+                                        </div>
+                                        <div class="col">
+                                            @Html.DisplayFor(modelItem => item.Size)
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col data-name">
-                                        @Html.DisplayNameFor(modelItem => item.Color)
+                                    <div class="row">
+                                        <div class="col data-name">
+                                            @Html.DisplayNameFor(modelItem => item.Description)
+                                        </div>
+                                        <div class="col">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(modelItem => item.Color)
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col data-name">
-                                        @Html.DisplayNameFor(modelItem => item.Size)
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(modelItem => item.Size)
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col data-name">
-                                        @Html.DisplayNameFor(modelItem => item.Description)
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(modelItem => item.Description)
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col data-name">
-                                        @Html.DisplayNameFor(modelItem => item.Rating)
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(modelItem => item.Rating)
+                                    <div class="row">
+                                        <div class="col data-name">
+                                            @Html.DisplayNameFor(modelItem => item.Rating)
+                                        </div>
+                                        <div class="col">
+                                            @Html.DisplayFor(modelItem => item.Rating)
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <form asp-action="Delete">
-                            <input type="hidden" asp-for=@item.Id />
-                            <a asp-action="Index" id="delete" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" asp-action="Delete" asp-route-id="@item.Id" value="Delete" class="btn btn-danger" />
-                        </form>
+                        <div class="modal-footer">
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for=@item.Id />
+                                <a asp-action="Index" id="delete" class="btn btn-secondary">Cancel</a>
+                                <input type="submit" asp-action="Delete" asp-route-id="@item.Id" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        }
+    </div>
+</body>
+
+<script type="text/javascript">
+    var category = "@Model.ToList()[0].Category.ToString().ToLower()";
+    console.log(category);
+    var path = "/Assets/categories/" + category + ".jpg";
+        document.getElementsByName("headerImg")[0].src = path;
+</script>
+<script type="text/javascript">
+    function loadImage() {
+        for (i = 1; i <= document.getElementsByName('dynamicImageUrl').length; i++) {
+            (function (i) {
+                var id = i.toString();
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("ProductImage")',
+                    data: { id },
+                    success: function (image) {
+                        document.getElementById(id).src = image;
+                    },
+                    error: function () {
+                        alert("An error has occured!");
+                    }
+                });
+            })(i);
+        }
     }
-</div>
+</script>

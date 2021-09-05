@@ -6,6 +6,7 @@
     ViewData["Title"] = "Index";
 }
 
+<body onload="loadImage()">
 <div class="header">
     <h1>OUR SHOPS</h1>
 
@@ -76,7 +77,8 @@
                             </div>
                         </div>
                         <div class="col-sm-5">
-                            @Html.DisplayFor(modelItem => item.ImgId)@*todo*@
+                            <input type="hidden" value=@item.Id.ToString() name="dynamicImageUrl" />
+                            <img id="@item.Id.ToString()" src="" />
                         </div>
                     </div>
                     <hr/>
@@ -209,3 +211,25 @@
             </div>
         </form>
     }
+</body>
+
+<script type="text/javascript">
+    function loadImage() {
+        for (i = 1; i <= document.getElementsByName('dynamicImageUrl').length; i++) {
+            (function (i) {
+                var id = i.toString();
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("ShopImage")',
+                    data: { id },
+                    success: function (image) {
+                        document.getElementById(id).src = image;
+                    },
+                    error: function () {
+                        alert("An error has occured!");
+                    }
+                });
+            })(i);
+        }
+    }
+</script>

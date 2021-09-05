@@ -32,6 +32,13 @@ namespace mr_shtrahman.Controllers
             return View(await productWithImgs.ToListAsync());
         }
 
+        // GET: ProductImage
+        public ActionResult ProductImage(string id)
+        {
+            string imageSrc = _context.Img.Where(i => i.ProductId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            return Json(imageSrc);
+        }
+
         // GET: Products/Category/Shoes
         public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
         {
@@ -106,6 +113,7 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == id).FirstOrDefault();
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Shops"] = new SelectList(_context.Shop, nameof(Shop.Id), nameof(Shop.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == id), nameof(Img.Id), nameof(Img.Src));
