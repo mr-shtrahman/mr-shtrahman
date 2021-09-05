@@ -196,6 +196,7 @@ namespace mr_shtrahman.Controllers
 
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
+            deleteProductFormImg(product.Id);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -75,14 +75,14 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] products, int[] visitorsAttendances)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
             if (ModelState.IsValid)
             {
                 trip.VisitorsAttendance = new List<VisitorsAttendance>();
-                trip.RelventProducts = new List<Product>();
+                trip.RelevantProducts = new List<Product>();
                 trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
-                trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
+                trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
                
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
@@ -118,7 +118,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] products, int[] visitorsAttendances)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
             if (id != trip.Id)
             {
@@ -130,9 +130,9 @@ namespace mr_shtrahman.Controllers
                 try
                 {
                     trip.VisitorsAttendance = new List<VisitorsAttendance>();
-                    trip.RelventProducts = new List<Product>();
+                    trip.RelevantProducts = new List<Product>();
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
-                    trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
+                    trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
                     _context.Update(trip);
                     await _context.SaveChangesAsync();
                     await UpdateIMGAsync(trip);
