@@ -22,6 +22,7 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
+            ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
             return View(await _context.Trip.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
@@ -32,26 +33,13 @@ namespace mr_shtrahman.Controllers
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
 
-        public async Task<IActionResult> FilterByDestination(string dest)
+        // GET: TripImage
+        public ActionResult TripImage(string id)
         {
-            var tripsWithSearchContext = _context.Trip.Where(s => s.Destination.ToString() == dest);
-
-            return View("Index", await tripsWithSearchContext.ToListAsync());
+            string imageSrc = _context.Img.Where(i => i.TripId.ToString() == id ).FirstOrDefault().Src.Substring(1);
+            return Json(imageSrc);
         }
 
-        public async Task<IActionResult> FilterByType(string type)
-        {
-            var tripsWithSearchContext = _context.Trip.Where(s => s.TripType.ToString() == type);
-
-            return View("Index", await tripsWithSearchContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> FilterByDifficulty(string diff)
-        {
-            var tripsWithSearchContext = _context.Trip.Where(s => s.Difficulty.ToString() == diff);
-
-            return View("Index", await tripsWithSearchContext.ToListAsync());
-        }
         // GET: Trips/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -117,6 +105,8 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
             ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));

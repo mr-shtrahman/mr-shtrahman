@@ -36,6 +36,13 @@ namespace mr_shtrahman.Controllers
             return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
+        // GET: ShopImage
+        public ActionResult ShopImage(string id)
+        {
+            string imageSrc = _context.Img.Where(i => i.ShopId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            return Json(imageSrc);
+        }
+        
         // GET: Shops/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -98,6 +105,7 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 

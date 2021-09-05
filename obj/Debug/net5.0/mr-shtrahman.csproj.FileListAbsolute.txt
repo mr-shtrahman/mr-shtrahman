@@ -338,3 +338,4 @@ C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\n
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\mr-shtrahman.pdb
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\mr-shtrahman.genruntimeconfig.cache
 C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Products\Category.cshtml.g.cs
+C:\Users\mikim\OneDrive\Desktop\School\Web Applications\mr-shtrahman\obj\Debug\net5.0\Razor\Views\Trips\Delete.cshtml.g.cs
