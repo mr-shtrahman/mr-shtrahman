@@ -24,28 +24,33 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            var shopsWithImgs = _context.Shop.Include(s => s.Img);
-            return View(await shopsWithImgs.ToListAsync());
+            return View(await _context.Shop.ToListAsync());
         }
 
         public async Task<IActionResult> Search(string query)
         {
 
-            var shopsWithSearchContext = _context.Shop.Include(s => s.Img).
-                                                     Where(s => s.Name.Contains(query) ||
+            var shopsWithSearchContext = _context.Shop. Where(s => s.Name.Contains(query) ||
                                                            query == null);
 
             return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
+        // GET: ShopImage
+        public ActionResult ShopImage(string id)
+        {
+            string imageSrc = _context.Img.Where(i => i.ShopId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            return Json(imageSrc);
+        }
+        
         // GET: Shops/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             var shop = await _context.Shop
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (shop == null)
@@ -59,9 +64,8 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Create
         public IActionResult Create()
         {
-            ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null), nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
 
@@ -72,24 +76,23 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-            string[] trips, string[] shops, string imgId)
+             int[] shops)
         {
             if (ModelState.IsValid)
             {
-                shop.Trips = new List<Trip>();
                 shop.Products = new List<Product>();
-                shop.Trips.AddRange(_context.Trip.Where(trip => trips.Contains(trip.Id)));
                 shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
 
                 _context.Add(shop);
                 await _context.SaveChangesAsync();
+                await UpdateIMGAsync(shop);
                 return RedirectToAction(nameof(Index));
             }
             return View(shop);
         }
 
         // GET: Shops/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -102,9 +105,9 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
+            ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Img"] = new SelectList(_context.Img, nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 
             return View(shop);
         }
@@ -114,9 +117,9 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id,
+        public async Task<IActionResult> Edit(int id,
             [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-            string[] trips, string[] shops, string imgId)
+            int[] shops) //TODO : miki? products need to be here ? 
         {
             if (id != shop.Id)
             {
@@ -127,13 +130,12 @@ namespace mr_shtrahman.Controllers
             {
                 try
                 {
-                    shop.Trips = new List<Trip>();
                     shop.Products = new List<Product>();
-                    shop.Trips.AddRange(_context.Trip.Where(trip => trips.Contains(trip.Id)));
                     shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
 
                     _context.Update(shop);
                     await _context.SaveChangesAsync();
+                    await UpdateIMGAsync(shop);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -152,7 +154,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Shops/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult>  Delete(int? id)
         {
             if (id == null)
             {
@@ -165,27 +167,70 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
-            else
-            {
-                await DeleteConfirmed(id);
-            }
+               
+            await DeleteConfirmed(id);
+            
             return RedirectToAction(nameof(Index));
         }
 
         // POST: Shops/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var shop = await _context.Shop.FindAsync(id);
             _context.Shop.Remove(shop);
-            await _context.SaveChangesAsync();
+            await deleteShopFormImg(shop.Id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ShopExists(string id)
+        private bool ShopExists(int id)
         {
             return _context.Shop.Any(e => e.Id == id);
+        }
+
+
+        private async Task<bool> UpdateIMGAsync(Shop shop)
+        {
+            var img = _context.Img.Where(i => i.Id == shop.ImgId).FirstOrDefault();
+
+            if (img == null)
+            {
+                return false;
+            }
+
+            img.ShopId = shop.Id;
+            _context.Update(img);
+            await _context.SaveChangesAsync();
+            return _context.Img.Where(i => i.Id == shop.ImgId).FirstOrDefault().ShopId == shop.Id;
+
+        }
+
+        private async Task<bool> deleteShopFormImg(int shopId)
+        {
+            var img = _context.Img.Where(i => i.ShopId == shopId).FirstOrDefault();
+
+            if (img == null)
+            {
+                return false;
+            }
+
+            img.TripId = null;
+            _context.Update(img);
+            await _context.SaveChangesAsync();
+
+            if (_context.Img.Where(i => i.ShopId == shopId).FirstOrDefault() == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -16,16 +16,10 @@ function swapImage(){
 }
 
     <div class="header">
-        <h1>CREATE A NEW SHOP</h1>
+        <h1>ADD A SHOP</h1>
     </div>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            @*todo: needs to be autofilled*@
-            <label asp-for="Id" class="control-label"></label>
-            <input asp-for="Id" class="form-control" />
-            <span asp-validation-for="Id" class="text-danger"></span>
-        </div>
         <div class="data-section">
             <div class="form-group">
                 <div class="row">
@@ -40,12 +34,14 @@ function swapImage(){
                 <div class="row">
                     <div class="col-sm-6">
                         <label class="control-label">Choose an image for this shop: </label>
-                        <select id="imageSelect" asp-for="Img" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()"></select>
-                        <span asp-validation-for="Img" class="text-danger"></span>
+                        <select id="imageSelect" asp-for="ImgId" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()">
+                            <option value="" selected disabled hidden></option>
+                        </select>
+                        <span asp-validation-for="ImgId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 shop-img">
+                    <div class="col-sm-6">
                         <img id="imageToSwap" src="" />
                     </div>
                 </div>
@@ -54,7 +50,7 @@ function swapImage(){
                 <label class="control-label">Address: </label>
                 <div class="row g-3">
                     <div class="col-sm-5">
-                        <select asp-for="City" asp-items="@Html.GetEnumSelectList<City>()" class="form-control"></select>
+                        <select asp-for="City" asp-items="@Html.GetEnumSelectList<City>().OrderBy(t => t.Text)" class="form-control"></select>
                         <span asp-validation-for="City" class="text-danger"></span>
                     </div>
                     <div class="col-sm-5">
@@ -71,8 +67,17 @@ function swapImage(){
                 <div class="row">
                     <div class="col-sm-4">
                         <label class="control-label">Phone Number: </label>
-                        <input type="text" asp-for="PhoneNum" class="form-control" placeholder="Name" />
+                        <input type="text" asp-for="PhoneNum" class="form-control" placeholder="Phone Number" />
                         <span asp-validation-for="PhoneNum" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="control-label">Rating: </label>
+                        <input type="text" asp-for="Rating" class="form-control" placeholder="Rating" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -85,12 +90,12 @@ function swapImage(){
                         <span>Sun-Thu: </span>
                     </div>
                     <div class="col-sm-3">
-                        <input asp-for="OpeningSundayTilThursday" class="form-control" placeholder="opening" />
+                        <input asp-for="OpeningSundayTilThursday" class="form-control" placeholder="hh:mm" />
                         <span asp-validation-for="OpeningSundayTilThursday" class="text-danger"></span>
                     </div>
                     <span> - </span>
                     <div class="col-sm-3">
-                        <input asp-for="ClosingSundayTilThursday" class="form-control" placeholder="closing" />
+                        <input asp-for="ClosingSundayTilThursday" class="form-control" placeholder="hh:mm" />
                         <span asp-validation-for="ClosingSundayTilThursday" class="text-danger"></span>
                     </div>
                 </div>
@@ -99,12 +104,12 @@ function swapImage(){
                         <span>Friday : </span>
                     </div>
                     <div class="col-sm-3">
-                        <input asp-for="OpeningFriday" class="form-control" placeholder="opening" />
+                        <input asp-for="OpeningFriday" class="form-control" placeholder="hh:mm" />
                         <span asp-validation-for="OpeningFriday" class="text-danger"></span>
                     </div>
                     <span> - </span>
                     <div class="col-sm-3">
-                        <input asp-for="ClosingFriday" class="form-control" placeholder="closing" />
+                        <input asp-for="ClosingFriday" class="form-control" placeholder="hh:mm" />
                         <span asp-validation-for="ClosingFriday" class="text-danger"></span>
                     </div>
                 </div>
@@ -113,32 +118,21 @@ function swapImage(){
                         <span>Saturday: </span>
                     </div>
                     <div class="col-sm-3">
-                        <input asp-for="OpeningSaturday" class="form-control" placeholder="opening" />
+                        <input asp-for="OpeningSaturday" class="form-control" placeholder="hh:mm" />
                         <span asp-validation-for="OpeningSaturday" class="text-danger"></span>
                     </div>
                     <span> - </span>
                     <div class="col-sm-3">
-                        <input asp-for="ClosingSaturday" class="form-control" placeholder="closing" />
+                        <input asp-for="ClosingSaturday" class="form-control" placeholder="hh:mm" />
                         <span asp-validation-for="ClosingSaturday" class="text-danger"></span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="data-section">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label class="control-label">Trips nearby: </label>
-                        <select asp-for="Trips" asp-items="@ViewBag.Trips" class="form-control"></select>
-                        <span asp-validation-for="Trips" class="text-danger"></span>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="control-label">Products you can find here: </label>
-                        <select asp-for="Products" asp-items="@ViewBag.Product" class="form-control"></select>
-                        <span asp-validation-for="Products" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
+            <label class="control-label">Products you can find here: </label>
+            <select asp-for="Products" asp-items="@ViewBag.Product" class="form-control"></select>
+            <span asp-validation-for="Products" class="text-danger"></span>
         </div>
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-primary" />

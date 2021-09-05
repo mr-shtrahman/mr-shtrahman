@@ -1,72 +1,47 @@
-﻿@model mr_shtrahman.Models.Trip
+﻿<link rel="stylesheet" href="~/css/trip.css">
+
+@model mr_shtrahman.Models.Trip
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="specific-header">
+    <img src="@ViewBag.Image.Src.Substring(1)" />
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <a asp-action="Index">Go Back</a>
+</div>
+    <div class="container">
+        <div class="data-section">
+            <h6>A LITTLE ABOUT THIS TRIP</h6>
+            <p>
+                @Html.DisplayFor(model => model.Details);
+            </p>
+        </div>
+        <div class="data-section row">
+            <div class="col graph">
+                <h6>WEATHER STATS</h6>
+                <p>
+                    this is a placeholder for Orel's weather graph
+                </p>
+            </div>
+            <div class="col graph">
+                <h6>BUSY HOURS</h6>
+                <p>
+                    this is a placeholder for Orel's visitor attendance graph
+                </p>
+            </div>
+        </div>
+        <div class="data-section">
+            <h6>OUR RECOMMENDATIONS</h6>
+            <div class="product-section">
+                <div class="card card-body">
+                    @foreach (var product in ViewBag.Products)
+                    {
+                        @product.Name
+                    }
+                </div>
+            </div>
 
-<div>
-    <h4>Trip</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Destination)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Destination)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TripType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TripType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Difficulty)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Difficulty)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Details)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClosestShopsId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClosestShopsId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+        </div>
+    </div>

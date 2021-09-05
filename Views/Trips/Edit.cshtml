@@ -1,89 +1,95 @@
-﻿@model mr_shtrahman.Models.Trip
+﻿<link rel="stylesheet" href="~/css/trip.css">
+
+@model mr_shtrahman.Models.Trip
 @using mr_shtrahman.enums
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="specific-header">
+    <img src="@ViewBag.Image.Src.Substring(1)" />
+    <h1>EDIT TRIP</h1>
+    <a asp-action="Index">Go Back</a>
+</div>
 
-<h4>Trip</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <h4 class="control-label">BASIC INFORMATION </h4>
+    <div class="data-section">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="control-label">Name: </label>
+                    <input type="text" asp-for="Name" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Location: </label>
+            <div class="row g-3">
+                <div class="col-sm-4">
+                    <select asp-for="Destination" asp-items="@Html.GetEnumSelectList<Destination>().OrderBy(t => t.Text)" class="form-control"></select>
+                    <span asp-validation-for="Destination" class="text-danger"></span>
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Location" class="form-control" placeholder="Address" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h4 class="control-label">ADVANCED</h4>
+        <div class="data-section">
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <select asp-for="Difficulty" asp-items="@Html.GetEnumSelectList<Difficulty>()" class="form-control">
+                            <option selected hidden value="">Difficulty</option>
+                        </select>
+                        <span asp-validation-for="Difficulty" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <select asp-for="TripType" asp-items="@Html.GetEnumSelectList<TripType>()" class="form-control">
+                            <option selected hidden value="">Trip Type</option>
+                        </select>
+                        <span asp-validation-for="TripType" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" asp-for="Price" class="form-control" placeholder="Price" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="col">
+                    <label class="control-label">Description:</label>
+                    <input type="text" asp-for="Details" class="form-control" placeholder="Describe this trip" />
+                    <span asp-validation-for="Details" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Rating" class="form-control" placeholder="Rating" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Destination" class="control-label"></label>
-                <select asp-for="Destination" asp-items="Html.GetEnumSelectList<Destination>()" class="form-control"></select>
-                <span asp-validation-for="Destination" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TripType" class="control-label"></label>
-                <select asp-for="TripType" asp-items="Html.GetEnumSelectList<TripType>()" class="form-control"></select>
-                <span asp-validation-for="TripType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Difficulty" class="control-label"></label>
-                <select asp-for="Difficulty" asp-items="Html.GetEnumSelectList<Difficulty>()" class="form-control"></select>
-                <span asp-validation-for="Difficulty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Location" class="control-label"></label>
-                <input asp-for="Location" class="form-control" />
-                <span asp-validation-for="Location" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Details" class="control-label"></label>
-                <input asp-for="Details" class="form-control" />
-                <span asp-validation-for="Details" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClosestShopsId" class="control-label"></label>
-                <input asp-for="ClosestShopsId" class="form-control" />
-                <span asp-validation-for="ClosestShopsId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VisitorsAttendance" class="control-label"></label>
-                <select asp-for="VisitorsAttendance" asp-items="@ViewBag.VisitorsAttendance" class="form-control"></select>
-                <span asp-validation-for="VisitorsAttendance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RelventProducts" class="control-label"></label>
-                <select asp-for="RelventProducts" asp-items="@ViewBag.Products" class="form-control"></select>
+                <label class="control-label">Relevant Products: </label>
+                <select asp-for="RelventProducts" asp-items="@ViewBag.Product" class="form-control"></select>
                 <span asp-validation-for="RelventProducts" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImgId" class="control-label"></label>
-                <input asp-for="ImgId" asp-items="@ViewBag.Img" class="form-control" />
-                <span asp-validation-for="ImgId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

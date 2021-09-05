@@ -10,7 +10,7 @@ namespace mr_shtrahman.Models
 {
     public class VisitorsAttendance
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public DateTime Date { get; set; }
         [Required]
