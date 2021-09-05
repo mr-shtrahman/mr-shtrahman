@@ -1,0 +1,69 @@
+.container {
+    display: contents;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.header {
+    background-image: url(../Assets/general/home.jpeg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    width: 100%;
+    height: 25rem;
+    padding: 7rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.header > h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 2px;
+    color: transparent;
+}
+
+h4 {
+    color: white;
+    font-weight: 700;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container > h3 {
+    color: white;
+    font-size: 3rem;
+}
+
+
+a, a:hover {
+    width: 75%;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+.jumbotron-content {
+    background: rgb(0,0,0,0.5);
+    color: white;
+}
+
+#products {
+    background-image: url(../Assets/categories/camping.jpg);
+}
+
+#trips {
+    background-image: url(../Assets/general/hiking4.jpg);
+    background-position: center;
+}
+
+#shops {
+    background-image: url(../Assets/shops/shop2.jpg);
+}
