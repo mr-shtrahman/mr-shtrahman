@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProjectDBContext = mr_shtrahman.Data.Context;
+using mr_shtrahman.Data;
 
 namespace mr_shtrahman.Controllers
 {
