@@ -3,7 +3,7 @@
     align-items: center;
     background-color: rgb(20,28,75);
     flex-direction: row;
-    padding: 0 !important;
+    height: 6rem;
 }
 
 nav {
@@ -18,7 +18,15 @@ img {
 
 .nav-item {
     width: 100px;
+    margin: 0;
     font-size: large;
+}
+
+.nav-link, .nav-link:hover {
+    padding: 0 !important;
+    margin: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .pos-f-t {
