@@ -9,7 +9,7 @@
 <body onload="loadImage()">
     <div class="specific-header">
         <img name="headerImg" src="">
-        <h1>@Model.ToList()[0].Category.ToString().ToUpper()</h1>
+        <h1>@ViewBag.Category.ToUpper()</h1>
         <a asp-action="Index">Go Back</a>
     </div>
     <a asp-action="Create" class="btn btn-lg btn-outline-info add-product">ADD PRODUCT +</a>
@@ -140,7 +140,7 @@
 </body>
 
 <script type="text/javascript">
-    var category = "@Model.ToList()[0].Category.ToString().ToLower()";
+    var category = "@ViewBag.Category.ToLower()";
     console.log(category);
     var path = "/Assets/categories/" + category + ".jpg";
         document.getElementsByName("headerImg")[0].src = path;

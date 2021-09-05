@@ -42,8 +42,9 @@ namespace mr_shtrahman.Controllers
         // GET: Products/Category/Shoes
         public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
         {
+            ViewData["Category"] = category.ToString();
             var categoryProducts = _context.Product.Where(p => p.Category == category);
-
+            
             return View(await categoryProducts.ToListAsync());
         }
 

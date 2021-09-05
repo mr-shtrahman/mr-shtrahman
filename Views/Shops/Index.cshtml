@@ -7,21 +7,22 @@
 }
 
 <body onload="loadImage()">
-<div class="header">
-    <h1>OUR SHOPS</h1>
+    <div class="header">
+        <h1>OUR SHOPS</h1>
 
-    <form asp-action="Search" class="input-group search">
-        <div class="form-outline">
-            <input name="query"
-                   placeholder="search shops"
-                   type="search"
-                   class="form-control" />
-        </div>
-        <button type="submit" value="search" class="btn btn-dark">
-            Search
-        </button>
-    </form>
-</div>
+        <form asp-action="Search" class="input-group search">
+            <div class="form-outline">
+                <input name="query"
+                       placeholder="search shops"
+                       type="search"
+                       class="form-control" />
+            </div>
+            <button type="submit" value="search" class="btn btn-dark">
+                Search
+            </button>
+        </form>
+        <a asp-controller="Home" asp-action="Index">Go Back</a>
+    </div>
 <a asp-action="Create" class="btn btn-lg btn-outline-info add-shop">ADD SHOP +</a>
 
 <div class="row justify-content-between">
