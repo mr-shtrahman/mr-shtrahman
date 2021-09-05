@@ -78,7 +78,6 @@
                             </div>
                         </div>
                         <div class="col-sm-5">
-                            <input type="hidden" value=@item.Id.ToString() name="dynamicImageUrl" />
                             <img id="@item.Id.ToString()" src="" />
                         </div>
                     </div>
@@ -216,7 +215,14 @@
 
 <script type="text/javascript">
     function loadImage() {
-        for (i = 1; i <= document.getElementsByName('dynamicImageUrl').length; i++) {
+        var shopIds = [];
+
+        @foreach (var d in Model.ToList())
+        {
+            @:shopIds.push("@d.Id");
+        }
+
+        for (i = 0; i < shopIds.length; i++) {
             (function (i) {
                 var id = i.toString();
                 $.ajax({

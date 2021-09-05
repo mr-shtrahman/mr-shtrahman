@@ -19,7 +19,6 @@
         {
             <div class="col-sm-6" style="margin-top: 10px">
                 <div class="card">
-                    <input type="hidden" value=@item.Id.ToString() name="dynamicImageUrl" />
                     <img class="card-img-top" id="@item.Id.ToString()"
                          src="" />
                     <div class="card-body">
@@ -147,7 +146,15 @@
 </script>
 <script type="text/javascript">
     function loadImage() {
-        for (i = 1; i <= document.getElementsByName('dynamicImageUrl').length; i++) {
+
+        var productIds = [];
+
+        @foreach (var d in Model.ToList())
+        {
+            @:productIds.push("@d.Id");
+        }
+
+        for (i = 0; i < productIds.length; i++) {
             (function (i) {
                 var id = i.toString();
                 $.ajax({
