@@ -156,7 +156,7 @@
 
         for (i = 0; i < productIds.length; i++) {
             (function (i) {
-                var id = i.toString();
+                var id = productIds[i].toString();
                 $.ajax({
                     type: "GET",
                     url: '@Url.Action("ProductImage")',

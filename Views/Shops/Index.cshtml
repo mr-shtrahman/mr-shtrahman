@@ -224,7 +224,7 @@
 
         for (i = 0; i < shopIds.length; i++) {
             (function (i) {
-                var id = i.toString();
+                var id = shopIds[i].toString();
                 $.ajax({
                     type: "GET",
                     url: '@Url.Action("ShopImage")',
