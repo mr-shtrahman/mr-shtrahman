@@ -34,7 +34,7 @@ namespace mr_shtrahman.Controllers
         }
 
 
-        public async Task<IActionResult> Filter( Category category ,string size = null, string rating = null, string color = null, string price = null)
+        public async Task<IActionResult> Filter(string size = null, string rating = null, string color = null, string price = null)
         {
             ViewData["Category"] = category.ToString();
             var productWithSearchContext = _context.Product.Where(t =>
