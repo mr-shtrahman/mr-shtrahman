@@ -22,7 +22,11 @@
                 Search
             </button>
         </form>
-        <a asp-controller="Home" asp-action="Index">Go Back</a>
+        <div class="row buttons-container">
+            <a asp-controller="Home" asp-action="Index">Go Back</a>
+            <a asp-controller="Trips" asp-action="Map">Go To Map</a>
+        </div>
+
     </div>
     <div class="row">
         @using (Html.BeginForm("Filter", "Trips", FormMethod.Get))

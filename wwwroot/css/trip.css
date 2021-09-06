@@ -44,17 +44,23 @@ h1 {
     z-index: -1;
 }
 
-.header > a, .specific-header > a {
+.header > a, .specific-header > a, .buttons-container > a {
     color: white;
     border: solid 1px white;
     border-radius: 5%;
     padding: 5px;
 }
 
-.header > a:hover, .specific-header > a:hover {
+.header > a:hover, .specific-header > a:hover, .buttons-container > a:hover {
     color: white;
     background-color: rgb(0, 0, 0, 0.5);
     text-decoration: none;
+}
+
+.buttons-container > a{
+    margin: 5px;
+    width: 100px;
+    text-align: center;
 }
 
 .search {

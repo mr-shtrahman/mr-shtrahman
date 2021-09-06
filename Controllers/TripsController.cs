@@ -33,6 +33,13 @@ namespace mr_shtrahman.Controllers
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
+
+        // GET: Trips/Map
+        public async Task<IActionResult> Map()
+        {
+            return View();
+        }
+
     public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
         {
             var tripsWithSearchContext = _context.Trip.Where(t =>
