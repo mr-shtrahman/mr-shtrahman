@@ -43,7 +43,7 @@ namespace mr_shtrahman.Controllers
             (color == null || t.Color == color) &&
             (price == null || ((int)t.Price).ToString() == price));
 
-            return View(await productWithSearchContext.ToListAsync());
+            return View("Category",await productWithSearchContext.ToListAsync());
         }
         // GET: ProductImage
         public ActionResult ProductImage(string id)
