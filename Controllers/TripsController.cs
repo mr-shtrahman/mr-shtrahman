@@ -36,9 +36,9 @@ namespace mr_shtrahman.Controllers
     public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
         {
             var tripsWithSearchContext = _context.Trip.Where(t =>
-            destination == null || ((int)t.Destination).ToString() == destination &&
-            tripType == null    || ((int)t.TripType).ToString()    == tripType &&
-            difficulty == null  || ((int)t.Difficulty).ToString()  == difficulty);
+            (destination == null || ((int)t.Destination).ToString() == destination) &&
+            (tripType == null    || ((int)t.TripType).ToString()    == tripType )&&
+            (difficulty == null  || ((int)t.Difficulty).ToString()  == difficulty));
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
