@@ -6,8 +6,8 @@ h1 {
     text-align: center;
     margin: 50px;
     font-size: 60px;
+    -webkit-text-stroke: 2px black;
 }
-
 
 .header {
     width: 100%;
@@ -167,7 +167,7 @@ h4 {
     padding: 20px;
 }
 
-img {
+div > img {
     width: 100% !important;
     height: 20rem;
 }

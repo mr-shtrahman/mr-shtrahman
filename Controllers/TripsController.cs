@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mr_shtrahman.Data;
 using mr_shtrahman.Models;
+using mr_shtrahman.enums;
 
 namespace mr_shtrahman.Controllers
 {
@@ -32,7 +33,15 @@ namespace mr_shtrahman.Controllers
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
+    public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
+        {
+            var tripsWithSearchContext = _context.Trip.Where(t =>
+            (destination == null || ((int)t.Destination).ToString() == destination) &&
+            (tripType == null    || ((int)t.TripType).ToString()    == tripType )&&
+            (difficulty == null  || ((int)t.Difficulty).ToString()  == difficulty));
 
+            return View("Index", await tripsWithSearchContext.ToListAsync());
+        }
         // GET: TripImage
         public ActionResult TripImage(string id)
         {
@@ -75,14 +84,14 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] products, int[] visitorsAttendances)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
             if (ModelState.IsValid)
             {
                 trip.VisitorsAttendance = new List<VisitorsAttendance>();
-                trip.RelventProducts = new List<Product>();
+                trip.RelevantProducts = new List<Product>();
                 trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
-                trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
+                trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
                
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
@@ -118,7 +127,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] products, int[] visitorsAttendances)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
             if (id != trip.Id)
             {
@@ -130,9 +139,9 @@ namespace mr_shtrahman.Controllers
                 try
                 {
                     trip.VisitorsAttendance = new List<VisitorsAttendance>();
-                    trip.RelventProducts = new List<Product>();
+                    trip.RelevantProducts = new List<Product>();
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
-                    trip.RelventProducts.AddRange(_context.Product.Where(product => products.Contains(product.Id)));
+                    trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
                     _context.Update(trip);
                     await _context.SaveChangesAsync();
                     await UpdateIMGAsync(trip);
@@ -185,7 +194,7 @@ namespace mr_shtrahman.Controllers
 
             var trip = await _context.Trip.FindAsync(id);
             _context.Trip.Remove(trip);
-            await deleteTripFormImg(trip.Id);
+            await deleteTripFromImg(trip.Id);
 
             return RedirectToAction(nameof(Index));
         }
@@ -211,7 +220,7 @@ namespace mr_shtrahman.Controllers
 
         }
 
-        private async Task<bool> deleteTripFormImg(int tripId)
+        private async Task<bool> deleteTripFromImg(int tripId)
         {
             var img = _context.Img.Where(i => i.TripId == tripId).FirstOrDefault();
 

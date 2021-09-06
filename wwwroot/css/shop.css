@@ -141,6 +141,7 @@ h1 {
     color: #ffc700;
 }
 
-img {
+div > img {
     width: 100% !important;
+    height: 12rem;
 }

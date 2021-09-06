@@ -41,9 +41,10 @@ namespace mr_shtrahman.Controllers
 
         // GET: Products/Category/Shoes
         public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
-        {
+        {                               
+            ViewData["Category"] = category.ToString();
             var categoryProducts = _context.Product.Where(p => p.Category == category);
-
+            
             return View(await categoryProducts.ToListAsync());
         }
 
@@ -116,7 +117,7 @@ namespace mr_shtrahman.Controllers
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == id).FirstOrDefault();
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Shops"] = new SelectList(_context.Shop, nameof(Shop.Id), nameof(Shop.Name));
-            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == id), nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == id || i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 
             return View(product);
         }
@@ -195,6 +196,7 @@ namespace mr_shtrahman.Controllers
 
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
+            deleteProductFromImg(product.Id);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -222,7 +224,7 @@ namespace mr_shtrahman.Controllers
 
         }
 
-        private async Task<bool> deleteProductFormImg(int productId)
+        private async Task<bool> deleteProductFromImg(int productId)
         {
             var img = _context.Img.Where(i => i.ProductId == productId).FirstOrDefault();
 

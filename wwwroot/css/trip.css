@@ -61,6 +61,7 @@ h1 {
     display: flex;
     flex-direction: column;
     width: 50%;
+    margin-bottom: 20px;
 }
 
 .btn-group {
@@ -176,7 +177,7 @@ h6 {
     color: #ffc700;
 }
 
-img {
+div > img {
     width: 100% !important;
     height: 20rem;
 }
