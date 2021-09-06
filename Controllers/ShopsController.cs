@@ -64,9 +64,7 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Create
         public IActionResult Create()
         {
-            var ProductByCategory = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList()); ;
-
-            ViewData["Products"] = ProductByCategory;
+            ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
@@ -107,9 +105,7 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            var ProductByCategory = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList()); ;
-
-            ViewData["Products"] = ProductByCategory;
+            ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => (i.ShopId == id || i.ShopId == null) && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
