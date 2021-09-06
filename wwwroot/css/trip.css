@@ -188,3 +188,9 @@ div > img {
     width: 100% !important;
     height: 20rem;
 }
+
+select option:disabled {
+    color: black;
+    font-weight: 700;
+    font-size: medium;
+}
