@@ -6,7 +6,6 @@
     <title>@ViewData["Title"] - mr_shtrahman</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/navbar.css">
-    <link rel="stylesheet" href="../Styles/shop.css">
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script>
         function signOut() {
@@ -54,10 +53,10 @@
                             <a class="nav-link" asp-area="" asp-controller="Imgs" asp-action="Index">IMAGES</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="">Login</a>
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="">LOG IN </a> @*TODO hide if signed in*@
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#" onclick="signOut();">Sign out</a>
+                            <a class="nav-link" href="#" onclick="signOut();">SIGN OUT</a> @*TODO hide if not signed in*@
                         </li>
                     </ul>
                 </div>
