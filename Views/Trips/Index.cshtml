@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
+<link rel="stylesheet" href="~/css/general.css">
 
 @model IEnumerable<mr_shtrahman.Models.Trip>
 @using mr_shtrahman.enums
@@ -29,7 +30,7 @@
 
     </div>
 
-    <a asp-action="Create" class="btn btn-lg btn-outline-info add-trip">ADD TRIP +</a>
+    <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD TRIP +</a>
 
     <form class="form-inline">
         @using (Html.BeginForm("Filter", "Trips", FormMethod.Get))
