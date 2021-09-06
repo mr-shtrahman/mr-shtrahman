@@ -188,3 +188,22 @@ div > img {
     width: 100% !important;
     height: 20rem;
 }
+
+select option:disabled {
+    color: black;
+    font-weight: 700;
+    font-size: medium;
+}
+
+.form-inline {
+    margin: 10px;
+    padding: 10px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-inline > .form-group {
+    margin-top: 15px;
+    width: 5rem;
+}
