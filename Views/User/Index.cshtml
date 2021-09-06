@@ -1,0 +1,46 @@
+﻿<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com">
+@model mr_shtrahman.Controllers.UserController
+
+<script type="text/javascript">
+
+    function success() {
+        // TODO: Implement
+    }
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+
+        var user = new Object();
+        user.Id = profile.getId();
+        user.Name = profile.getName();
+        user.Email = profile.getEmail();
+
+        $.ajax({
+            type: "POST",
+            url: '/User/Login',
+            data: JSON.stringify(user),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: success,
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        // TODO: Get the user from the backend and save to the cookie
+    }
+</script>
+
+@{
+    ViewData["Title"] = "User Login";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+

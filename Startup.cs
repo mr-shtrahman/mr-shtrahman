@@ -15,6 +15,8 @@ namespace mr_shtrahman
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,10 +29,20 @@ namespace mr_shtrahman
         {
             services.AddControllersWithViews();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
+            services.AddControllers();
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
             services.AddDbContext<Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Context")));
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +63,15 @@ namespace mr_shtrahman
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}").RequireCors(MyAllowSpecificOrigins);
             });
         }
     }

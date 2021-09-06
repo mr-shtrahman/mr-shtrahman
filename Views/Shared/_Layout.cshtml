@@ -5,29 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - mr_shtrahman</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/navbar.css">
     <link rel="stylesheet" href="../Styles/shop.css">
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+
+        function onLoad() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init({
+                    'clientId': '1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com'
+                        'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly'
+                });
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">mr_shtrahman</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <div class="pos-f-t">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="logo-container">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/Assets/general/logo.png" />
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDem" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Shops" asp-action="Index">SHOPS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Trips" asp-action="Index">TRIPS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">PRODUCTS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Imgs" asp-action="Index">IMAGES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#" onclick="signOut();">Sign out</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -43,6 +78,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
     @RenderSection("Scripts", required: false)
 </body>
 </html>

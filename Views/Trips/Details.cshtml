@@ -6,12 +6,11 @@
     ViewData["Title"] = "Details";
 }
 
-    
-    <img src="@ViewBag.Image.Src"></img>@*i dont know what going on here*@
-    <div class="header">
-        <h1>@Html.DisplayFor(model => model.Name)</h1>
-        <a asp-action="Index">Go Back</a>
-    </div>
+<div class="specific-header">
+    <img src="@ViewBag.Image.Src.Substring(1)" />
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <a asp-action="Index">Go Back</a>
+</div>
     <div class="container">
         <div class="data-section">
             <h6>A LITTLE ABOUT THIS TRIP</h6>

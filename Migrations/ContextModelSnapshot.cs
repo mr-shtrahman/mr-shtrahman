@@ -36,13 +36,13 @@ namespace mr_shtrahman.Migrations
 
             modelBuilder.Entity("ProductTrip", b =>
                 {
-                    b.Property<int>("RelventProductsId")
+                    b.Property<int>("RelevantProductsId")
                         .HasColumnType("int");
 
                     b.Property<int>("TripsId")
                         .HasColumnType("int");
 
-                    b.HasKey("RelventProductsId", "TripsId");
+                    b.HasKey("RelevantProductsId", "TripsId");
 
                     b.HasIndex("TripsId");
 
@@ -264,7 +264,7 @@ namespace mr_shtrahman.Migrations
                 {
                     b.HasOne("mr_shtrahman.Models.Product", null)
                         .WithMany()
-                        .HasForeignKey("RelventProductsId")
+                        .HasForeignKey("RelevantProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
