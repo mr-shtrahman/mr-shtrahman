@@ -64,6 +64,16 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Create
         public IActionResult Create()
         {
+            var ProductByCategory = _context.Product.AsEnumerable().GroupBy(p => p.Category).AsEnumerable();
+            foreach (var item in ProductByCategory)
+            {
+                var category = item.Key;
+                foreach (var itemm in item)
+                {
+                    var a = itemm.Name;
+                }
+
+            }
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
