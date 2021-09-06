@@ -65,12 +65,12 @@ namespace mr_shtrahman.Controllers
         public IActionResult Create()
         {
             var ProductByCategory = _context.Product.AsEnumerable().GroupBy(p => p.Category).AsEnumerable();
-            foreach (var item in ProductByCategory)
+            foreach (var categorys in ProductByCategory)
             {
-                var category = item.Key;
-                foreach (var itemm in item)
+                var category = categorys.Key;
+                foreach (var product in categorys)
                 {
-                    var a = itemm.Name;
+                    var a = product.Name;
                 }
 
             }
