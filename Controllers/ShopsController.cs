@@ -74,7 +74,8 @@ namespace mr_shtrahman.Controllers
                 }
 
             }
-            ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
+
+            ViewData["Product"] = ProductByCategory;// new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
