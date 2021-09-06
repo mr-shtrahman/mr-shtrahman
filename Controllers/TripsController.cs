@@ -35,7 +35,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Map
-        public async Task<IActionResult> Map()
+        public IActionResult Map()
         {
             return View();
         }
