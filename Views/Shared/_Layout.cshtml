@@ -36,7 +36,8 @@
                 data: JSON.stringify(user),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (response) {
+                success: function (responseUser) {
+                    user = responseUser;
                 },
                 failure: function (response) {
                     alert(response.responseText);
