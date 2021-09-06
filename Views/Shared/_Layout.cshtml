@@ -11,17 +11,10 @@
     <meta name="google-signin-client_id" content="1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com">
     
     <script>
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
-
         function onLoad() {
             gapi.load('auth2', function () {
                 gapi.auth2.init({
-                    'clientId': '1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com'
+                    'clientId': '1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com',
                                 'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly'
                 });
             });
@@ -44,10 +37,6 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    console.log(@ViewBag.user);
-                    //ViewBag.user = JSON.stringify(response);
-                    //sessionStorage.setItem("user", JSON.stringify(response));
-                    //console.log(JSON.parse(sessionStorage.getItem("user")));
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -55,6 +44,12 @@
                 error: function (response) {
                     alert(response.responseText);
                 }
+            });
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
             });
         }
     </script>

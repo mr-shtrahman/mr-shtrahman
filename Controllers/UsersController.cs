@@ -80,23 +80,9 @@ namespace mr_shtrahman.Controllers
                 _context.Add(user);
                 await _context.SaveChangesAsync();
             }
-
+            
             ViewBag.user = currentUser;
-
             return Json(currentUser);
-
-
-
-            //System.Web.HttpContext.Current.Session["user"] = user;
-            /*HttpContext.Session.SetString("userId", user.Id);
-            HttpContext.Session.SetString("userName", user.Name);
-            HttpContext.Session.SetString("userEmail", user.Email);
-            HttpContext.Session.SetString("isUserAdmin", user.isAdmin.ToString());
-            */
-
-            //ViewBag.user = ((User)System.Web.HttpContext.Current.Session["user"]);
-
-            //return Json(user);
         }
 
         // GET: Users/Edit/5
