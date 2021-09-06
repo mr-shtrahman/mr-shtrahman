@@ -1,6 +1,7 @@
 ﻿<link rel="stylesheet" href="~/css/product.css">
 
 @model IEnumerable<mr_shtrahman.Models.Product>
+@using mr_shtrahman.enums
 
 @{
     ViewData["Title"] = "Category";
@@ -11,6 +12,37 @@
         <img name="headerImg" src="">
         <h1>@ViewBag.Category.ToUpper()</h1>
         <a asp-action="Index">Go Back</a>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm("Filter", "products", FormMethod.Get))
+        {
+        <form class="form-inline">
+            <div class="form-group ">
+                <select class="form-control" name="Size" asp-items="Html.GetEnumSelectList<Size>()">
+                    class="form-control">
+                    <option value="" selected disabled hidden>Select Size</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Rating" class="form-control" placeholder="Rating" />
+            </div>
+            <div class="form-group ">
+                <input type="text" name="color" class="form-control" placeholder="color" />
+            </div>
+            <div class="form-group ">
+                <input type="text" name="price" class="form-control" placeholder="price" />
+            </div>
+
+            <div class="form-group col-md-3">
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search">
+                        Filter
+                    </span>
+                </button>
+            </div>
+        </form>
+        }
     </div>
     <a asp-action="Create" class="btn btn-lg btn-outline-info add-product">ADD PRODUCT +</a>
 

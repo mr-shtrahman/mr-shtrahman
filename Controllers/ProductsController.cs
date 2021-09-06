@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mr_shtrahman.Data;
+using mr_shtrahman.enums;
 using mr_shtrahman.Models;
 
 namespace mr_shtrahman.Controllers
@@ -32,15 +33,28 @@ namespace mr_shtrahman.Controllers
             return View(await productWithImgs.ToListAsync());
         }
 
+
+        public async Task<IActionResult> Filter( Category category ,string size = null, string rating = null, string color = null, string price = null)
+        {
+            ViewData["Category"] = category.ToString();
+            var productWithSearchContext = _context.Product.Where(t =>
+            (size == null || ((int)t.Size).ToString() == size) &&
+            (rating == null || (t.Rating).ToString() == rating) &&
+            (color == null || t.Color == color) &&
+            (price == null || ((int)t.Price).ToString() == price));
+
+            return View(await productWithSearchContext.ToListAsync());
+        }
         // GET: ProductImage
         public ActionResult ProductImage(string id)
         {
             string imageSrc = _context.Img.Where(i => i.ProductId.ToString() == id).FirstOrDefault().Src.Substring(1);
             return Json(imageSrc);
+
         }
 
         // GET: Products/Category/Shoes
-        public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
+        public async Task<IActionResult> Category(Category category)
         {                               
             ViewData["Category"] = category.ToString();
             var categoryProducts = _context.Product.Where(p => p.Category == category);
