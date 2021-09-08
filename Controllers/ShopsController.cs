@@ -36,6 +36,16 @@ namespace mr_shtrahman.Controllers
             return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Filter(string city = null, string rating = null, string phoneNum = null)
+        {
+
+            var productWithSearchContext = _context.Shop.Where(t =>
+            (city == null || ((int)t.City).ToString() == city) &&
+            (rating == null || (t.Rating).ToString() == rating) &&
+            (phoneNum == null || t.PhoneNum == phoneNum) );
+
+            return View("Index", await productWithSearchContext.ToListAsync());
+        }
         // GET: ShopImage
         public ActionResult ShopImage(string id)
         {

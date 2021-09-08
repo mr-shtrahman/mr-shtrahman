@@ -33,18 +33,6 @@ namespace mr_shtrahman.Controllers
             return View(await productWithImgs.ToListAsync());
         }
 
-
-        public async Task<IActionResult> Filter( string size = null, string rating = null, string color = null, string price = null)
-        {
-       
-            var productWithSearchContext = _context.Product.Where(t =>
-            (size == null || ((int)t.Size).ToString() == size) &&
-            (rating == null || (t.Rating).ToString() == rating) &&
-            (color == null || t.Color == color) &&
-            (price == null || ((int)t.Price).ToString() == price));
-
-            return View("Category",await productWithSearchContext.ToListAsync());
-        }
         // GET: ProductImage
         public ActionResult ProductImage(string id)
         {
