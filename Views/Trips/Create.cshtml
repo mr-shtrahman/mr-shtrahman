@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
+<link rel="stylesheet" href="~/css/general.css">
 
 @model mr_shtrahman.Models.Trip
 @using mr_shtrahman.enums
@@ -100,9 +101,19 @@
                 </div>
             </div>
             <div class="form-group">
-                    <label class="control-label">Relevant Products: </label>
-                    <select asp-for="RelevantProducts" asp-items="@ViewBag.Products" class="form-control"></select>
-                    <span asp-validation-for="RelevantProducts" class="text-danger"></span>
+                <label class="control-label">Relevant Products: </label>
+                <select asp-for="RelevantProducts" class="form-control">
+                    @foreach (var productsList in ViewBag.Products)
+                    {
+                        <option disabled>@productsList.Key</option>
+                        @foreach (var product in productsList.Value)
+                        {
+                            <option value="@product.Id" selected>@product.Name</option>
+
+                        }
+                    }
+                </select>
+                <span asp-validation-for="RelevantProducts" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

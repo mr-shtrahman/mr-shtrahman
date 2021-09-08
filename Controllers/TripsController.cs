@@ -35,7 +35,7 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Map
-        public async Task<IActionResult> Map()
+        public IActionResult Map()
         {
             return View();
         }
@@ -80,7 +80,7 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
-            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
+            ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
@@ -122,8 +122,8 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
+            ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
-            ViewData["Products"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && (i.TripId == id || i.TripId == null) && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View(trip);

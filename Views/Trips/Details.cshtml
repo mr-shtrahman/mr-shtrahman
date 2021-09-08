@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
+<link rel="stylesheet" href="~/css/general.css">
 
 @model mr_shtrahman.Models.Trip
 
@@ -11,37 +12,37 @@
     <h1>@Html.DisplayFor(model => model.Name)</h1>
     <a asp-action="Index">Go Back</a>
 </div>
-    <div class="container">
-        <div class="data-section">
-            <h6>A LITTLE ABOUT THIS TRIP</h6>
+<div class="container">
+    <div class="data-section">
+        <h6>A LITTLE ABOUT THIS TRIP</h6>
+        <p>
+            @Html.DisplayFor(model => model.Details);
+        </p>
+    </div>
+    <div class="data-section row">
+        <div class="col graph">
+            <h6>WEATHER STATS</h6>
             <p>
-                @Html.DisplayFor(model => model.Details);
+                this is a placeholder for Orel's weather graph
             </p>
         </div>
-        <div class="data-section row">
-            <div class="col graph">
-                <h6>WEATHER STATS</h6>
-                <p>
-                    this is a placeholder for Orel's weather graph
-                </p>
-            </div>
-            <div class="col graph">
-                <h6>BUSY HOURS</h6>
-                <p>
-                    this is a placeholder for Orel's visitor attendance graph
-                </p>
-            </div>
-        </div>
-        <div class="data-section">
-            <h6>OUR RECOMMENDATIONS</h6>
-            <div class="product-section">
-                <div class="card card-body">
-                    @foreach (var product in ViewBag.Products)
-                    {
-                        @product.Name
-                    }
-                </div>
-            </div>
-
+        <div class="col graph">
+            <h6>BUSY HOURS</h6>
+            <p>
+                this is a placeholder for Orel's visitor attendance graph
+            </p>
         </div>
     </div>
+    <div class="data-section">
+        <h6>OUR RECOMMENDATIONS</h6>
+        <div class="product-section">
+            <div class="card card-body">
+                @foreach (var product in ViewBag.Products)
+                {
+                    @product.Name
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

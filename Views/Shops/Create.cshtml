@@ -1,147 +1,160 @@
 ﻿<link rel="stylesheet" href="~/css/shop.css">
+<link rel="stylesheet" href="~/css/general.css">
 
 @model mr_shtrahman.Models.Shop
 @using mr_shtrahman.enums
 
 <script type="text/javascript">
-function swapImage(){
-	var image = document.getElementById("imageToSwap");
-    var selectList = document.getElementById("imageSelect");
-    image.src = selectList.options[selectList.selectedIndex].text.substring(1);
-};
+    function swapImage() {
+        var image = document.getElementById("imageToSwap");
+        var selectList = document.getElementById("imageSelect");
+        image.src = selectList.options[selectList.selectedIndex].text.substring(1);
+    };
 </script>
 
 @{
     ViewData["Title"] = "Create";
 }
 
-    <div class="header">
-        <h1>ADD A SHOP</h1>
-    </div>
-    <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="data-section">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label class="control-label">Name: </label>
-                        <input type="text" asp-for="Name" class="form-control" placeholder="Name" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
+<div class="header">
+    <h1>ADD A SHOP</h1>
+    <a asp-action="Index">Go Back</a>
+</div>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="data-section">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="control-label">Name: </label>
+                    <input type="text" asp-for="Name" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label class="control-label">Choose an image for this shop: </label>
-                        <select id="imageSelect" asp-for="ImgId" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()">
-                            <option value="" selected disabled hidden></option>
-                        </select>
-                        <span asp-validation-for="ImgId" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <img id="imageToSwap" src="" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Address: </label>
-                <div class="row g-3">
-                    <div class="col-sm-5">
-                        <select asp-for="City" asp-items="@Html.GetEnumSelectList<City>().OrderBy(t => t.Text)" class="form-control"></select>
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                    <div class="col-sm-5">
-                        <input type="text" asp-for="Street" class="form-control" placeholder="Street" />
-                        <span asp-validation-for="Street" class="text-danger"></span>
-                    </div>
-                    <div class="col-sm-2">
-                        <input type="text" asp-for="StreetNum" class="form-control" placeholder="Number" />
-                        <span asp-validation-for="StreetNum" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label class="control-label">Phone Number: </label>
-                        <input type="text" asp-for="PhoneNum" class="form-control" placeholder="Phone Number" />
-                        <span asp-validation-for="PhoneNum" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label class="control-label">Rating: </label>
-                        <input type="text" asp-for="Rating" class="form-control" placeholder="Rating" />
-                        <span asp-validation-for="Rating" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="data-section">
-            <div class="form-group">
-                <label class="control-label">Opening times: </label>
-                <div class="row g-3">
-                    <div class="col-sm-3">
-                        <span>Sun-Thu: </span>
-                    </div>
-                    <div class="col-sm-3">
-                        <input asp-for="OpeningSundayTilThursday" class="form-control" placeholder="hh:mm" />
-                        <span asp-validation-for="OpeningSundayTilThursday" class="text-danger"></span>
-                    </div>
-                    <span> - </span>
-                    <div class="col-sm-3">
-                        <input asp-for="ClosingSundayTilThursday" class="form-control" placeholder="hh:mm" />
-                        <span asp-validation-for="ClosingSundayTilThursday" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col-sm-3">
-                        <span>Friday : </span>
-                    </div>
-                    <div class="col-sm-3">
-                        <input asp-for="OpeningFriday" class="form-control" placeholder="hh:mm" />
-                        <span asp-validation-for="OpeningFriday" class="text-danger"></span>
-                    </div>
-                    <span> - </span>
-                    <div class="col-sm-3">
-                        <input asp-for="ClosingFriday" class="form-control" placeholder="hh:mm" />
-                        <span asp-validation-for="ClosingFriday" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col-sm-3">
-                        <span>Saturday: </span>
-                    </div>
-                    <div class="col-sm-3">
-                        <input asp-for="OpeningSaturday" class="form-control" placeholder="hh:mm" />
-                        <span asp-validation-for="OpeningSaturday" class="text-danger"></span>
-                    </div>
-                    <span> - </span>
-                    <div class="col-sm-3">
-                        <input asp-for="ClosingSaturday" class="form-control" placeholder="hh:mm" />
-                        <span asp-validation-for="ClosingSaturday" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="data-section">
-            <label class="control-label">Products you can find here: </label>
-            <select asp-for="Products" asp-items="@ViewBag.Product" class="form-control"></select>
-            <span asp-validation-for="Products" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="control-label">Choose an image for this shop: </label>
+                    <select id="imageSelect" asp-for="ImgId" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()">
+                        <option value="" selected disabled hidden></option>
+                    </select>
+                    <span asp-validation-for="ImgId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img id="imageToSwap" src="" />
+                </div>
+            </div>
         </div>
-    </form>
-    <div>
-        <a asp-action="Index">Back to List</a>
+        <div class="form-group">
+            <label class="control-label">Address: </label>
+            <div class="row g-3">
+                <div class="col-sm-5">
+                    <select asp-for="City" asp-items="@Html.GetEnumSelectList<City>().OrderBy(t => t.Text)" class="form-control"></select>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" asp-for="Street" class="form-control" placeholder="Street" />
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" asp-for="StreetNum" class="form-control" placeholder="Number" />
+                    <span asp-validation-for="StreetNum" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="control-label">Phone Number: </label>
+                    <input type="text" asp-for="PhoneNum" class="form-control" placeholder="Phone Number" />
+                    <span asp-validation-for="PhoneNum" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="control-label">Rating: </label>
+                    <input type="text" asp-for="Rating" class="form-control" placeholder="Rating" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="data-section">
+        <div class="form-group">
+            <label class="control-label">Opening times: </label>
+            <div class="row g-3">
+                <div class="col-sm-3">
+                    <span>Sun-Thu: </span>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="OpeningSundayTilThursday" class="form-control" placeholder="hh:mm" />
+                    <span asp-validation-for="OpeningSundayTilThursday" class="text-danger"></span>
+                </div>
+                <span> - </span>
+                <div class="col-sm-3">
+                    <input asp-for="ClosingSundayTilThursday" class="form-control" placeholder="hh:mm" />
+                    <span asp-validation-for="ClosingSundayTilThursday" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-3">
+                    <span>Friday : </span>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="OpeningFriday" class="form-control" placeholder="hh:mm" />
+                    <span asp-validation-for="OpeningFriday" class="text-danger"></span>
+                </div>
+                <span> - </span>
+                <div class="col-sm-3">
+                    <input asp-for="ClosingFriday" class="form-control" placeholder="hh:mm" />
+                    <span asp-validation-for="ClosingFriday" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-3">
+                    <span>Saturday: </span>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="OpeningSaturday" class="form-control" placeholder="hh:mm" />
+                    <span asp-validation-for="OpeningSaturday" class="text-danger"></span>
+                </div>
+                <span> - </span>
+                <div class="col-sm-3">
+                    <input asp-for="ClosingSaturday" class="form-control" placeholder="hh:mm" />
+                    <span asp-validation-for="ClosingSaturday" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="data-section">
+        <div class="form-group">
+            <label class="control-label">Products in stock: </label>
+            <select asp-for="Products" class="form-control">
+                @foreach (var productsList in ViewBag.Products)
+                {
+                    <option disabled>@productsList.Key</option>
+                    @foreach (var product in productsList.Value)
+                    {
+                        <option value="@product.Id" selected>@product.Name</option>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

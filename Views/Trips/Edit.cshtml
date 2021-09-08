@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
+<link rel="stylesheet" href="~/css/general.css">
 
 @model mr_shtrahman.Models.Trip
 @using mr_shtrahman.enums
@@ -18,6 +19,15 @@
 
     <h4 class="control-label">BASIC INFORMATION </h4>
     <div class="data-section">
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label class="control-label">Choose an image:</label>
+                <select id="imageSelect" asp-for="ImgId" asp-items="@ViewBag.Images" class="form-control" onchange="swapImage()">
+                    <option value="" selected disabled hidden></option>
+                </select>
+                <span asp-validation-for="ImgId" class="text-danger"></span>
+            </div>
+        </div>
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-4">
@@ -80,7 +90,17 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Relevant Products: </label>
-                <select asp-for="RelevantProducts" asp-items="@ViewBag.Products" class="form-control"></select>
+                <select asp-for="RelevantProducts" class="form-control">
+                    @foreach (var productsList in ViewBag.Products)
+                    {
+                        <option disabled>@productsList.Key</option>
+                        @foreach (var product in productsList.Value)
+                        {
+                            <option value="@product.Id" selected>@product.Name</option>
+
+                        }
+                    }
+                </select>               
                 <span asp-validation-for="RelevantProducts" class="text-danger"></span>
             </div>
         </div>
