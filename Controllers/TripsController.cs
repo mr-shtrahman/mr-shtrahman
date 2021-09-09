@@ -64,13 +64,12 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            var products = _context.Trip.Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
-            if (products == null)
-            {
-                products = new List<Product>();
-            }
+            
+            var products = _context.Trip.Include(c => c.RelevantProducts).ToList();
+            
 
-            ViewData["Products"] = products;
+
+            ViewData["Products"] = products != null ? products : new List<Product>();
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
 
             var trip = await _context.Trip
@@ -151,10 +150,22 @@ namespace mr_shtrahman.Controllers
             {
                 try
                 {
+
+                    var RelevantProductsAsList = RelevantProducts.ToList();
+
+                    var ProductWithTrips = _context.Product.Include(p => p.Trips).AsNoTracking();
+                    foreach (var item in ProductWithTrips)
+                    {
+                        if (item.Trips.Any(t => t.Id == id))
+                        {
+                            RelevantProductsAsList.Remove(item.Id);
+                        };
+                    }
+                    
                     trip.VisitorsAttendance = new List<VisitorsAttendance>();
                     trip.RelevantProducts = new List<Product>();
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
-                    trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
+                    trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProductsAsList.Contains(product.Id)));
                     _context.Update(trip);
                     await _context.SaveChangesAsync();
                     await UpdateIMGAsync(trip);
