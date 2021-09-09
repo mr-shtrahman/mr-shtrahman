@@ -12,7 +12,6 @@ namespace mr_shtrahman.Data
         public Context(DbContextOptions<Context> options)
            : base(options)
         {
-            //Database.set(new Context());
         }
 
         public DbSet<mr_shtrahman.Models.Img> Img { get; set; }
