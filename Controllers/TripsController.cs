@@ -64,8 +64,8 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            
-            var products = _context.Trip.Include(c => c.RelevantProducts).ToList();
+
+            var products = _context.Trip.Include(c => c.RelevantProducts).Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
             
 
 
