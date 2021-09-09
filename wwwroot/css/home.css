@@ -12,15 +12,22 @@
 }
 
 .header {
-    background-image: url(../Assets/general/home.jpeg);
-    background-size: cover;
-    background-position: center;
-    margin: 0;
+    pointer-events: none;
+    position: absolute;
+    margin-top: 6rem;
+    padding: 0 !important;
     width: 100%;
     height: 25rem;
     padding: 7rem;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+}
+
+iframe {
+    position: absolute;
+    margin-top: 0;
+    left: 0;
+    width: 100%;
+    height: 27rem;
 }
 
 .header > h1 {
@@ -39,6 +46,8 @@ h4 {
 }
 
 .content {
+    position: absolute;
+    margin-top: 28rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,7 +81,7 @@ a, a:hover {
 }
 
 #trips {
-    background-image: url(../Assets/general/hiking4.jpg);
+    background-image: url(../Assets/trips/north/afek.jpg);
     background-position: center;
 }
 
