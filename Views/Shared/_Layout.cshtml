@@ -18,15 +18,25 @@
         function onLoad() {
             gapi.load('auth2', function () {
                 gapi.auth2.init({
-                    'clientId': '1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com'
-                        'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly'
+                    'clientId': '1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com',
+                    'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly'
                 });
             });
         }
+
+        //function toggleMargin() {
+        //    var margin = document.getElementById('video').style.top;
+        //    console.log(margin);
+        //    if (margin == '17rem') {
+        //        document.getElementById('video').style.top = '6rem';
+        //    } else {
+        //        document.getElementById('video').style.top = '17rem';
+        //    }
+        //}
     </script>
 </head>
 <body>
-    <header>
+    <header >
         <div class="pos-f-t">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="logo-container">
