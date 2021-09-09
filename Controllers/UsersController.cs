@@ -23,11 +23,6 @@ namespace mr_shtrahman.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            // TODO: Check if the user is Admin
-            //var userEmail = HttpContext.Session.GetString("userEmail");
-            //var userEmail = _contextAccessor.HttpContext.Session.GetString("userEmail");
-            //var user = ((User)System.Web.HttpContext.Current.Session["user"]);
-
             var currentUser = HttpContext.Session.Get<User>("user");
 
             if (!currentUser.isAdmin)
