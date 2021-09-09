@@ -12,6 +12,7 @@ namespace mr_shtrahman.Data
         public Context(DbContextOptions<Context> options)
            : base(options)
         {
+            //Database.set(new Context());
         }
 
         public DbSet<mr_shtrahman.Models.Img> Img { get; set; }
@@ -32,6 +33,14 @@ namespace mr_shtrahman.Data
 
             // TODO: Add to here for data seeding
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
+
+            modelBuilder.Entity<Img>().HasData(
+                new Img
+                {
+                    Id =1,
+                    Src = "~Assets/trips/south/avdaat.jpg",
+                    Description = "avdaat"
+                });
         }
     }
 }
