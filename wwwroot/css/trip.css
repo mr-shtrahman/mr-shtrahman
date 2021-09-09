@@ -2,22 +2,7 @@
 /*INDEX DESIGN*/
 
 .header {
-    background: url('../Assets/trips/north/rosh-pina.jpg');
-}
-
-.buttons-container > a {
-    color: white;
-    margin: 5px;
-    width: 100px;
-    text-align: center;
-    border: 1px solid white;
-    border-radius: 5%;
-}
-
-.buttons-container > a:hover {
-    color: white;
-    background-color: rgb(0, 0, 0, 0.5);
-    text-decoration: none;
+    background: url('../Assets/trips/north/bonim.jpg');
 }
 
 .card-subtitle, h4 {
@@ -37,7 +22,7 @@
 .details {
     display: block;
     text-align: center;
-    background: url(../Assets/general/hiking2.jpg);
+    background: url(../Assets/trips/north/bonim.jpg);
     color: white;
     text-transform: uppercase;
     font-weight: 500;

@@ -2,6 +2,10 @@
     background: url('../Assets/shops/shop1.jpg');
 }
 
+.header > h1 {
+    font-size: 55px;
+}
+
 .card-header {
     background-color: #0C182E;
     color: white;
@@ -31,6 +35,15 @@
     margin-top: 20px;
 }
 
+.opening-hours {
+    margin-top: 1rem;
+}
+
+.opening-hours > h6 {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
 .form-inline {
     margin: 10px;
     padding: 10px;
@@ -44,5 +57,3 @@
     width: 5rem;
 }
 
-.rating-filter * {
-}
