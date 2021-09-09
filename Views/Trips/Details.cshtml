@@ -24,7 +24,7 @@
     <div class="data-section row">
         <div id="weather_graph" class="col graph" style="align-self:center">
         </div>
-        <div id="busy_hours" class="col graph">
+        <div id="busy_hours" class="col graph" style="align-self:center">
         </div>
     </div>
     <div class="data-section">
@@ -132,8 +132,7 @@
                         .y(function (d) { return y(d.value) })
                     )
                 // Add the points
-                svg
-                    .append("g")
+                svg.append("g")
                     .selectAll("dot")
                     .data(data)
                     .enter()
@@ -143,11 +142,7 @@
                     .attr("r", 5)
                     .attr("fill", "#69b3a2")
             })
-
     }
-
-
-
 
     function drawWeatherBar(jsonData) {
         var margin = { top: 20, right: 20, bottom: 30, left: 40 },
