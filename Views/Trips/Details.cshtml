@@ -36,10 +36,12 @@
     <div class="data-section">
         <h6>OUR RECOMMENDATIONS</h6>
         <div class="product-section">
-            <div class="card card-body">
-                @foreach (var product in ViewBag.Products)
+            <div class="card card-body products-container row">
+                @foreach (var image in ViewBag.ProductImages)
                 {
-                    @product.Name
+                <div class="relevant-product col-sm-4">
+                    <img src="@image.Src.Substring(1)" />
+                </div>
                 }
             </div>
         </div>

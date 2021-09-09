@@ -55,3 +55,13 @@ h6 {
     margin-top: 15px;
     width: 5rem;
 }
+
+.relevant-product {
+    border: 1px solid silver;
+    padding: 2px;
+}
+
+.relevant-product > img {
+    width: 8rem;
+    height: 10rem;
+}

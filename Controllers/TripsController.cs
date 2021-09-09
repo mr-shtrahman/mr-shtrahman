@@ -64,15 +64,13 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-
             var products = _context.Trip.Include(c => c.RelevantProducts).Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
             
-
-
-            ViewData["Products"] = products != null ? products : new List<Product>();
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
+            ViewData["Products"] = products != null  ? products.GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList()) : new List<Product>();
+            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
 
-            var trip = await _context.Trip
+          var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (trip == null)
             {
