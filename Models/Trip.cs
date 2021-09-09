@@ -32,7 +32,7 @@ namespace mr_shtrahman.Models
         public int ImgId { get; set; }
 
         [Display(Name = "Relevant Products")]
-        public List<Product> RelventProducts { get; set; }
+        public List<Product> RelevantProducts { get; set; }
 
         [Display(Name = "Visitors Attendance")]
         public List<VisitorsAttendance> VisitorsAttendance { get; set; }
