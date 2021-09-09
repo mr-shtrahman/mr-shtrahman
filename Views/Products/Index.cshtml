@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/css/product.css">
+<link rel="stylesheet" href="~/css/general.css">
 
 @model IEnumerable<mr_shtrahman.Models.Product>
 @using mr_shtrahman.enums
@@ -7,12 +8,11 @@
     ViewData["Title"] = "Index";
 }
 
-
-
 <div class="header">
     <h1>OUR PRODUCTS</h1>
+    <a asp-controller="Home" asp-action="Index">Go Back</a>
 </div>
-<a asp-action="Create" class="btn btn-lg btn-outline-info add-product">ADD PRODUCT +</a>
+<a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD PRODUCT +</a>
 
 <div class="row justify-content-between">
     @foreach (var category in Enum.GetValues(typeof(Category)))

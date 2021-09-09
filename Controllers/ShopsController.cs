@@ -64,7 +64,7 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Create
         public IActionResult Create()
         {
-            ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
+            ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
         }
@@ -75,13 +75,13 @@ namespace mr_shtrahman.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-             int[] shops)
+            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
+             int[] Products)
         {
             if (ModelState.IsValid)
             {
                 shop.Products = new List<Product>();
-                shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
+                shop.Products.AddRange(_context.Product.Where(product => Products.Contains(product.Id)));
 
                 _context.Add(shop);
                 await _context.SaveChangesAsync();
@@ -105,9 +105,10 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
+            ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
-            ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
+            ViewData["Images"] = new SelectList(_context.Img.Where(i => (i.ShopId == id || i.ShopId == null) && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
 
             return View(shop);
         }
@@ -118,8 +119,8 @@ namespace mr_shtrahman.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
-            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
-            int[] shops) //TODO : miki? products need to be here ? 
+            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
+            int[] Products) 
         {
             if (id != shop.Id)
             {
@@ -131,7 +132,10 @@ namespace mr_shtrahman.Controllers
                 try
                 {
                     shop.Products = new List<Product>();
-                    shop.Products.AddRange(_context.Product.Where(product => shops.Contains(product.Id)));
+                    shop.Products.AddRange(_context.Product.Where(product => Products.Contains(product.Id)));
+                    var productsInCategory = _context.Shop
+                                .Where(c => c.Id == shop.Id)
+                                .SelectMany(c => c.Products); // how to get data!
 
                     _context.Update(shop);
                     await _context.SaveChangesAsync();
@@ -184,7 +188,7 @@ namespace mr_shtrahman.Controllers
             }
             var shop = await _context.Shop.FindAsync(id);
             _context.Shop.Remove(shop);
-            await deleteShopFormImg(shop.Id);
+            await deleteShopFromImg(shop.Id);
             return RedirectToAction(nameof(Index));
         }
 
@@ -210,7 +214,7 @@ namespace mr_shtrahman.Controllers
 
         }
 
-        private async Task<bool> deleteShopFormImg(int shopId)
+        private async Task<bool> deleteShopFromImg(int shopId)
         {
             var img = _context.Img.Where(i => i.ShopId == shopId).FirstOrDefault();
 
