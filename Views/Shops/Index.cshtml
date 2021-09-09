@@ -26,38 +26,40 @@
     </div>
     <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD SHOP +</a>
 
-    <form class="form-inline">
 
-        @using (Html.BeginForm("Filter", "shops", FormMethod.Get))
-        {
+    @using (Html.BeginForm("Filter", "Shops", FormMethod.Get))
+    {
+<form class="form-inline">
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="city" asp-items="Html.GetEnumSelectList<City>()">
+                <option value="" selected disabled hidden>Select city</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-2 rating-filter">
             <div class="row">
-                <div class="form-group col-sm-4">
-                    <select class="form-control" name="city" asp-items="Html.GetEnumSelectList<City>()">
-                        <option value="" selected disabled hidden>Select city</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-4 rating-filter">
-                    <span>Rating: </span>
-                    <input type="number" class="form-control" name="rating" min="0" max="5" value="5">
-                </div>
-                <div class="form-group col-sm-4">
-                    <select class="form-control" name="days">
-                        <option value="" selected disabled hidden>Open on...</option>
-                        <option value="1">Every day</option>
-                        <option value="2">Sunday-Friday</option>
-                        <option value="3">Sunday-Thursady</option>
-                    </select>
-                </div>
+                <span>Rating: </span>
+                <input type="number" class="form-control col" name="rating" min="0" max="5">
             </div>
-            <div class="form-group col-sm-4">
-                <button type="submit" class="btn btn-info">
-                    <span class="glyphicon glyphicon-search">
-                        Filter
-                    </span>
-                </button>
-            </div>
-        }
-    </form>
+        </div>
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="days">
+                <option value="" selected disabled hidden>Open on...</option>
+                <option value="1">Every day</option>
+                <option value="2">Sunday-Friday</option>
+                <option value="3">Sunday-Thursady</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-3">
+            <button type="submit" class="btn btn-info">
+                <span class="glyphicon glyphicon-search">
+                    Filter
+                </span>
+            </button>
+        </div>
+    </div>
+</form>
+    }
 
     <div class="row justify-content-between">
 

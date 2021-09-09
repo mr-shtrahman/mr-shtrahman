@@ -41,10 +41,10 @@ namespace mr_shtrahman.Controllers
             var productWithSearchContext = _context.Shop.Where(t =>
             (city == null || ((int)t.City).ToString() == city) &&
             (rating == null || (t.Rating).ToString() == rating) &&
-            (days == null ||
-                (days == "1" && t.OpeningSundayTilThursday != "" && t.OpeningFriday != "" && t.OpeningSaturday != "") ||
-                (days == "2" && t.OpeningSundayTilThursday != "" && t.OpeningFriday != "") ||
-                (days == "3" && t.OpeningSundayTilThursday != "")));
+            (days == null || 
+            ((days == "1" && t.OpeningSundayTilThursday != null && t.OpeningFriday != null && t.OpeningSaturday != null) ||
+             (days == "2" && t.OpeningSundayTilThursday != null && t.OpeningFriday != null && t.OpeningSaturday == null ) ||
+             (days == "3" && t.OpeningSundayTilThursday != null && t.OpeningFriday == null && t.OpeningSaturday == null))));
 
             return View("Index", await productWithSearchContext.ToListAsync());
         }
