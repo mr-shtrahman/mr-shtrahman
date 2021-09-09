@@ -24,34 +24,35 @@
         </form>
         <a asp-controller="Home" asp-action="Index">Go Back</a>
     </div>
-    <div class="row">
+    <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD SHOP +</a>
+
+    <form class="form-inline">
+
         @using (Html.BeginForm("Filter", "shops", FormMethod.Get))
         {
-            <form class="form-inline">
-                <div class="form-group ">
+            <div class="row">
+                <div class="form-group col-sm-4">
                     <select class="form-control" name="city" asp-items="Html.GetEnumSelectList<City>()">
                         class="form-control">
                         <option value="" selected disabled hidden>Select city</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-4">
                     <input type="text" name="rating" class="form-control" placeholder="Rating" />
                 </div>
-                <div class="form-group ">
+                <div class="form-group col-sm-4">
                     <input type="text" name="phoneNum" class="form-control" placeholder="PhoneNum" />
                 </div>
-
-                <div class="form-group col-md-3">
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search">
-                            Filter
-                        </span>
-                    </button>
-                </div>
-            </form>
+            </div>
+            <div class="form-group col-sm-4">
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search">
+                        Filter
+                    </span>
+                </button>
+            </div>
         }
-    </div>
- <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD SHOP +</a>
+    </form>
 
     <div class="row justify-content-between">
 
@@ -151,6 +152,7 @@
                 </div>
             </form>
         }
+    </div>
 </body>
 
 <script type="text/javascript">
