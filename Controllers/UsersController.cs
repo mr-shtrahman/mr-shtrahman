@@ -23,7 +23,7 @@ namespace mr_shtrahman.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var currentUser = HttpContext.Session.Get<User>("user");
+            var currentUser = HttpContext.Session.Get<User>("User");
 
             if (!currentUser.isAdmin)
             {
@@ -36,19 +36,28 @@ namespace mr_shtrahman.Controllers
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var currentUser = HttpContext.Session.Get<User>("User");
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (!currentUser.isAdmin)
             {
-                return NotFound();
+                return Redirect("/");
             }
+            else
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            return View(user);
+                var user = await _context.User
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                return View(user);
+            }
         }
 
         // GET: Users/Create
@@ -89,12 +98,14 @@ namespace mr_shtrahman.Controllers
                 await _context.SaveChangesAsync();
             }
             
-            // TODO: ViewBag
-            // ViewBag.user = currentUser;
-            
-            HttpContext.Session.Set<User>("user", currentUser);
+            ViewBag.User = currentUser;
+            TempData["User"] = currentUser;
 
-            return Json(currentUser);
+            HttpContext.Session.Set<User>("User", currentUser);
+
+            //return Json(currentUser);
+            //return Redirect("/");
+            return View(currentUser);
         }
 
         // GET: Users/Edit/5

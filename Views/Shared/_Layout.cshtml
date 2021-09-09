@@ -14,7 +14,7 @@
             gapi.load('auth2', function () {
                 gapi.auth2.init({
                     'clientId': '1034948528464-2n50hbei46brde1gnn10vrhqlj7h9d7h.apps.googleusercontent.com',
-                                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly'
+                    'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly'
                 });
             });
         }
@@ -39,10 +39,8 @@
                     user = responseUser;
                 },
                 failure: function (response) {
-                    alert(response.responseText);
                 },
                 error: function (response) {
-                    alert(response.responseText);
                 }
             });
         }
@@ -52,6 +50,7 @@
             auth2.signOut().then(function () {
             });
         }
+
     </script>
 </head>
 <body>
@@ -81,16 +80,28 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Imgs" asp-action="Index">IMAGES</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">USERS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="signOut();">SIGN OUT</a>
-                        </li>
+                        @{
+                            var user = (mr_shtrahman.Models.User)TempData["User"];
+
+                            if (user != null && user.isAdmin)
+                            {
+                                <li class="nav-item">
+                                    @Html.ActionLink("USERS", "Index", "Users")
+                                </li>
+                            }
+
+                            if (user != null && user.Name != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="signOut();">SIGN OUT</a>
+                                </li>
+                            }
+                        }
                         <li class="nav-item">
                             <a class="nav-link g-signin2" data-onsuccess="onSignIn"></a>
                         </li>
                     </ul>
+                    @Html.Partial("_LoginPartial")
                 </div>
             </nav>
         </div>
@@ -109,7 +120,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
