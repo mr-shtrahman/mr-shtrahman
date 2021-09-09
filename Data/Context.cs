@@ -24,14 +24,14 @@ namespace mr_shtrahman.Data
 
         public DbSet<mr_shtrahman.Models.Shop> Shop { get; set; }
 
+        public DbSet<mr_shtrahman.Models.User> User { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // TODO: Add to here for data seeding
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
-
-
         }
     }
 }
