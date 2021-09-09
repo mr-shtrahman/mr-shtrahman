@@ -30,19 +30,21 @@ namespace mr_shtrahman.Controllers
         public async Task<IActionResult> Search(string query)
         {
 
-            var shopsWithSearchContext = _context.Shop. Where(s => s.Name.Contains(query) ||
-                                                           query == null);
+            var shopsWithSearchContext = _context.Shop.Where(s => s.Name.Contains(query) ||
+                                                          query == null);
 
             return View("Index", await shopsWithSearchContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Filter(string city = null, string rating = null, string phoneNum = null)
-        {
-
+        public async Task<IActionResult> Filter(string city = null, string rating = null, string days = null)
+        { 
             var productWithSearchContext = _context.Shop.Where(t =>
             (city == null || ((int)t.City).ToString() == city) &&
             (rating == null || (t.Rating).ToString() == rating) &&
-            (phoneNum == null || t.PhoneNum == phoneNum) );
+            (days == null ||
+                (days == "1" && t.OpeningSundayTilThursday != "" && t.OpeningFriday != "" && t.OpeningSaturday != "") ||
+                (days == "2" && t.OpeningSundayTilThursday != "" && t.OpeningFriday != "") ||
+                (days == "3" && t.OpeningSundayTilThursday != "")));
 
             return View("Index", await productWithSearchContext.ToListAsync());
         }
