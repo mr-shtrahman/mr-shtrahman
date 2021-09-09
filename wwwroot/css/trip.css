@@ -2,7 +2,7 @@
 /*INDEX DESIGN*/
 
 .header {
-    background: url('../Assets/trips/north/rosh-pina.jpg');
+    background: url('../Assets/trips/north/bonim.jpg');
 }
 
 .buttons-container > a {
@@ -37,7 +37,7 @@
 .details {
     display: block;
     text-align: center;
-    background: url(../Assets/general/hiking2.jpg);
+    background: url(../Assets/trips/north/bonim.jpg);
     color: white;
     text-transform: uppercase;
     font-weight: 500;

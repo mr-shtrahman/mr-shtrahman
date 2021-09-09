@@ -64,7 +64,13 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            ViewData["Products"] = _context.Product.ToList(); // TODO get all product recommended for this trip
+            var products = _context.Trip.Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
+            if (products == null)
+            {
+                products = new List<Product>();
+            }
+
+            ViewData["Products"] = products;
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
 
             var trip = await _context.Trip

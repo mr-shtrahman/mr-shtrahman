@@ -39,46 +39,48 @@
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                 <div class="card-text container">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             @Html.DisplayFor(modelItem => item.City),
                             @Html.DisplayFor(modelItem => item.Street)
                             @Html.DisplayFor(modelItem => item.StreetNum)
                             <br />
                             <span>Phone: </span>@Html.DisplayFor(modelItem => item.PhoneNum)
+                            <br />
+                            <div class="opening-hours">
+                                <h6>Opening Hours:</h6>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Sun-Thu: </span>
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(modelItem => item.OpeningSundayTilThursday)
+                                        <span> - </span>
+                                        @Html.DisplayFor(modelItem => item.ClosingSundayTilThursday)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Friday: </span>
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(modelItem => item.OpeningFriday)
+                                        <span> - </span>
+                                        @Html.DisplayFor(modelItem => item.ClosingFriday)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Saturday: </span>
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(modelItem => item.OpeningSaturday)
+                                        <span> - </span>
+                                        @Html.DisplayFor(modelItem => item.ClosingSaturday)
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="row">
-                                <div class="col">
-                                    <span>Sun-Thu: </span>
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayFor(modelItem => item.OpeningSundayTilThursday)
-                                    <span> - </span>
-                                    @Html.DisplayFor(modelItem => item.ClosingSundayTilThursday)
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <span>Friday: </span>
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayFor(modelItem => item.OpeningFriday)
-                                    <span> - </span>
-                                    @Html.DisplayFor(modelItem => item.ClosingFriday)
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <span>Saturday: </span>
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayFor(modelItem => item.OpeningSaturday)
-                                    <span> - </span>
-                                    @Html.DisplayFor(modelItem => item.ClosingSaturday)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <img id="@item.Id.ToString()" src="" />
                         </div>
                     </div>

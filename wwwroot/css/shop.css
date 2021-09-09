@@ -30,3 +30,12 @@
     width: 100%;
     margin-top: 20px;
 }
+
+.opening-hours {
+    margin-top: 1rem;
+}
+
+.opening-hours > h6 {
+    text-decoration: underline;
+    font-weight: 500;
+}
