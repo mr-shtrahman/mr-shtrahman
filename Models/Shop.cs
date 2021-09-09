@@ -27,6 +27,8 @@ namespace mr_shtrahman.Models
         [Required]
         [Display(Name = "Street Number")]
         public int StreetNum { get; set; }
+        public double Lon { get; set; } 
+        public double Lat { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
