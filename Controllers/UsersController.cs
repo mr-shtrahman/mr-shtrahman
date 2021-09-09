@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,18 @@ namespace mr_shtrahman.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
+            // TODO: Check if the user is Admin
+            //var userEmail = HttpContext.Session.GetString("userEmail");
+            //var userEmail = _contextAccessor.HttpContext.Session.GetString("userEmail");
+            //var user = ((User)System.Web.HttpContext.Current.Session["user"]);
+
+            var currentUser = HttpContext.Session.Get<User>("user");
+
+            if (!currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
+
             return View(await _context.User.ToListAsync());
         }
 
@@ -81,7 +94,11 @@ namespace mr_shtrahman.Controllers
                 await _context.SaveChangesAsync();
             }
             
-            ViewBag.user = currentUser;
+            // TODO: ViewBag
+            // ViewBag.user = currentUser;
+            
+            HttpContext.Session.Set<User>("user", currentUser);
+
             return Json(currentUser);
         }
 

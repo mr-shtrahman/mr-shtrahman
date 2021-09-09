@@ -39,8 +39,12 @@ namespace mr_shtrahman
             });
 
             services.AddControllers();
-            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddMvc();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
             services.AddSession();
+            services.AddHttpContextAccessor();
             services.AddDbContext<Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Context")));
         }
@@ -48,6 +52,8 @@ namespace mr_shtrahman
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -64,8 +70,6 @@ namespace mr_shtrahman
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
-
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
