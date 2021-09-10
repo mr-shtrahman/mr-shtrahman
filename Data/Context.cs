@@ -33,7 +33,7 @@ namespace mr_shtrahman.Data
             addImg(modelBuilder);
             addProducts(modelBuilder);
             //addVisitorsAttendance(modelBuilder);
-            //addTrips(modelBuilder);
+            addTrips(modelBuilder);
             //addShops(modelBuilder);
         }
 
@@ -886,7 +886,7 @@ namespace mr_shtrahman.Data
                 {
                     Id = 1,
                     Src = "~/Assets/categories/bags.jpg",
-                    Description = "bags"
+                    Description = "bags",
                 },
                 new Img
                 {
@@ -922,7 +922,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 7,
                     Src = "~/Assets/trips/south/avdaat.jpg",
-                    Description = "avdaat"
+                    Description = "avdaat",
+                    TripId = 1
                 }, 
                 new Img
                 {
@@ -934,7 +935,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 9,
                     Src = "~/Assets/trips/south/ein-gedi.jpg",
-                    Description = "ein-gedi"
+                    Description = "ein-gedi",
+                    TripId = 3
                 },
                 new Img
                 {
@@ -946,13 +948,15 @@ namespace mr_shtrahman.Data
                 {
                     Id = 11,
                     Src = "~/Assets/trips/south/makhtesh-ramon.jpg",
-                    Description = "makhtesh-ramon"
+                    Description = "makhtesh-ramon",
+                    TripId = 10
                 }, 
                 new Img
                 {
                     Id = 12,
                     Src = "~/Assets/trips/south/mesada.jpg",
-                    Description = "mesada"
+                    Description = "mesada",
+                    TripId = 2
                 },
                 new Img
                 {
@@ -964,7 +968,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 14,
                     Src = "~/Assets/trips/south/prat.jpg",
-                    Description = "prat"
+                    Description = "prat",
+                    TripId = 7
                 }, 
                 new Img
                 {
@@ -1006,7 +1011,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 21,
                     Src = "~/Assets/trips/center/alexander.jpg",
-                    Description = "gadgets"
+                    Description = "alexander",
+                    TripId = 9
                 }, 
                 new Img
                 {
@@ -1036,7 +1042,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 25,
                     Src = "~/Assets/trips/center/florentin.jpg",
-                    Description = "florentin"
+                    Description = "florentin",
+                    TripId = 6
                 },
                 new Img
                 {
@@ -1054,7 +1061,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 28,
                     Src = "~/Assets/trips/center/jerusalem.jpg",
-                    Description = "jerusalem"
+                    Description = "jerusalem",
+                    TripId = 4
                 },
                 new Img
                 {
@@ -1084,7 +1092,8 @@ namespace mr_shtrahman.Data
                 {
                     Id = 33,
                     Src = "~/Assets/trips/center/poleg.jpg",
-                    Description = "poleg"
+                    Description = "poleg",
+                    TripId = 5
                 },
                 new Img
                 {
@@ -1174,7 +1183,8 @@ namespace mr_shtrahman.Data
                  {
                      Id = 47,
                      Src = "~/Assets/trips/north/kziv.jpg",
-                     Description = "kziv"
+                     Description = "kziv",
+                     TripId = 8
                  },
                  new Img
                  {
@@ -1276,20 +1286,23 @@ namespace mr_shtrahman.Data
                  {
                      Id =64 ,
                      Src = "~/Assets/products/bags/backpack1.jpg",
-                     Description = "backpack1"
+                     Description = "backpack1",
+                     ProductId = 12
                  },
 
                  new Img
                  {
                      Id =65 ,
                      Src = "~/Assets/products/bags/backpack2.jpg",
-                     Description = "backpack2"
+                     Description = "backpack2",
+                     ProductId = 13,
                  },
                  new Img
                  {
                      Id =66 ,
                      Src = "~/Assets/products/bags/backpack3.jpg",
-                     Description = "backpack3"
+                     Description = "backpack3",
+                     ProductId = 14,
                  },
                  new Img
                  {
@@ -1325,19 +1338,21 @@ namespace mr_shtrahman.Data
                  {
                      Id = 72,
                      Src = "~/Assets/products/bags/bag3.jpg",
-                     Description = "bag3"
+                     Description = "bag3",
+                     ProductId=15
                  },
                  new Img
                  {
                      Id = 73,
                      Src = "~/Assets/products/bags/bag4.jpg",
-                     Description = "bag4"
+                     Description = "bag4",
                  },
                  new Img
                  {
                      Id = 74,
                      Src = "~/Assets/products/bags/bag5.jpg",
-                     Description = "bag5"
+                     Description = "bag5",
+                     ProductId=16
                  },
                  new Img
                  {
@@ -1373,7 +1388,8 @@ namespace mr_shtrahman.Data
                  {
                      Id = 80,
                      Src = "~/Assets/products/camping/chair1.jpg",
-                     Description = "chair1"
+                     Description = "chair1",
+                     ProductId=17
                  },
                  new Img
                  {
@@ -1397,7 +1413,8 @@ namespace mr_shtrahman.Data
                  {
                      Id =84 ,
                      Src = "~/Assets/products/camping/cooking2.jpg",
-                     Description = "cooking2"
+                     Description = "cooking2",
+                     ProductId=18
                  },
                  new Img
                  {
@@ -1410,25 +1427,29 @@ namespace mr_shtrahman.Data
                  {
                      Id = 86,
                      Src = "~/Assets/products/camping/sleepingbag1.jpg",
-                     Description = "sleepingbag1"
+                     Description = "sleepingbag1",
+                     ProductId=22
                  },
                  new Img
                  {
                      Id = 87,
                      Src = "~/Assets/products/camping/sleepingbag2.jpg",
-                     Description = "sleepingbag2"
+                     Description = "sleepingbag2",
+                     ProductId = 23
                  },
                  new Img
                  {
                      Id = 88,
                      Src = "~/Assets/products/camping/sleepingbag3.jpg",
-                     Description = "sleepingbag3"
+                     Description = "sleepingbag3",
+                     ProductId = 24
                  },
                  new Img
                  {
                      Id = 89,
                      Src = "~/Assets/products/clothing/coat1.jpg",
-                     Description = "coat1"
+                     Description = "coat1",
+                     ProductId=19
                  },
                  new Img
                  {
@@ -1452,85 +1473,99 @@ namespace mr_shtrahman.Data
                  {
                      Id = 93,
                      Src = "~/Assets/products/clothing/coat5.jpg",
-                     Description = "coat5"
+                     Description = "coat5",
+                     ProductId=20
                  },
                  new Img
                  {
                      Id = 94,
                      Src = "~/Assets/products/clothing/pants1.jpg",
-                     Description = "pants1"
+                     Description = "pants1",
+                     ProductId=21
                  },
                  new Img
                  {
                      Id = 95,
                      Src = "~/Assets/products/shoes/blandston1.jpg",
-                     Description = "blandston1"
+                     Description = "blandston1",
+                     ProductId=1
                  },
                  new Img
                  {
                      Id =96 ,
                      Src = "~/Assets/products/shoes/shoes1.jpg",
-                     Description = "shoes1"
+                     Description = "shoes1",
+                     ProductId = 2
                  },
                  new Img
                  {
                      Id =97 ,
                      Src = "~/Assets/products/shoes/shoresh1.jpg",
-                     Description = "shoresh1"
+                     Description = "shoresh1",
+                     ProductId = 3
                  },
                  new Img
                  {
                      Id = 98,
                      Src = "~/Assets/products/shoes/shoresh2.jpg",
-                     Description = "shoresh2"
+                     Description = "shoresh2",
+                     ProductId = 4
                  },
                  new Img
                  {
                      Id = 99,
                      Src = "~/Assets/products/gadgets/ac.jpg",
-                     Description = "ac"
+                     Description = "ac",
+                     ProductId = 5
                  },
                  new Img
                  {
                      Id = 100,
                      Src = "~/Assets/products/gadgets/camera-bag.jpg",
-                     Description = "camera-bag"
+                     Description = "camera-bag",
+                     ProductId = 6
                  },
                  new Img
                  {
                      Id = 101,
                      Src = "~/Assets/products/gadgets/compass.jpg",
-                     Description = "compass"
+                     Description = "compass",
+                     ProductId = 7
                  },
                  new Img
                  {
                      Id = 102,
                      Src = "~/Assets/products/soldiers/belt.jpg",
-                     Description = "belt"
+                     Description = "belt",
+                     ProductId=25
                  },
                  new Img
                  {
                      Id = 103,
                      Src = "~/Assets/products/soldiers/beret.jpg",
-                     Description = "beret"
+                     Description = "beret",
+                     ProductId = 8
                  },
                  new Img
                  {
                      Id = 104,
                      Src = "~/Assets/products/soldiers/gshock.jpg",
-                     Description = "gshock"
+                     Description = "gshock",
+                     ProductId = 9
                  },
                  new Img
                  {
                      Id = 105,
                      Src = "~/Assets/products/soldiers/leatherman.jpg",
-                     Description = "leatherman"
+                     Description = "leatherman",
+                     ProductId = 10
                  },
                  new Img
                  {
                      Id = 106,
                      Src = "~/Assets/products/soldiers/white-shirt.jpg",
-                     Description = "white-shirt"
+                     Description = "white-shirt",
+                     ProductId = 11
                  }
                 );
         }
