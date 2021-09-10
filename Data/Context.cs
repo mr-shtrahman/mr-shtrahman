@@ -2042,31 +2042,31 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    Id = "454212542124541",
+                    Id = "1",
                     Email = "mikimeerson44@gmail.com",
-                    Name = "Miki",
+                    Name = "ADMIN",
                     isAdmin = true
                 },
                 new User
                 {
-                    Id = "534545123154",
+                    Id = "2",
                     Email = "orelz16@gmail.com",
-                    Name = "Orel",
+                    Name = "ADMIN",
                     isAdmin = true
                 },
                 new User
                 {
-                    Id = "15645165841",
+                    Id = "3",
                     Email = "tshuvanm@gmail.com",
-                    Name = "Noam",
+                    Name = "ADMIN",
                     isAdmin = true
                 },
                 new User
                 {
-                    Id = "354315410541",
+                    Id = "4",
                     Email = "jackzaf96@hotmail.com",
-                    Name = "Jack",
-                    isAdmin = false
+                    Name = "ADMIN",
+                    isAdmin = true
                 }
             );
         }
