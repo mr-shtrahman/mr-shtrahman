@@ -37,21 +37,25 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Map
         public async Task<IActionResult> Map()
         {
-            // ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
             var markers = await _context.Trip.ToListAsync();
 
-            var giftshops = from trip in _context.Trip
-                            join shop in _context.Shop
-                            on new { trip.Lat, trip.Lon } equals new { shop.Lat, shop.Lon } into giftshop
-                            from shop in giftshop.DefaultIfEmpty()
-                            select new
-                            {
-                                tripName = trip.Name,
-                                Lat = trip.Lat,
-                                Lon = trip.Lon,
-                                isGiftshop = (shop != null)
-                            };
 
+            var giftshops = _context.Trip
+                .GroupJoin(
+                    _context.Shop,
+                    (trip) => new { trip.Lat, trip.Lon },
+                    (shop) => new { shop.Lat, shop.Lon },
+                    (trip, shop) => new { Trip = trip, Shop = shop }
+               ).SelectMany(
+                     (giftshop) => giftshop.Shop.DefaultIfEmpty(),
+                     (x,y) => new {Trip = x.Trip, Shop = y}
+                ).Select(giftshop => new {
+                    tripName = giftshop.Trip.Name,
+                    Lat = giftshop.Trip.Lat,
+                    Lon = giftshop.Trip.Lon,
+                    isGiftshop = (giftshop.Shop != null)
+                }
+            );
             return View(giftshops.ToList());
         }
 
