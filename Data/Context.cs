@@ -36,10 +36,10 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
 
             addImg(modelBuilder);
-            addProduct(modelBuilder);
+            addProducts(modelBuilder);
             addVisitorsAttendance(modelBuilder);
             addTrips(modelBuilder);
-
+            addShops(modelBuilder);
         }
 
         private void addTrips(ModelBuilder modelBuilder)
@@ -1461,7 +1461,7 @@ namespace mr_shtrahman.Data
                 );
         }
 
-        protected void addProduct(ModelBuilder modelBuilder)
+        protected void addProducts(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(
                 new Product
@@ -1839,6 +1839,318 @@ namespace mr_shtrahman.Data
                 }
         );
 
+        }
+
+        protected void addShops(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Shop>().HasData(
+                new Shop
+                {
+                    Id = 1,
+                    Name = "Zahav Mall",
+                    City = City.RishonLeTsyion,
+                    Street = "David Saharov st",
+                    StreetNum = 21,
+                    Lat = 31.99645,
+                    Lon = 34.78053,
+                    PhoneNum = "0536245372",
+                    Rating = 5,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "21:00",
+                    OpeningFriday = "09:00",
+                    ClosingFriday = "15:00",
+                    OpeningSaturday= "10:30",
+                    ClosingSaturday= "22:00",
+                    ImgId = 55,
+                    Products = new List<Product>
+                    {
+                        Product.Where(p => p.Id == 1).First(), 
+                        Product.Where(p => p.Id == 2).First(),
+                        Product.Where(p => p.Id == 3).First(),
+                        Product.Where(p => p.Id == 4).First(),
+                        Product.Where(p => p.Id == 10).First(),
+                        Product.Where(p => p.Id == 11).First(),
+                        Product.Where(p => p.Id == 12).First(),
+                        Product.Where(p => p.Id == 14).First(),
+                        Product.Where(p => p.Id == 15).First(),
+                        Product.Where(p => p.Id == 20).First(),
+                        Product.Where(p => p.Id == 22).First(),
+                        Product.Where(p => p.Id == 23).First()
+                    }
+                },
+                new Shop
+                {
+                    Id = 2,
+                    Name = "BIG Center",
+                    City = City.Eilat,
+                    Street = "Ha-Mutsar st",
+                    StreetNum = 13,
+                    Lat = 29.57111,
+                    Lon = 34.95586,
+                    PhoneNum = "0586339938",
+                    Rating = 2,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "21:00",
+                    OpeningFriday = "09:00",
+                    ClosingFriday = "15:00",
+                    OpeningSaturday = "20:30",
+                    ClosingSaturday = "22:00",
+                    ImgId = 56,
+                    Products = new List<Product>
+                    {
+                    Product.Where(p => p.Id == 1).First(),
+                    Product.Where(p => p.Id == 2).First(),
+                    Product.Where(p => p.Id == 3).First(),
+                    Product.Where(p => p.Id == 4).First(),
+                    Product.Where(p => p.Id == 11).First(),
+                    Product.Where(p => p.Id == 12).First(),
+                    Product.Where(p => p.Id == 13).First(),
+                    Product.Where(p => p.Id == 14).First(),
+                    Product.Where(p => p.Id == 21).First(),
+                    Product.Where(p => p.Id == 22).First(),
+                    Product.Where(p => p.Id == 23).First(),
+                    Product.Where(p => p.Id == 24).First()
+                  },
+                },
+                new Shop
+                {
+                    Id = 3,
+                    Name = "Ariel Mega-Or Center",
+                    City = City.Ariel,
+                    Street = "Ha-Banai street",
+                    StreetNum = 6,
+                    Lat = 32.10174,
+                    Lon = 35.16968,
+                    PhoneNum = "0539108486",
+                    Rating = 4,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "21:00",
+                    OpeningFriday = "09:00",
+                    ClosingFriday = "15:00",
+                    OpeningSaturday = "11:00",
+                    ClosingSaturday = "22:00",
+                    ImgId = 57,
+                    Products = new List<Product>
+                    {
+                    Product.Where(p => p.Id == 1).First(),
+                    Product.Where(p => p.Id == 5).First(),
+                    Product.Where(p => p.Id == 6).First(),
+                    Product.Where(p => p.Id == 7).First(),
+                    Product.Where(p => p.Id == 8).First(),
+                    Product.Where(p => p.Id == 12).First(),
+                    Product.Where(p => p.Id == 13).First(),
+                    Product.Where(p => p.Id == 14).First(),
+                    Product.Where(p => p.Id == 16).First(),
+                    Product.Where(p => p.Id == 20).First(),
+                    Product.Where(p => p.Id == 21).First(),
+                    Product.Where(p => p.Id == 24).First()
+                    },
+                },
+                new Shop
+                   {
+                       Id = 4,
+                       Name = "Ashdod BIG",
+                       City = City.Ashdod,
+                       Street = "Derech HaRakevet",
+                       StreetNum = 1,
+                       Lat = 31.77766,
+                       Lon = 34.66376,
+                       PhoneNum = "0586106734",
+                       Rating = 5,
+                       OpeningSundayTilThursday = "10:00",
+                       ClosingSundayTilThursday = "20:30",
+                       OpeningFriday = "09:00",
+                       ClosingFriday = "14:00",
+                       ImgId = 58,
+                       Products = new List<Product>
+                     {
+                        Product.Where(p => p.Id == 3).First(),
+                        Product.Where(p => p.Id == 4).First(),
+                        Product.Where(p => p.Id == 5).First(),
+                        Product.Where(p => p.Id == 6).First(),
+                        Product.Where(p => p.Id == 9).First(),
+                        Product.Where(p => p.Id == 10).First(),
+                        Product.Where(p => p.Id == 13).First(),
+                        Product.Where(p => p.Id == 14).First(),
+                        Product.Where(p => p.Id == 17).First(),
+                        Product.Where(p => p.Id == 18).First(),
+                        Product.Where(p => p.Id == 19).First(),
+                        Product.Where(p => p.Id == 20).First(),
+                        Product.Where(p => p.Id == 21).First(),
+                        Product.Where(p => p.Id == 24).First()
+                     },
+                   },
+                new Shop
+                    {
+                        Id = 5,
+                        Name = "Ashdod TOP Center",
+                        City = City.Ashdod,
+                        Street = "HaOrgim St",
+                        StreetNum = 7,
+                        Lat = 31.81062,
+                        Lon = 34.66186,
+                        PhoneNum = "0586108143",
+                        Rating = 3,
+                        OpeningSundayTilThursday = "10:00",
+                        ClosingSundayTilThursday = "21:00",
+                        OpeningFriday = "09:00",
+                        ClosingFriday = "14:00",
+                        OpeningSaturday = "20:30",
+                        ClosingSaturday = "22:00",
+                        ImgId = 59,
+                        Products = new List<Product>
+                         {
+                            Product.Where(p => p.Id == 1).First(),
+                            Product.Where(p => p.Id == 2).First(),
+                            Product.Where(p => p.Id == 3).First(),
+                            Product.Where(p => p.Id == 5).First(),
+                            Product.Where(p => p.Id == 6).First(),
+                            Product.Where(p => p.Id == 10).First(),
+                            Product.Where(p => p.Id == 11).First(),
+                            Product.Where(p => p.Id == 15).First(),
+                            Product.Where(p => p.Id == 16).First(),
+                            Product.Where(p => p.Id == 22).First(),
+                            Product.Where(p => p.Id == 23).First(),
+                        }
+                    },
+                new Shop
+                {
+                    Id = 6,
+                    Name = "Be'er Sheva BIG",
+                    City = City.BeerSheva,
+                    Street = "Derekh Hebron",
+                    StreetNum = 21,
+                    Lat = 31.24366,
+                    Lon = 34.81085,
+                    PhoneNum = "0586235348",
+                    Rating = 3,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "21:30",
+                    OpeningFriday = "09:00",
+                    ClosingFriday = "15:00",
+                    ImgId = 60,
+                    Products = new List<Product>
+                    {
+                    Product.Where(p => p.Id == 10).First(),
+                    Product.Where(p => p.Id == 11).First(),
+                    Product.Where(p => p.Id == 12).First(),
+                    Product.Where(p => p.Id == 13).First(),
+                    Product.Where(p => p.Id == 14).First(),
+                    Product.Where(p => p.Id == 15).First(),
+                    Product.Where(p => p.Id == 16).First(),
+                    Product.Where(p => p.Id == 17).First(),
+                    Product.Where(p => p.Id == 18).First(),
+                    },
+                },
+                new Shop
+                {
+                    Id = 7,
+                    Name = "Haifa Hutsot HaMifrats",
+                    City = City.Haifa,
+                    Street = "Hahoreshet",
+                    StreetNum = 10,
+                    Lat = 32.81003,
+                    Lon = 35.05726,
+                    PhoneNum = "0546883166",
+                    Rating = 5,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "21:30",
+                    OpeningFriday = "09:00",
+                    ClosingFriday = "15:00",
+                    OpeningSaturday = "10:30",
+                    ClosingSaturday = "22:00",
+                    ImgId = 61,
+                    Products = new List<Product>
+                    {
+                    Product.Where(p => p.Id == 2).First(),
+                    Product.Where(p => p.Id == 3).First(),
+                    Product.Where(p => p.Id == 13).First(),
+                    Product.Where(p => p.Id == 14).First(),
+                    Product.Where(p => p.Id == 15).First(),
+                    Product.Where(p => p.Id == 16).First(),
+                    Product.Where(p => p.Id == 17).First(),
+                    Product.Where(p => p.Id == 18).First(),
+                    Product.Where(p => p.Id == 19).First(),
+                    Product.Where(p => p.Id == 20).First(),
+                    Product.Where(p => p.Id == 21).First(),
+                    Product.Where(p => p.Id == 22).First(),
+                    Product.Where(p => p.Id == 23).First(),
+                    Product.Where(p => p.Id == 24).First(),
+                    },
+                },
+                new Shop
+                {
+                    Id = 8,
+                    Name = "Ofer Grand Mall",
+                    City = City.Haifa,
+                    Street = "Derech Simha Golan",
+                    StreetNum = 54,
+                    Lat = 32.79053,
+                    Lon = 35.00814,
+                    PhoneNum = "0548688480",
+                    Rating = 2,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "21:00",
+                    OpeningFriday = "09:00",
+                    ClosingFriday = "15:00",
+                    OpeningSaturday = "10:30",
+                    ClosingSaturday = "22:00",
+                    ImgId = 62,
+                    Products = new List<Product>
+                    {
+                    Product.Where(p => p.Id == 15).First(),
+                    Product.Where(p => p.Id == 16).First(),
+                    Product.Where(p => p.Id == 17).First(),
+                    Product.Where(p => p.Id == 18).First(),
+                    Product.Where(p => p.Id == 21).First(),
+                    Product.Where(p => p.Id == 22).First(),
+                    Product.Where(p => p.Id == 23).First(),
+                    Product.Where(p => p.Id == 24).First(),
+                    },
+                },
+                new Shop
+                {
+                    Id = 9,
+                    Name = "Malcha Mall",
+                    City = City.Jerusalem,
+                    Street = "Derech Agudat Sport Beitar",
+                    StreetNum = 1,
+                    Lat = 31.75206,
+                    Lon = 35.18699,
+                    PhoneNum = " 0529402794",
+                    Rating = 4,
+                    OpeningSundayTilThursday = "09:30",
+                    ClosingSundayTilThursday = "22:00",
+                    ImgId = 63,
+                    Products = new List<Product>
+                        {
+                        Product.Where(p => p.Id == 1).First(),
+                        Product.Where(p => p.Id == 2).First(),
+                        Product.Where(p => p.Id == 3).First(),
+                        Product.Where(p => p.Id == 4).First(),
+                        Product.Where(p => p.Id == 5).First(),
+                        Product.Where(p => p.Id == 6).First(),
+                        Product.Where(p => p.Id == 7).First(),
+                        Product.Where(p => p.Id == 8).First(),
+                        Product.Where(p => p.Id == 9).First(),
+                        Product.Where(p => p.Id == 10).First(),
+                        Product.Where(p => p.Id == 11).First(),
+                        Product.Where(p => p.Id == 12).First(),
+                        Product.Where(p => p.Id == 13).First(),
+                        Product.Where(p => p.Id == 14).First(),
+                        Product.Where(p => p.Id == 15).First(),
+                        Product.Where(p => p.Id == 16).First(),
+                        Product.Where(p => p.Id == 17).First(),
+                        Product.Where(p => p.Id == 18).First(),
+                        Product.Where(p => p.Id == 19).First(),
+                        Product.Where(p => p.Id == 20).First(),
+                        Product.Where(p => p.Id == 21).First(),
+                        Product.Where(p => p.Id == 22).First(),
+                        Product.Where(p => p.Id == 23).First(),
+                        Product.Where(p => p.Id == 24).First(),
+                    }
+                }
+            );
         }
     }
 }
