@@ -32,9 +32,10 @@ namespace mr_shtrahman.Data
 
             addImg(modelBuilder);
             addProducts(modelBuilder);
-            //addVisitorsAttendance(modelBuilder);
             addTrips(modelBuilder);
-            //addShops(modelBuilder);
+            addVisitorsAttendance(modelBuilder);
+            addShops(modelBuilder);
+            addUsers(modelBuilder);
         }
 
         private void addTrips(ModelBuilder modelBuilder)
@@ -52,9 +53,7 @@ namespace mr_shtrahman.Data
                     Rating = 1,
                     TripType = TripType.Field,
                     Lat= 30.794573169710944,
-                    Lon = 34.77339940229901,
-                    //RelevantProducts = new List<Product>(),
-                    //VisitorsAttendance= new List<VisitorsAttendance>()
+                    Lon = 34.77339940229901
                 },
                  new Trip
                  {
@@ -69,9 +68,7 @@ namespace mr_shtrahman.Data
                      Rating = 4,
                      TripType = TripType.Field,
                      Lat = 31.31073847403702,
-                     Lon = 35.363164732954814,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 35.363164732954814
                  }, 
                  new Trip
                  {
@@ -86,9 +83,7 @@ namespace mr_shtrahman.Data
                      Rating = 5,
                      TripType = TripType.WaterEnteringOption,
                      Lat = 31.45828598077046,
-                     Lon = 35.398741797896776,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 35.398741797896776
                  },
                  new Trip
                  {
@@ -103,9 +98,7 @@ namespace mr_shtrahman.Data
                      Rating = 5,
                      TripType = TripType.Urban,
                      Lat = 31.766019862597236,
-                     Lon = 35.201420085577446,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 35.201420085577446
                  }, 
                  new Trip
                  {
@@ -120,12 +113,7 @@ namespace mr_shtrahman.Data
                      Rating = 3,
                      TripType = TripType.WaterEnteringOption,
                      Lat = 32.27306129106049,
-                     Lon = 34.832977154632864,
-                    // RelevantProducts = new List<Product>
-                    //{
-                    //    Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
-                    //},
-                    // VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 34.832977154632864
                  },
                  new Trip
                  {
@@ -140,12 +128,7 @@ namespace mr_shtrahman.Data
                      Rating = 5,
                      TripType = TripType.Urban,
                      Lat = 32.05870,
-                     Lon = 34.76725,
-                    // RelevantProducts = new List<Product>
-                    //{
-                    //    Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
-                    //},
-                    // VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 34.76725
                  },
                  new Trip
                  {
@@ -160,9 +143,7 @@ namespace mr_shtrahman.Data
                      Rating = 2,
                      TripType = TripType.Tracks,
                      Lat = 31.87607,
-                     Lon = 35.31243,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 35.31243
                  },
                  new Trip
                  {
@@ -177,9 +158,7 @@ namespace mr_shtrahman.Data
                      Rating = 2,
                      TripType = TripType.WaterEnteringOption,
                      Lat = 33.04594,
-                     Lon = 35.17804,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 35.17804
                  },
                  new Trip
                  {
@@ -194,9 +173,7 @@ namespace mr_shtrahman.Data
                      Rating = 4,
                      TripType = TripType.Family,
                      Lat = 32.37037,
-                     Lon = 34.90452,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 34.90452
                  },
                  new Trip
                  {
@@ -211,9 +188,7 @@ namespace mr_shtrahman.Data
                      Rating = 5,
                      TripType = TripType.Photography,
                      Lat = 30.61052,
-                     Lon = 34.79715,
-                     //RelevantProducts = new List<Product>(),
-                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lon = 34.79715
                  }
             );
         }
@@ -223,10 +198,10 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<VisitorsAttendance>().HasData(
                 new VisitorsAttendance
                 {
-                     Id = 1,
-                     TripId = 1,
-                     Attendance = 20,
-                     Date= new DateTime(2021,9,10)
+                    Id = 1,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
                     Id = 2,
@@ -237,55 +212,55 @@ namespace mr_shtrahman.Data
                 {
                     Id = 3,
                     TripId = 1,
-                    Attendance =  23,
+                    Attendance = 23,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 4,
                     TripId = 1,
-                    Attendance =  26,
+                    Attendance = 26,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 5,
                     TripId = 1,
-                    Attendance =  23,
+                    Attendance = 23,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 6,
                     TripId = 1,
-                    Attendance =  25,
+                    Attendance = 25,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 7,
                     TripId = 1,
-                    Attendance =  35,
+                    Attendance = 35,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 8,
                     TripId = 1,
-                    Attendance =  27,
+                    Attendance = 27,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 9,
                     TripId = 1,
-                    Attendance =  15,
+                    Attendance = 15,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
                     Id = 10,
                     TripId = 1,
-                    Attendance =  18,
+                    Attendance = 18,
                     Date = new DateTime(2021, 9, 19)
-                },new VisitorsAttendance
+                }, new VisitorsAttendance
                 {
                     Id = 11,
                     TripId = 2,
-                    Attendance =  18,
+                    Attendance = 18,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -297,169 +272,103 @@ namespace mr_shtrahman.Data
                 {
                     Id = 13,
                     TripId = 2,
-                    Attendance =  17,
+                    Attendance = 17,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 14,
                     TripId = 2,
-                    Attendance =  31,
+                    Attendance = 31,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 15,
-                    TripId = 1,
-                    Attendance =  32,
+                    TripId = 2,
+                    Attendance = 32,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 16,
                     TripId = 2,
-                    Attendance =  22,
+                    Attendance = 22,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 17,
                     TripId = 2,
-                    Attendance =  23,
+                    Attendance = 23,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 18,
                     TripId = 2,
-                    Attendance =  25,
+                    Attendance = 25,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 19,
                     TripId = 2,
-                    Attendance =  22,
+                    Attendance = 22,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
                     Id = 20,
                     TripId = 2,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 19)
-                }, new VisitorsAttendance
-                {
-                    Id = 21,
-                    TripId = 11,
-                    Attendance = 20,
-                    Date = new DateTime(2021, 9, 10)
-                }, new VisitorsAttendance
-                {
-                    Id = 22,
-                    TripId = 11,
-                    Attendance = 18,
-                    Date = new DateTime(2021, 9, 11)
-                }, new VisitorsAttendance
-                {
-                    Id = 23,
-                    TripId = 11,
-                    Attendance = 20,
-                    Date = new DateTime(2021, 9, 12)
-                }, new VisitorsAttendance
-                {
-                    Id = 24,
-                    TripId = 11,
-                    Attendance = 25,
-                    Date = new DateTime(2021, 9, 13)
-                }, new VisitorsAttendance
-                {
-                    Id = 25,
-                    TripId = 11,
-                    Attendance = 20,
-                    Date = new DateTime(2021, 9, 14)
-                }, new VisitorsAttendance
-                {
-                    Id = 26,
-                    TripId = 11,
-                    Attendance = 27,
-                    Date = new DateTime(2021, 9, 15)
-                }, new VisitorsAttendance
-                {
-                    Id = 27,
-                    TripId = 11,
-                    Attendance = 20,
-                    Date = new DateTime(2021, 9, 16)
-                }, new VisitorsAttendance
-                {
-                    Id = 28,
-                    TripId = 11,
-                    Attendance = 37,
-                    Date = new DateTime(2021, 9, 17)
-                }, new VisitorsAttendance
-                {
-                    Id = 29,
-                    TripId = 11,
-                    Attendance = 36,
-                    Date = new DateTime(2021, 9, 18)
-                }, new VisitorsAttendance
-                {
-                    Id = 31,
-                    TripId = 3,
-                    Attendance =  21,
-                    Date = new DateTime(2021, 9, 10)
-                }, new VisitorsAttendance
-                {
-                    Id = 32,
-                    TripId = 3,
-                    Attendance = 18,
-                    Date = new DateTime(2021, 9, 11)
                 }, new VisitorsAttendance
                 {
                     Id = 33,
                     TripId = 3,
-                    Attendance =  17,
+                    Attendance = 17,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 34,
                     TripId = 3,
-                    Attendance =  19,
+                    Attendance = 19,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 35,
                     TripId = 3,
-                    Attendance =  18,
+                    Attendance = 18,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 36,
                     TripId = 3,
-                    Attendance =  17,
+                    Attendance = 17,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 37,
                     TripId = 3,
-                    Attendance =  18,
+                    Attendance = 18,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 38,
                     TripId = 3,
-                    Attendance =  20,
+                    Attendance = 20,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 39,
                     TripId = 3,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 30,
+                    Id = 40,
                     TripId = 3,
-                    Attendance =  29,
+                    Attendance = 29,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
                     Id = 41,
                     TripId = 4,
-                    Attendance =  23,
+                    Attendance = 23,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -471,55 +380,55 @@ namespace mr_shtrahman.Data
                 {
                     Id = 43,
                     TripId = 4,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 44,
                     TripId = 4,
-                    Attendance =  2,
+                    Attendance = 2,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 45,
                     TripId = 4,
-                    Attendance =  28,
+                    Attendance = 28,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 46,
                     TripId = 4,
-                    Attendance =  2,
+                    Attendance = 2,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 47,
                     TripId = 4,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 48,
                     TripId = 4,
-                    Attendance =  28,
+                    Attendance = 28,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 49,
                     TripId = 4,
-                    Attendance =  34,
+                    Attendance = 34,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 40,
+                    Id = 50,
                     TripId = 4,
-                    Attendance =  33,
+                    Attendance = 33,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
                     Id = 51,
                     TripId = 5,
-                    Attendance =  40,
+                    Attendance = 40,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -531,55 +440,55 @@ namespace mr_shtrahman.Data
                 {
                     Id = 53,
                     TripId = 5,
-                    Attendance =  41,
+                    Attendance = 41,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 54,
                     TripId = 5,
-                    Attendance =  45,
+                    Attendance = 45,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 55,
                     TripId = 5,
-                    Attendance =  46,
+                    Attendance = 46,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 56,
                     TripId = 5,
-                    Attendance =  47,
+                    Attendance = 47,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 57,
                     TripId = 5,
-                    Attendance =  47,
+                    Attendance = 47,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 58,
                     TripId = 5,
-                    Attendance =  43,
+                    Attendance = 43,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 59,
                     TripId = 5,
-                    Attendance =  40,
+                    Attendance = 40,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 50,
+                    Id = 60,
                     TripId = 5,
-                    Attendance =  41,
+                    Attendance = 41,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
                     Id = 61,
                     TripId = 6,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -591,55 +500,55 @@ namespace mr_shtrahman.Data
                 {
                     Id = 63,
                     TripId = 6,
-                    Attendance =  19,
+                    Attendance = 19,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 64,
                     TripId = 6,
-                    Attendance =  18,
+                    Attendance = 18,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 65,
                     TripId = 6,
-                    Attendance =  17,
+                    Attendance = 17,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 66,
                     TripId = 6,
-                    Attendance =  19,
+                    Attendance = 19,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 67,
                     TripId = 6,
-                    Attendance =  19,
+                    Attendance = 19,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 68,
                     TripId = 6,
-                    Attendance =  18,
+                    Attendance = 18,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 69,
                     TripId = 6,
-                    Attendance =  29,
+                    Attendance = 29,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 60,
+                    Id = 70,
                     TripId = 6,
-                    Attendance =  24,
+                    Attendance = 24,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
                     Id = 71,
                     TripId = 7,
-                    Attendance =  29,
+                    Attendance = 29,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -651,49 +560,49 @@ namespace mr_shtrahman.Data
                 {
                     Id = 73,
                     TripId = 7,
-                    Attendance =  28,
+                    Attendance = 28,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 74,
                     TripId = 7,
-                    Attendance =  31,
+                    Attendance = 31,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 75,
                     TripId = 7,
-                    Attendance =  24,
+                    Attendance = 24,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 76,
                     TripId = 7,
-                    Attendance =  24,
+                    Attendance = 24,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 77,
                     TripId = 7,
-                    Attendance =  42,
+                    Attendance = 42,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 78,
                     TripId = 7,
-                    Attendance =  24,
+                    Attendance = 24,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 79,
                     TripId = 7,
-                    Attendance =  1,
+                    Attendance = 1,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 70,
+                    Id = 80,
                     TripId = 7,
-                    Attendance =  11,
+                    Attendance = 11,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
@@ -729,37 +638,37 @@ namespace mr_shtrahman.Data
                 {
                     Id = 86,
                     TripId = 8,
-                    Attendance =  28,
+                    Attendance = 28,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 87,
                     TripId = 8,
-                    Attendance =  28,
+                    Attendance = 28,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 88,
                     TripId = 8,
-                    Attendance =  22,
+                    Attendance = 22,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 89,
                     TripId = 8,
-                    Attendance =  26,
+                    Attendance = 26,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 80,
+                    Id = 90,
                     TripId = 8,
-                    Attendance =  26,
+                    Attendance = 26,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
-                    Id = 90,
+                    Id = 91,
                     TripId = 9,
-                    Attendance =  26,
+                    Attendance = 26,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -771,55 +680,55 @@ namespace mr_shtrahman.Data
                 {
                     Id = 93,
                     TripId = 9,
-                    Attendance =  27,
+                    Attendance = 27,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 94,
                     TripId = 9,
-                    Attendance =  23,
+                    Attendance = 23,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 95,
                     TripId = 9,
-                    Attendance =  12,
+                    Attendance = 12,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 96,
                     TripId = 9,
-                    Attendance =  12,
+                    Attendance = 12,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 97,
                     TripId = 9,
-                    Attendance =  31,
+                    Attendance = 31,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 98,
                     TripId = 9,
-                    Attendance =  32,
+                    Attendance = 32,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 99,
                     TripId = 9,
-                    Attendance =  33,
+                    Attendance = 33,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 91,
+                    Id = 100,
                     TripId = 9,
-                    Attendance =  35,
+                    Attendance = 35,
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
                     Id = 101,
                     TripId = 10,
-                    Attendance =  25,
+                    Attendance = 25,
                     Date = new DateTime(2021, 9, 10)
                 }, new VisitorsAttendance
                 {
@@ -831,47 +740,47 @@ namespace mr_shtrahman.Data
                 {
                     Id = 103,
                     TripId = 10,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 12)
                 }, new VisitorsAttendance
                 {
                     Id = 104,
                     TripId = 10,
-                    Attendance =  23,
+                    Attendance = 23,
                     Date = new DateTime(2021, 9, 13)
                 }, new VisitorsAttendance
                 {
                     Id = 105,
                     TripId = 10,
-                    Attendance =  21,
+                    Attendance = 21,
                     Date = new DateTime(2021, 9, 14)
                 }, new VisitorsAttendance
                 {
                     Id = 106,
                     TripId = 10,
-                    Attendance =  20,
+                    Attendance = 20,
                     Date = new DateTime(2021, 9, 15)
                 }, new VisitorsAttendance
                 {
                     Id = 107,
                     TripId = 10,
-                    Attendance =  20,
+                    Attendance = 20,
                     Date = new DateTime(2021, 9, 16)
                 }, new VisitorsAttendance
                 {
                     Id = 108,
                     TripId = 10,
-                    Attendance =  27,
+                    Attendance = 27,
                     Date = new DateTime(2021, 9, 17)
                 }, new VisitorsAttendance
                 {
                     Id = 109,
                     TripId = 10,
-                    Attendance =  26,
+                    Attendance = 26,
                     Date = new DateTime(2021, 9, 18)
                 }, new VisitorsAttendance
                 {
-                    Id = 100,
+                    Id = 110,
                     TripId = 10,
                     Attendance = 20,
                     Date = new DateTime(2021, 9, 19)
@@ -1232,55 +1141,64 @@ namespace mr_shtrahman.Data
                  {
                      Id = 55,
                      Src = "~/Assets/shops/shop1.jpg",
-                     Description = "shop1"
+                     Description = "shop1",
+                     ShopId = 1
                  },
                  new Img
                  {
                      Id = 56,
                      Src = "~/Assets/shops/shop2.jpg",
-                     Description = "shop2"
+                     Description = "shop2",
+                     ShopId = 2
                  },
                  new Img
                  {
                      Id = 57,
                      Src = "~/Assets/shops/shop3.jpg",
-                     Description = "shop3"
+                     Description = "shop3",
+                     ShopId = 3
                  },
                  new Img
                  {
                      Id = 58,
                      Src = "~/Assets/shops/shop4.jpg",
-                     Description = "shop4"
+                     Description = "shop4",
+                     ShopId = 4
                  },
                  new Img
                  {
                      Id = 59,
                      Src = "~/Assets/shops/shop5.jpg",
-                     Description = "shop5"
+                     Description = "shop5",
+                     ShopId = 5
                  },
                  new Img
                  {
                      Id = 60,
                      Src = "~/Assets/shops/shop6.jpg",
-                     Description = "shop6"
+                     Description = "shop6",
+                     ShopId = 6
                  },
                  new Img
                  {
                      Id = 61,
                      Src = "~/Assets/shops/shop7.jpg",
-                     Description = "shop7"
+                     Description = "shop7",
+                     ShopId = 7
                  },
                  new Img
                  {
                      Id = 62,
                      Src = "~/Assets/shops/shop8.jpg",
-                     Description = "shop8"
+                     Description = "shop8",
+                     ShopId = 8
                  },
                  new Img
                  {
                      Id = 63,
                      Src = "~/Assets/shops/shop9.jpg",
-                     Description = "shop9"
+                     Description = "shop9",
+                     ShopId = 9
                  },
                  new Img
                  {
@@ -1970,22 +1888,7 @@ namespace mr_shtrahman.Data
                     ClosingFriday = "15:00",
                     OpeningSaturday= "10:30",
                     ClosingSaturday= "22:00",
-                    ImgId = 55,
-                    //Products = new List<Product>
-                    //{
-                    //    Product.Where(p => p.Id == 1).First(), 
-                    //    Product.Where(p => p.Id == 2).First(),
-                    //    Product.Where(p => p.Id == 3).First(),
-                    //    Product.Where(p => p.Id == 4).First(),
-                    //    Product.Where(p => p.Id == 10).First(),
-                    //    Product.Where(p => p.Id == 11).First(),
-                    //    Product.Where(p => p.Id == 12).First(),
-                    //    Product.Where(p => p.Id == 14).First(),
-                    //    Product.Where(p => p.Id == 15).First(),
-                    //    Product.Where(p => p.Id == 20).First(),
-                    //    Product.Where(p => p.Id == 22).First(),
-                    //    Product.Where(p => p.Id == 23).First()
-                    //}
+                    ImgId = 55
                 },
                 new Shop
                 {
@@ -2004,22 +1907,7 @@ namespace mr_shtrahman.Data
                     ClosingFriday = "15:00",
                     OpeningSaturday = "20:30",
                     ClosingSaturday = "22:00",
-                    ImgId = 56,
-                  //  Products = new List<Product>
-                  //  {
-                  //  Product.Where(p => p.Id == 1).First(),
-                  //  Product.Where(p => p.Id == 2).First(),
-                  //  Product.Where(p => p.Id == 3).First(),
-                  //  Product.Where(p => p.Id == 4).First(),
-                  //  Product.Where(p => p.Id == 11).First(),
-                  //  Product.Where(p => p.Id == 12).First(),
-                  //  Product.Where(p => p.Id == 13).First(),
-                  //  Product.Where(p => p.Id == 14).First(),
-                  //  Product.Where(p => p.Id == 21).First(),
-                  //  Product.Where(p => p.Id == 22).First(),
-                  //  Product.Where(p => p.Id == 23).First(),
-                  //  Product.Where(p => p.Id == 24).First()
-                  //},
+                    ImgId = 56
                 },
                 new Shop
                 {
@@ -2038,22 +1926,7 @@ namespace mr_shtrahman.Data
                     ClosingFriday = "15:00",
                     OpeningSaturday = "11:00",
                     ClosingSaturday = "22:00",
-                    ImgId = 57,
-                    //Products = new List<Product>
-                    //{
-                    //Product.Where(p => p.Id == 1).First(),
-                    //Product.Where(p => p.Id == 5).First(),
-                    //Product.Where(p => p.Id == 6).First(),
-                    //Product.Where(p => p.Id == 7).First(),
-                    //Product.Where(p => p.Id == 8).First(),
-                    //Product.Where(p => p.Id == 12).First(),
-                    //Product.Where(p => p.Id == 13).First(),
-                    //Product.Where(p => p.Id == 14).First(),
-                    //Product.Where(p => p.Id == 16).First(),
-                    //Product.Where(p => p.Id == 20).First(),
-                    //Product.Where(p => p.Id == 21).First(),
-                    //Product.Where(p => p.Id == 24).First()
-                    //},
+                    ImgId = 57
                 },
                 new Shop
                    {
@@ -2070,24 +1943,7 @@ namespace mr_shtrahman.Data
                        ClosingSundayTilThursday = "20:30",
                        OpeningFriday = "09:00",
                        ClosingFriday = "14:00",
-                       ImgId = 58,
-                       Products = new List<Product>
-                     {
-                        Product.Where(p => p.Id == 3).First(),
-                        Product.Where(p => p.Id == 4).First(),
-                        Product.Where(p => p.Id == 5).First(),
-                        Product.Where(p => p.Id == 6).First(),
-                        Product.Where(p => p.Id == 9).First(),
-                        Product.Where(p => p.Id == 10).First(),
-                        Product.Where(p => p.Id == 13).First(),
-                        Product.Where(p => p.Id == 14).First(),
-                        Product.Where(p => p.Id == 17).First(),
-                        Product.Where(p => p.Id == 18).First(),
-                        Product.Where(p => p.Id == 19).First(),
-                        Product.Where(p => p.Id == 20).First(),
-                        Product.Where(p => p.Id == 21).First(),
-                        Product.Where(p => p.Id == 24).First()
-                     },
+                       ImgId = 58
                    },
                 new Shop
                     {
@@ -2106,21 +1962,7 @@ namespace mr_shtrahman.Data
                         ClosingFriday = "14:00",
                         OpeningSaturday = "20:30",
                         ClosingSaturday = "22:00",
-                        ImgId = 59,
-                        //Products = new List<Product>
-                        // {
-                        //    Product.Where(p => p.Id == 1).First(),
-                        //    Product.Where(p => p.Id == 2).First(),
-                        //    Product.Where(p => p.Id == 3).First(),
-                        //    Product.Where(p => p.Id == 5).First(),
-                        //    Product.Where(p => p.Id == 6).First(),
-                        //    Product.Where(p => p.Id == 10).First(),
-                        //    Product.Where(p => p.Id == 11).First(),
-                        //    Product.Where(p => p.Id == 15).First(),
-                        //    Product.Where(p => p.Id == 16).First(),
-                        //    Product.Where(p => p.Id == 22).First(),
-                        //    Product.Where(p => p.Id == 23).First(),
-                        //}
+                        ImgId = 59
                     },
                 new Shop
                 {
@@ -2137,19 +1979,7 @@ namespace mr_shtrahman.Data
                     ClosingSundayTilThursday = "21:30",
                     OpeningFriday = "09:00",
                     ClosingFriday = "15:00",
-                    ImgId = 60,
-                    //Products = new List<Product>
-                    //{
-                    //Product.Where(p => p.Id == 10).First(),
-                    //Product.Where(p => p.Id == 11).First(),
-                    //Product.Where(p => p.Id == 12).First(),
-                    //Product.Where(p => p.Id == 13).First(),
-                    //Product.Where(p => p.Id == 14).First(),
-                    //Product.Where(p => p.Id == 15).First(),
-                    //Product.Where(p => p.Id == 16).First(),
-                    //Product.Where(p => p.Id == 17).First(),
-                    //Product.Where(p => p.Id == 18).First(),
-                    //},
+                    ImgId = 60
                 },
                 new Shop
                 {
@@ -2168,24 +1998,7 @@ namespace mr_shtrahman.Data
                     ClosingFriday = "15:00",
                     OpeningSaturday = "10:30",
                     ClosingSaturday = "22:00",
-                    ImgId = 61,
-                    //Products = new List<Product>
-                    //{
-                    //Product.Where(p => p.Id == 2).First(),
-                    //Product.Where(p => p.Id == 3).First(),
-                    //Product.Where(p => p.Id == 13).First(),
-                    //Product.Where(p => p.Id == 14).First(),
-                    //Product.Where(p => p.Id == 15).First(),
-                    //Product.Where(p => p.Id == 16).First(),
-                    //Product.Where(p => p.Id == 17).First(),
-                    //Product.Where(p => p.Id == 18).First(),
-                    //Product.Where(p => p.Id == 19).First(),
-                    //Product.Where(p => p.Id == 20).First(),
-                    //Product.Where(p => p.Id == 21).First(),
-                    //Product.Where(p => p.Id == 22).First(),
-                    //Product.Where(p => p.Id == 23).First(),
-                    //Product.Where(p => p.Id == 24).First(),
-                    //},
+                    ImgId = 61
                 },
                 new Shop
                 {
@@ -2204,18 +2017,7 @@ namespace mr_shtrahman.Data
                     ClosingFriday = "15:00",
                     OpeningSaturday = "10:30",
                     ClosingSaturday = "22:00",
-                    ImgId = 62,
-                    //Products = new List<Product>
-                    //{
-                    //Product.Where(p => p.Id == 15).First(),
-                    //Product.Where(p => p.Id == 16).First(),
-                    //Product.Where(p => p.Id == 17).First(),
-                    //Product.Where(p => p.Id == 18).First(),
-                    //Product.Where(p => p.Id == 21).First(),
-                    //Product.Where(p => p.Id == 22).First(),
-                    //Product.Where(p => p.Id == 23).First(),
-                    //Product.Where(p => p.Id == 24).First(),
-                    //},
+                    ImgId = 62
                 },
                 new Shop
                 {
@@ -2230,34 +2032,41 @@ namespace mr_shtrahman.Data
                     Rating = 4,
                     OpeningSundayTilThursday = "09:30",
                     ClosingSundayTilThursday = "22:00",
-                    ImgId = 63,
-                    //Products = new List<Product>
-                    //    {
-                    //    Product.Where(p => p.Id == 1).First(),
-                    //    Product.Where(p => p.Id == 2).First(),
-                    //    Product.Where(p => p.Id == 3).First(),
-                    //    Product.Where(p => p.Id == 4).First(),
-                    //    Product.Where(p => p.Id == 5).First(),
-                    //    Product.Where(p => p.Id == 6).First(),
-                    //    Product.Where(p => p.Id == 7).First(),
-                    //    Product.Where(p => p.Id == 8).First(),
-                    //    Product.Where(p => p.Id == 9).First(),
-                    //    Product.Where(p => p.Id == 10).First(),
-                    //    Product.Where(p => p.Id == 11).First(),
-                    //    Product.Where(p => p.Id == 12).First(),
-                    //    Product.Where(p => p.Id == 13).First(),
-                    //    Product.Where(p => p.Id == 14).First(),
-                    //    Product.Where(p => p.Id == 15).First(),
-                    //    Product.Where(p => p.Id == 16).First(),
-                    //    Product.Where(p => p.Id == 17).First(),
-                    //    Product.Where(p => p.Id == 18).First(),
-                    //    Product.Where(p => p.Id == 19).First(),
-                    //    Product.Where(p => p.Id == 20).First(),
-                    //    Product.Where(p => p.Id == 21).First(),
-                    //    Product.Where(p => p.Id == 22).First(),
-                    //    Product.Where(p => p.Id == 23).First(),
-                    //    Product.Where(p => p.Id == 24).First(),
-                    //}
+                    ImgId = 63
+                }
+            );
+        }
+
+        protected void addUsers(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = "454212542124541",
+                    Email = "mikimeerson44@gmail.com",
+                    Name = "Miki",
+                    isAdmin = true
+                },
+                new User
+                {
+                    Id = "534545123154",
+                    Email = "orelz16@gmail.com",
+                    Name = "Orel",
+                    isAdmin = true
+                },
+                new User
+                {
+                    Id = "15645165841",
+                    Email = "tshuvanm@gmail.com",
+                    Name = "Noam",
+                    isAdmin = true
+                },
+                new User
+                {
+                    Id = "354315410541",
+                    Email = "jackzaf96@hotmail.com",
+                    Name = "Jack",
+                    isAdmin = false
                 }
             );
         }
