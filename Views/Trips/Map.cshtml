@@ -1,7 +1,9 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
 <link rel="stylesheet" href="~/css/general.css">
 
-@model mr_shtrahman.Models.Trip
+@model IEnumerable<mr_shtrahman.Models.Trip>
+@using mr_shtrahman.enums
+
 
 @{
     ViewData["Title"] = "Map";
@@ -11,6 +13,68 @@
     <h1>OUR TRIPS</h1>
     <a asp-action="Index">Go Back</a>
 </div>
-    <div class="container">
-       This whole page is a placeholder for Jack's map
+<div class="container">
+    <div id="map_canvas" style="width:100%; height: 900px">
     </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_zGCyJMH5y8XsT1GnAjQkJLXh7WFzeZQ"></script>
+    <script type="text/javascript">
+    function createMarker(width, height, radius) {
+
+        var canvas, context;
+
+        canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        console.log(canvas)
+
+        context = canvas.getContext("2d");
+
+        // background is red
+        context.fillStyle = "rgb(255,0,8)";
+
+        // border is black
+        context.strokeStyle = "rgba(0,0,0,1)";
+
+        context.beginPath();
+        context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI * radius)
+        context.closePath();
+
+        context.fill();
+        context.stroke();
+
+        return canvas.toDataURL();
+
+    }
+
+
+function initialize() {
+
+    var trips = @Html.Raw(Json.Serialize(Model));
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), {
+        zoom: 8,
+        center: new google.maps.LatLng(31.757031808613355, 35.00440291567903),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+
+    trips.map((location) => {
+        new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lon),
+            map: map,
+            title: location.name,
+            icon: createMarker(25, 25, 8)
+        });
+    })
+       
+}
+    window.onload = initialize;
+
+    </script>
+
+}
+
