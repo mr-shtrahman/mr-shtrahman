@@ -60,7 +60,7 @@ namespace mr_shtrahman.Data
                     Lat= 30.794573169710944,
                     RelevantProducts =new List<Product>
                     {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 1).First() 
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First() 
                     },
                     VisitorsAttendance= new List<VisitorsAttendance>()
                 },
@@ -80,7 +80,7 @@ namespace mr_shtrahman.Data
                      Lat = 31.31073847403702,
                      RelevantProducts = new List<Product>
                     {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 1).First()
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
                     },
                      VisitorsAttendance = new List<VisitorsAttendance>()
                  }, new Trip
@@ -99,7 +99,7 @@ namespace mr_shtrahman.Data
                      Lat = 31.45828598077046,
                      RelevantProducts = new List<Product>
                     {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 1).First()
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
                     },
                      VisitorsAttendance = new List<VisitorsAttendance>()
                  }, new Trip
@@ -118,7 +118,7 @@ namespace mr_shtrahman.Data
                      Lat = 31.766019862597236,
                      RelevantProducts = new List<Product>
                     {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 1).First()
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
                     },
                      VisitorsAttendance = new List<VisitorsAttendance>()
                  }, new Trip
@@ -137,7 +137,7 @@ namespace mr_shtrahman.Data
                      Lat = 32.27306129106049,
                      RelevantProducts = new List<Product>
                     {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 1).First()
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
                     },
                      VisitorsAttendance = new List<VisitorsAttendance>()
                  }
@@ -149,7 +149,7 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<VisitorsAttendance>().HasData(
                 new VisitorsAttendance
                 {
-                     Id =1,
+                     Id = 1,
                      TripId = 1,
                      Attendance = 20,
                      Date= new DateTime(2021,9,10)
@@ -683,7 +683,7 @@ namespace mr_shtrahman.Data
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
-                    Id = 91,
+                    Id = 90,
                     TripId = 9,
                     Attendance =  26,
                     Date = new DateTime(2021, 9, 10)
@@ -1570,7 +1570,7 @@ namespace mr_shtrahman.Data
                 },
                 new Product
                 {
-                    Id = 8,
+                    Id = 25,
                     Name = "Uniform Belt",
                     Rating = 3,
                     Category = Category.Soldiers,
@@ -1824,7 +1824,7 @@ namespace mr_shtrahman.Data
                     Trips = new List<Trip>()
                 }, new Product
                 {
-                    Id = 23,
+                    Id = 24,
                     Name = "Sleeping Bag",
                     Rating = 4,
                     Category = Category.Camping,
