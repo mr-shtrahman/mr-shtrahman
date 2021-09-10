@@ -25,7 +25,7 @@ namespace mr_shtrahman.Controllers
         {
             var currentUser = HttpContext.Session.Get<User>("User");
 
-            if (!currentUser.isAdmin)
+            if (currentUser == null || !currentUser.isAdmin)
             {
                 return Redirect("/");
             }
@@ -38,7 +38,7 @@ namespace mr_shtrahman.Controllers
         {
             var currentUser = HttpContext.Session.Get<User>("User");
 
-            if (!currentUser.isAdmin)
+            if (currentUser == null || !currentUser.isAdmin)
             {
                 return Redirect("/");
             }
