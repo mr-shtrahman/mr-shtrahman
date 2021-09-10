@@ -25,6 +25,24 @@ namespace mr_shtrahman.Controllers
             return View(await _context.VisitorsAttendance.ToListAsync());
         }
 
+        // GET: VisitorsAttendances/Busy/5
+        public async Task<IActionResult> Busy(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var visitorsAttendance =  _context.VisitorsAttendance.Where(va => va.TripId == id);
+
+            if (visitorsAttendance == null)
+            {
+                return NotFound();
+            }
+
+            return Json(visitorsAttendance);
+        }
+
         // GET: VisitorsAttendances/Details/5
         public async Task<IActionResult> Details(int? id)
         {
