@@ -34,16 +34,379 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
 
             addImg(modelBuilder);
+            addVisitorsAttendance(modelBuilder);
 
         }
 
+        private void addVisitorsAttendance(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<VisitorsAttendance>().HasData(
+                new VisitorsAttendance
+                {
+                     Id =1,
+                     TripId = 1,
+                     Attendance =  20,
+                     Date= new DateTime(2021,9,10)
+                }, new VisitorsAttendance
+                {
+                    Id = 2,
+                    TripId = 1,
+                    Attendance = 18,
+                    Date = new DateTime(2021, 9, 11)
+                }, new VisitorsAttendance
+                {
+                    Id = 3,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 12)
+                }, new VisitorsAttendance
+                {
+                    Id = 4,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 13)
+                }, new VisitorsAttendance
+                {
+                    Id = 5,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 14)
+                }, new VisitorsAttendance
+                {
+                    Id = 6,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 15)
+                }, new VisitorsAttendance
+                {
+                    Id = 7,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 16)
+                }, new VisitorsAttendance
+                {
+                    Id = 8,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 17)
+                }, new VisitorsAttendance
+                {
+                    Id = 9,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 18)
+                }, new VisitorsAttendance
+                {
+                    Id = 10,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 19)
+                },new VisitorsAttendance
+                {
+                    Id = 11,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 10)
+                }, new VisitorsAttendance
+                {
+                    Id = 12,
+                    TripId = 2,
+                    Attendance = 18,
+                    Date = new DateTime(2021, 9, 11)
+                }, new VisitorsAttendance
+                {
+                    Id = 13,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 12)
+                }, new VisitorsAttendance
+                {
+                    Id = 14,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 13)
+                }, new VisitorsAttendance
+                {
+                    Id = 15,
+                    TripId = 1,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 14)
+                }, new VisitorsAttendance
+                {
+                    Id = 16,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 15)
+                }, new VisitorsAttendance
+                {
+                    Id = 17,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 16)
+                }, new VisitorsAttendance
+                {
+                    Id = 18,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 17)
+                }, new VisitorsAttendance
+                {
+                    Id = 19,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 18)
+                }, new VisitorsAttendance
+                {
+                    Id = 20,
+                    TripId = 2,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 19)
+                }, new VisitorsAttendance
+                {
+                    Id = 31,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 10)
+                }, new VisitorsAttendance
+                {
+                    Id = 32,
+                    TripId = 3,
+                    Attendance = 18,
+                    Date = new DateTime(2021, 9, 11)
+                }, new VisitorsAttendance
+                {
+                    Id = 33,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 12)
+                }, new VisitorsAttendance
+                {
+                    Id = 34,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 13)
+                }, new VisitorsAttendance
+                {
+                    Id = 35,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 14)
+                }, new VisitorsAttendance
+                {
+                    Id = 36,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 15)
+                }, new VisitorsAttendance
+                {
+                    Id = 37,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 16)
+                }, new VisitorsAttendance
+                {
+                    Id = 38,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 17)
+                }, new VisitorsAttendance
+                {
+                    Id = 39,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 18)
+                }, new VisitorsAttendance
+                {
+                    Id = 30,
+                    TripId = 3,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 19)
+                }, new VisitorsAttendance
+                {
+                    Id = 41,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 10)
+                }, new VisitorsAttendance
+                {
+                    Id = 42,
+                    TripId = 4,
+                    Attendance = 18,
+                    Date = new DateTime(2021, 9, 11)
+                }, new VisitorsAttendance
+                {
+                    Id = 43,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 12)
+                }, new VisitorsAttendance
+                {
+                    Id = 44,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 13)
+                }, new VisitorsAttendance
+                {
+                    Id = 45,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 14)
+                }, new VisitorsAttendance
+                {
+                    Id = 46,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 15)
+                }, new VisitorsAttendance
+                {
+                    Id = 47,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 16)
+                }, new VisitorsAttendance
+                {
+                    Id = 48,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 17)
+                }, new VisitorsAttendance
+                {
+                    Id = 49,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 18)
+                }, new VisitorsAttendance
+                {
+                    Id = 40,
+                    TripId = 4,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 19)
+                }, new VisitorsAttendance
+                {
+                    Id = 51,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 10)
+                }, new VisitorsAttendance
+                {
+                    Id = 52,
+                    TripId = 5,
+                    Attendance = 18,
+                    Date = new DateTime(2021, 9, 11)
+                }, new VisitorsAttendance
+                {
+                    Id = 53,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 12)
+                }, new VisitorsAttendance
+                {
+                    Id = 54,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 13)
+                }, new VisitorsAttendance
+                {
+                    Id = 55,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 14)
+                }, new VisitorsAttendance
+                {
+                    Id = 56,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 15)
+                }, new VisitorsAttendance
+                {
+                    Id = 57,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 16)
+                }, new VisitorsAttendance
+                {
+                    Id = 58,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 17)
+                }, new VisitorsAttendance
+                {
+                    Id = 59,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 18)
+                }, new VisitorsAttendance
+                {
+                    Id = 50,
+                    TripId = 5,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 19)
+                }, new VisitorsAttendance
+                {
+                    Id = 61,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 10)
+                }, new VisitorsAttendance
+                {
+                    Id = 62,
+                    TripId = 6,
+                    Attendance = 18,
+                    Date = new DateTime(2021, 9, 11)
+                }, new VisitorsAttendance
+                {
+                    Id = 63,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 12)
+                }, new VisitorsAttendance
+                {
+                    Id = 64,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 13)
+                }, new VisitorsAttendance
+                {
+                    Id = 65,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 14)
+                }, new VisitorsAttendance
+                {
+                    Id = 66,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 15)
+                }, new VisitorsAttendance
+                {
+                    Id = 67,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 16)
+                }, new VisitorsAttendance
+                {
+                    Id = 68,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 17)
+                }, new VisitorsAttendance
+                {
+                    Id = 69,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 18)
+                }, new VisitorsAttendance
+                {
+                    Id = 60,
+                    TripId = 6,
+                    Attendance = 20,
+                    Date = new DateTime(2021, 9, 19)
+                },
+                );
+        }
 
         protected void addImg(ModelBuilder modelBuilder)
         {
-
-
-           
-
             modelBuilder.Entity<Img>().HasData(
                 new Img
                 {
