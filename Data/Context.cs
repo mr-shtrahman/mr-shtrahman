@@ -36,6 +36,7 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
 
             addImg(modelBuilder);
+            addProduct(modelBuilder);
             addVisitorsAttendance(modelBuilder);
             addTrips(modelBuilder);
 
