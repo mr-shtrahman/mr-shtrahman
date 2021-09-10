@@ -32,36 +32,37 @@
 
     <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD TRIP +</a>
 
-    <form class="form-inline">
-        @using (Html.BeginForm("Filter", "Trips", FormMethod.Get))
-        {
-            <div class="row">
-                <div class="form-group col-sm-4">
-                    <select class="form-control" name="destination" asp-items="Html.GetEnumSelectList<Destination>()">
-                        class="form-control">
-                        <option value="" selected disabled hidden>Select Destination</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-4">
-                    <select class="form-control" name="tripType" asp-items="Html.GetEnumSelectList<TripType>()">
-                        <option value="" selected disabled hidden>Select Trip type</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-4">
-                    <select class="form-control" name="difficulty" asp-items="Html.GetEnumSelectList<Difficulty>()">
-                        <option value="" selected disabled hidden>Select Difficulty</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <button type="submit" class="btn btn-info">
-                    <span class="glyphicon glyphicon-search">
-                        Filter
-                    </span>
-                </button>
-            </div>
-        }
-    </form>
+    @using (Html.BeginForm("Filter", "Trips", FormMethod.Get))
+    {
+<form class="form-inline">
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="destination" asp-items="Html.GetEnumSelectList<Destination>()">
+                class="form-control">
+                <option value="" selected disabled hidden>Select Destination</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="tripType" asp-items="Html.GetEnumSelectList<TripType>()">
+                <option value="" selected disabled hidden>Select Trip type</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="difficulty" asp-items="Html.GetEnumSelectList<Difficulty>()">
+                <option value="" selected disabled hidden>Select Difficulty</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-3">
+            <button type="submit" class="btn btn-info">
+                <span class="glyphicon glyphicon-search">
+                    Filter
+                </span>
+            </button>
+        </div>
+    </div>
+
+</form>
+    }
 
     <div class="row justify-content-between">
         @foreach (var item in Model)
