@@ -39,6 +39,14 @@ h6 {
 .graph {
     border: 1px solid silver;
     margin: 10px;
-    height: 20rem;
-    width: 20rem;
+    height: 22rem;
+    width: 22rem;
+    align-self: center;
+    padding: 15px;
+}
+
+#error_message {
+    text-align: center;
+    transform: translateY(100px);
+    font-size: larger;
 }

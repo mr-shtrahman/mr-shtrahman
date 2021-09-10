@@ -101,6 +101,12 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
@@ -114,6 +120,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,Lon,Lat,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (ModelState.IsValid)
             {
                 trip.VisitorsAttendance = new List<VisitorsAttendance>();
@@ -132,6 +144,12 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -160,6 +178,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,Lon,Lat,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id != trip.Id)
             {
                 return NotFound();
@@ -197,6 +221,12 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -219,6 +249,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
