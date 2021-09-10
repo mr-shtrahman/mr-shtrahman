@@ -23,14 +23,15 @@ namespace mr_shtrahman.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            ViewData["Categories"] = Enum.GetValues(typeof(Category));
             return View(await _context.Product.ToListAsync());
 
         }
         public async Task<IActionResult> Search(string query)
         {
-            var productWithImgs = _context.Product.Where(p => p.Name.Contains(query) ||
-                                                         query == null);
-            return View(await productWithImgs.ToListAsync());
+            ViewData["Categories"] = query != null ? Enum.GetValues(typeof(Category)).Cast<Category>().ToList().Select(i => i.ToString().ToLower()).Where(i => i.Contains(query.ToLower())) : Enum.GetValues(typeof(Category));
+
+            return View("Index", await _context.Product.ToListAsync());
         }
 
         // GET: ProductImage
@@ -236,7 +237,7 @@ namespace mr_shtrahman.Controllers
 
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
-            deleteProductFromImg(product.Id);
+            await deleteProductFromImg(product.Id);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

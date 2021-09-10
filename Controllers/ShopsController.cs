@@ -62,7 +62,12 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            var products = _context.Shop.Include(c => c.Products).Where(s => s.Id == id).FirstOrDefault().Products;
+
+            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
+
             var shop = await _context.Shop
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (shop == null)
@@ -93,7 +98,7 @@ namespace mr_shtrahman.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
+            [Bind("Id,Name,City,Street,StreetNum,Lon,Lat,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
              int[] Products)
         {
             var currentUser = HttpContext.Session.Get<User>("User");
@@ -139,7 +144,9 @@ namespace mr_shtrahman.Controllers
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => (i.ShopId == id || i.ShopId == null) && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
-
+            _context.RemoveRange(_context.Shop.Include(s => s.Products).Where(s => s.Id == id).ToList());
+            _context.Update(shop);
+            await _context.SaveChangesAsync();
             return View(shop);
         }
 
@@ -149,7 +156,7 @@ namespace mr_shtrahman.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
-            [Bind("Id,Name,City,Street,StreetNum,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
+            [Bind("Id,Name,City,Street,StreetNum,Lon,Lat,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
             int[] Products) 
         {
             var currentUser = HttpContext.Session.Get<User>("User");
@@ -175,6 +182,7 @@ namespace mr_shtrahman.Controllers
 
                     _context.Update(shop);
                     await _context.SaveChangesAsync();
+
                     await UpdateIMGAsync(shop);
                 }
                 catch (DbUpdateConcurrencyException)
