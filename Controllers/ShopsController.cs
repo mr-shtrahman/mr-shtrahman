@@ -62,7 +62,12 @@ namespace mr_shtrahman.Controllers
             {
                 return NotFound();
             }
+
+            var products = _context.Shop.Include(c => c.Products).Where(s => s.Id == id).FirstOrDefault().Products;
+
+            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
+
             var shop = await _context.Shop
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (shop == null)
