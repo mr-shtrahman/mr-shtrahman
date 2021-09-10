@@ -81,6 +81,12 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Create
         public IActionResult Create()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             ViewData["Products"] = _context.Product.AsEnumerable().GroupBy(p => p.Category).ToDictionary(g => g.Key, g => g.ToList());
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
             return View();
@@ -95,6 +101,12 @@ namespace mr_shtrahman.Controllers
             [Bind("Id,Name,City,Street,StreetNum,Lon,Lat,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
              int[] Products)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (ModelState.IsValid)
             {
                 shop.Products = new List<Product>();
@@ -111,6 +123,12 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -141,6 +159,12 @@ namespace mr_shtrahman.Controllers
             [Bind("Id,Name,City,Street,StreetNum,Lon,Lat,PhoneNum,Rating,OpeningSundayTilThursday,ClosingSundayTilThursday,OpeningFriday,ClosingFriday,OpeningSaturday,ClosingSaturday,ImgId")] Shop shop,
             int[] Products) 
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id != shop.Id)
             {
                 return NotFound();
@@ -180,6 +204,12 @@ namespace mr_shtrahman.Controllers
         // GET: Shops/Delete/5
         public async Task<IActionResult>  Delete(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -202,6 +232,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
