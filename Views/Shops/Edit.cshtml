@@ -118,6 +118,23 @@
         </div>
     </div>
     <div class="data-section">
+        <div class="form-group">
+            <div class="col">
+                <label class="control-label">LAT/LON:</label>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="text" asp-for="Lat" class="form-control" placeholder="latitude" />
+                        <span asp-validation-for="Lat" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" asp-for="Lon" class="form-control" placeholder="longitude" />
+                        <span asp-validation-for="Lon" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="data-section">
         <label class="control-label">Products in stock: </label>
         <select asp-for="Products" class="form-control">
             @foreach (var productsList in ViewBag.Products)
