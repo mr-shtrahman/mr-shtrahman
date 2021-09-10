@@ -1687,6 +1687,50 @@ namespace mr_shtrahman.Data
                     ImgId = 94,
                     Shops = new List<Shop>(),
                     Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 22,
+                    Name = "Sleeping Bag",
+                    Rating = 2,
+                    Category = Category.Camping,
+                    Color = "Blue",
+                    Price = 140,
+                    Size = Size.OneSize,
+                    Description = "Feel at home with our soft, warm collection of sleeping bags.",
+                    Details = "",
+                    ImgId = 86,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 23,
+                    Name = "Sleeping Bag",
+                    Rating = 5,
+                    Category = Category.Camping,
+                    Color = "Blue",
+                    Price = 250,
+                    Size = Size.OneSize,
+                    Description = "Our best sleeping bag ever, now back in more colors!",
+                    Details = "",
+                    ImgId = 87,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                }, new Product
+                {
+                    Id = 23,
+                    Name = "Sleeping Bag",
+                    Rating = 4,
+                    Category = Category.Camping,
+                    Color = "Yellow",
+                    Price = 140,
+                    Size = Size.OneSize,
+                    Description = "Sleep better than ever, anywhere, anytime.",
+                    Details = "",
+                    ImgId = 88,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
                 }
         );
 
