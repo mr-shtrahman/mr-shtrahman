@@ -10,12 +10,23 @@
 
 <div class="header">
     <h1>OUR PRODUCTS</h1>
+    <form asp-action="Search" class="input-group search">
+        <div class="form-outline">
+            <input name="query"
+                   placeholder="search categories"
+                   type="search"
+                   class="form-control" />
+        </div>
+        <button type="submit" value="search" class="btn btn-dark">
+            Search
+        </button>
+    </form>
     <a asp-controller="Home" asp-action="Index">Go Back</a>
 </div>
 <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD PRODUCT +</a>
 
 <div class="row justify-content-between">
-    @foreach (var category in Enum.GetValues(typeof(Category)))
+    @foreach (var category in ViewBag.Categories)
     {
         <div class="col-sm-6 category" style="margin-top: 10px">
             <div class="card">

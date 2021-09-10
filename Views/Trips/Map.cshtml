@@ -46,15 +46,7 @@
         context.strokeStyle = "rgba(0,0,0,1)";
 
         context.beginPath();
-        context.moveTo(radius, 0);
-        context.lineTo(width - radius, 0);
-        context.quadraticCurveTo(width, 0, width, radius);
-        context.lineTo(width, height - radius);
-        context.quadraticCurveTo(width, height, width - radius, height);
-        context.lineTo(radius, height);
-        context.quadraticCurveTo(0, height, 0, height - radius);
-        context.lineTo(0, radius);
-        context.quadraticCurveTo(0, 0, radius, 0);
+        context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI * radius)
         context.closePath();
 
         context.fill();
