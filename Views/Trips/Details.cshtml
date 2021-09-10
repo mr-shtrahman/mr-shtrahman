@@ -23,11 +23,11 @@
         </p>
     </div>
     <div class="data-section row">
-        <div id="weather_graph" class="col graph" style="align-self:center">
+        <div id="weather_graph" class="col graph">
             <h6>WEATHER STATS</h6>
             <div id="error_message"></div>
         </div>
-        <div id="busy_hours" class="col graph" style="align-self:center">
+        <div id="busy_hours" class="col graph">
             <h6>BUSY HOURS</h6>
         </div>
     </div>
@@ -68,12 +68,12 @@
                     drawWeatherBar(weatherStats);
                 },
                 error: function (msg) {
-                    document.getElementById('error_message').innerHTML = "Can't load weather for this trip";
+                    document.getElementById('error_message').innerHTML = "OOPS! Can't load weather for this trip";
                 }
             });
         },
         error: function (msg) {
-            document.getElementById('error_message').innerHTML = "Can't load weather for this trip";
+            document.getElementById('error_message').innerHTML = "OOPS! Can't load weather for this trip";
         }
     });
 
