@@ -108,6 +108,14 @@ namespace mr_shtrahman.Controllers
             return View(currentUser);
         }
 
+        // GET: Users/Logout
+        public async Task<IActionResult> Logout([FromBody] User user)
+        {
+            HttpContext.Session.Set<User>("user", null);
+
+            return Json(null);
+        }
+
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
