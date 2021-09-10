@@ -37,23 +37,37 @@ namespace mr_shtrahman.Controllers
         // GET: Trips/Map
         public async Task<IActionResult> Map()
         {
-            ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
-            return View(await _context.Trip.ToListAsync());
+            // ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
+            var markers = await _context.Trip.ToListAsync();
+
+            var giftshops = from trip in _context.Trip
+                            join shop in _context.Shop
+                            on new { trip.Lat, trip.Lon } equals new { shop.Lat, shop.Lon } into giftshop
+                            from shop in giftshop.DefaultIfEmpty()
+                            select new
+                            {
+                                tripName = trip.Name,
+                                Lat = trip.Lat,
+                                Lon = trip.Lon,
+                                isGiftshop = (shop != null)
+                            };
+
+            return View(giftshops.ToList());
         }
 
-    public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
+        public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
         {
             var tripsWithSearchContext = _context.Trip.Where(t =>
             (destination == null || ((int)t.Destination).ToString() == destination) &&
-            (tripType == null    || ((int)t.TripType).ToString()    == tripType )&&
-            (difficulty == null  || ((int)t.Difficulty).ToString()  == difficulty));
+            (tripType == null || ((int)t.TripType).ToString() == tripType) &&
+            (difficulty == null || ((int)t.Difficulty).ToString() == difficulty));
 
             return View("Index", await tripsWithSearchContext.ToListAsync());
         }
         // GET: TripImage
         public ActionResult TripImage(string id)
         {
-            string imageSrc = _context.Img.Where(i => i.TripId.ToString() == id ).FirstOrDefault().Src.Substring(1);
+            string imageSrc = _context.Img.Where(i => i.TripId.ToString() == id).FirstOrDefault().Src.Substring(1);
             return Json(imageSrc);
         }
 
@@ -65,9 +79,9 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            
+
             var products = _context.Trip.Include(c => c.RelevantProducts).ToList();
-            
+
 
 
             ViewData["Products"] = products != null ? products : new List<Product>();
@@ -105,7 +119,7 @@ namespace mr_shtrahman.Controllers
                 trip.RelevantProducts = new List<Product>();
                 trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
                 trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
-               
+
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
                 await UpdateIMGAsync(trip);
@@ -162,7 +176,7 @@ namespace mr_shtrahman.Controllers
                             RelevantProductsAsList.Remove(item.Id);
                         };
                     }
-                    
+
                     trip.VisitorsAttendance = new List<VisitorsAttendance>();
                     trip.RelevantProducts = new List<Product>();
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
