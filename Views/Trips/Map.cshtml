@@ -1,10 +1,6 @@
 ﻿<link rel="stylesheet" href="~/css/trip.css">
 <link rel="stylesheet" href="~/css/general.css">
 
-@model IEnumerable<mr_shtrahman.Models.Trip>
-@using mr_shtrahman.enums
-
-
 @{
     ViewData["Title"] = "Map";
 }
@@ -22,7 +18,7 @@
 {
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_zGCyJMH5y8XsT1GnAjQkJLXh7WFzeZQ"></script>
     <script type="text/javascript">
-    function createMarker(width, height, radius) {
+    function createMarker(width, height, radius, isGiftShop) {
 
         var canvas, context;
 
@@ -33,8 +29,14 @@
 
         context = canvas.getContext("2d");
 
-        // background is red
-        context.fillStyle = "rgb(255,0,8)";
+        context.clearRect(0, 0, width, height);
+
+        if (isGiftShop) {
+            context.fillStyle = "rgb(255,255,51)"
+        } else {
+            // background is red
+            context.fillStyle = "rgb(255,0,8)";
+        }
 
         // border is black
         context.strokeStyle = "rgba(0,0,0,1)";
@@ -67,7 +69,7 @@ function initialize() {
             position: new google.maps.LatLng(location.lat, location.lon),
             map: map,
             title: location.name,
-            icon: createMarker(25, 25, 8)
+            icon: createMarker(25, 25, 4, location.isGiftshop)
         });
     })
        
