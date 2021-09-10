@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using mr_shtrahman.enums;
 using mr_shtrahman.Models;
+using mr_shtrahman.enums;
 
 namespace mr_shtrahman.Data
 {
@@ -1363,8 +1364,8 @@ namespace mr_shtrahman.Data
                  new Img
                  {
                      Id = 91,
-                     Src = "~/Assets/products/clothing/coat3.jpg",
-                     Description = "coat4"
+                     Src = "~Assets/products/clothing/coat3.jpg",
+                     Description = "coat3"
                  },
                  new Img
                  {
@@ -1457,6 +1458,386 @@ namespace mr_shtrahman.Data
                      Description = "white-shirt"
                  }
                 );
+        }
+
+        protected void addProduct(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().HasData(
+                new Product
+                {
+                    Id = 1,
+                    Name = "Blandston",
+                    Rating = 5,
+                    Category = Category.Shoes,
+                    Color = "Brown",
+                    Price = 250,
+                    Size = Size.L,
+                    Description = "Most sought after for a reason. Everything you love about our Original boots, turned up to max.",
+                    Details = "",
+                    ImgId = 95,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product{
+                    Id = 2,
+                    Name = "Running Shoes",
+                    Rating = 2,
+                    Category = Category.Shoes,
+                    Color = "Brown",
+                    Price = 470,
+                    Size = Size.M,
+                    Description = "Best shoes to feel like your floating while running.",
+                    Details = "",
+                    ImgId = 96,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 3,
+                    Name = "Shoresh Sandals",
+                    Rating = 5,
+                    Category = Category.Shoes,
+                    Color = "Red",
+                    Price = 300,
+                    Size = Size.S,
+                    Description = "The beloved Israeli sandals for hiking, entering the water and looking like a nerd.",
+                    Details = "",
+                    ImgId = 97,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 4,
+                    Name = "Shoresh Sandals",
+                    Rating = 5,
+                    Category = Category.Shoes,
+                    Color = "Black",
+                    Price = 300,
+                    Size = Size.L,
+                    Description = "The beloved Israeli sandals for hiking, entering the water and looking like a nerd.",
+                    Details = "",
+                    ImgId = 98,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product 
+                {
+                    Id = 5,
+                    Name = "Portable AC",
+                    Rating = 3,
+                    Category = Category.Gadgets,
+                    Color = "Blue",
+                    Price = 640,
+                    Size = Size.OneSize,
+                    Description = "The device that will save you from the heat and scare the mosquitos away. A must-have for every camp!",
+                    Details = "",
+                    ImgId = 99,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 6,
+                    Name = "Camera Bag",
+                    Rating = 4,
+                    Category = Category.Gadgets,
+                    Color = "Green",
+                    Price = 500,
+                    Size = Size.OneSize,
+                    Description = "Protect your equipmment the way it deserves.",
+                    Details = "",
+                    ImgId = 100,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 7,
+                    Name = " Vintage Compass",
+                    Rating = 3,
+                    Category = Category.Gadgets,
+                    Color = "Gold",
+                    Price = 320,
+                    Size = Size.OneSize,
+                    Description = "Go classy with this vintage compass, while getting to your destination fast and safely.",
+                    Details = "",
+                    ImgId = 101,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 8,
+                    Name = "Uniform Belt",
+                    Rating = 3,
+                    Category = Category.Soldiers,
+                    Color = "Blue",
+                    Price = 35,
+                    Size = Size.OneSize,
+                    Description = "Don't settle for the rusty old belt you got.",
+                    Details = "",
+                    ImgId = 102,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 8,
+                    Name = "Beret",
+                    Rating = 2,
+                    Category = Category.Soldiers,
+                    Color = "Red",
+                    Price = 15,
+                    Size = Size.OneSize,
+                    Description = "Lost yours at the bus? Ww got you.",
+                    Details = "",
+                    ImgId = 103,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 9,
+                    Name = "G-Shock",
+                    Rating = 5,
+                    Category = Category.Soldiers,
+                    Color = "Black",
+                    Price = 360,
+                    Size = Size.OneSize,
+                    Description = "The great watch everyone's talking about. Get it at our shops with a discount!",
+                    Details = "",
+                    ImgId = 104,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 10,
+                    Name = "Leatherman",
+                    Rating = 4,
+                    Category = Category.Soldiers,
+                    Color = "Silver",
+                    Price = 200,
+                    Size = Size.OneSize,
+                    Description = "Cook, fix and protect yourself. All with one device.",
+                    Details = "",
+                    ImgId = 105,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 11,
+                    Name = "White Shirt",
+                    Rating = 3,
+                    Category = Category.Soldiers,
+                    Color = "White",
+                    Price = 30,
+                    Size = Size.OneSize,
+                    Description = "Basic T-Shirt to wear under uniform.",
+                    Details = "",
+                    ImgId = 106,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 12,
+                    Name = "Backpack",
+                    Rating = 3,
+                    Category = Category.Bags,
+                    Color = "Orange",
+                    Price = 150,
+                    Size = Size.OneSize,
+                    Description = "The most comfortable backpack in vibrant colors.",
+                    Details = "",
+                    ImgId = 64,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 13,
+                    Name = "Backpack",
+                    Rating = 5,
+                    Category = Category.Bags,
+                    Color = "Blue",
+                    Price = 230,
+                    Size = Size.OneSize,
+                    Description = "Support your back while exploring the world.",
+                    Details = "",
+                    ImgId = 65,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 14,
+                    Name = "Backpack",
+                    Rating = 3,
+                    Category = Category.Bags,
+                    Color = "Gray",
+                    Price = 150,
+                    Size = Size.OneSize,
+                    Description = "The most comfortable backpack in vibrant colors.",
+                    Details = "",
+                    ImgId = 66,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 15,
+                    Name = "Hiking Bag",
+                    Rating = 5,
+                    Category = Category.Bags,
+                    Color = "Gray",
+                    Price = 860,
+                    Size = Size.OneSize,
+                    Description = "Comes with a set of walking sticks and an amazing support for your back.",
+                    Details = "",
+                    ImgId = 72,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 16,
+                    Name = "Backpack",
+                    Rating = 4,
+                    Category = Category.Bags,
+                    Color = "Blue",
+                    Price = 650,
+                    Size = Size.OneSize,
+                    Description = "You won't even feel that's it's there!",
+                    Details = "",
+                    ImgId = 74,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 17,
+                    Name = "Camping chair",
+                    Rating = 5,
+                    Category = Category.Camping,
+                    Color = "Black",
+                    Price = 80,
+                    Size = Size.OneSize,
+                    Description = "Give your legs some rest while toasting some marshmellows.",
+                    Details = "",
+                    ImgId = 80,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 18,
+                    Name = "Cooking set",
+                    Rating = 3,
+                    Category = Category.Camping,
+                    Color = "Blue",
+                    Price = 60,
+                    Size = Size.OneSize,
+                    Description = "Have a great time with your family, making memories with a dinner under the moonlight.",
+                    Details = "",
+                    ImgId = 84,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 19,
+                    Name = "Light Coat",
+                    Rating = 5,
+                    Category = Category.Clothes,
+                    Color = "Red",
+                    Price = 320,
+                    Size = Size.M,
+                    Description = "Stay warm at your next hike, with this great coat.",
+                    Details = "",
+                    ImgId = 89,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 20,
+                    Name = "Heavy Coat",
+                    Rating = 5,
+                    Category = Category.Clothes,
+                    Color = "Brown",
+                    Price = 240,
+                    Size = Size.S,
+                    Description = "Stay warm at your next hike, with this great coat.",
+                    Details = "",
+                    ImgId = 93,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 21,
+                    Name = "Hiking pants",
+                    Rating = 5,
+                    Category = Category.Clothes,
+                    Color = "Brown",
+                    Price = 190,
+                    Size = Size.S,
+                    Description = "The most comforatble pants, with zippers to adjust length on a hot weather!",
+                    Details = "",
+                    ImgId = 94,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 22,
+                    Name = "Sleeping Bag",
+                    Rating = 2,
+                    Category = Category.Camping,
+                    Color = "Blue",
+                    Price = 140,
+                    Size = Size.OneSize,
+                    Description = "Feel at home with our soft, warm collection of sleeping bags.",
+                    Details = "",
+                    ImgId = 86,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                },
+                new Product
+                {
+                    Id = 23,
+                    Name = "Sleeping Bag",
+                    Rating = 5,
+                    Category = Category.Camping,
+                    Color = "Blue",
+                    Price = 250,
+                    Size = Size.OneSize,
+                    Description = "Our best sleeping bag ever, now back in more colors!",
+                    Details = "",
+                    ImgId = 87,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                }, new Product
+                {
+                    Id = 23,
+                    Name = "Sleeping Bag",
+                    Rating = 4,
+                    Category = Category.Camping,
+                    Color = "Yellow",
+                    Price = 140,
+                    Size = Size.OneSize,
+                    Description = "Sleep better than ever, anywhere, anytime.",
+                    Details = "",
+                    ImgId = 88,
+                    Shops = new List<Shop>(),
+                    Trips = new List<Trip>()
+                }
+        );
+
         }
     }
 }
