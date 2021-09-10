@@ -126,7 +126,9 @@ namespace mr_shtrahman.Controllers
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
             ViewData["Product"] = new SelectList(_context.Product, nameof(Product.Id), nameof(Product.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => (i.ShopId == id || i.ShopId == null) && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
-
+            _context.RemoveRange(_context.Shop.Include(s => s.Products).Where(s => s.Id == id).ToList());
+            _context.Update(shop);
+            await _context.SaveChangesAsync();
             return View(shop);
         }
 
@@ -156,6 +158,7 @@ namespace mr_shtrahman.Controllers
 
                     _context.Update(shop);
                     await _context.SaveChangesAsync();
+
                     await UpdateIMGAsync(shop);
                 }
                 catch (DbUpdateConcurrencyException)
