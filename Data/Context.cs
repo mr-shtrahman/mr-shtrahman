@@ -32,8 +32,7 @@ namespace mr_shtrahman.Data
 
             // TODO: Add to here for data seeding
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
-            // TODO: Add to here for data seeding
-            modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne();
+
             addImg(modelBuilder);
 
         }
@@ -41,6 +40,10 @@ namespace mr_shtrahman.Data
 
         protected void addImg(ModelBuilder modelBuilder)
         {
+
+
+           
+
             modelBuilder.Entity<Img>().HasData(
                 new Img
                 {
