@@ -1,4 +1,5 @@
-﻿<link rel="stylesheet" href="~/css/trip.css">
+﻿
+<link rel="stylesheet" href="~/css/trip.css">
 <link rel="stylesheet" href="~/css/general.css">
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v5.min.js" type="text/javascript"></script>
@@ -41,27 +42,31 @@
 </div>
 
 <script type="text/javascript" language="javascript">
-    /* // MOCK
-    var returnWeatherStats = JSON.parse('{ "Headline": { "EffectiveDate": "2021-09-02T08:00:00+03:00", "EffectiveEpochDate": 1630558800, "Severity": 7, "Text": "Very warm from Thursday to Sunday", "Category": "heat", "EndDate": "2021-09-05T20:00:00+03:00", "EndEpochDate": 1630861200, "MobileLink": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?unit=c&lang=en-us", "Link": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?unit=c&lang=en-us" }, "DailyForecasts": [{ "Date": "2021-09-02T07:00:00+03:00", "EpochDate": 1630555200, "Temperature": { "Minimum": { "Value": 21.0, "Unit": "C", "UnitType": 17 }, "Maximum": { "Value": 36.6, "Unit": "C", "UnitType": 17 } }, "Day": { "Icon": 1, "IconPhrase": "Sunny", "HasPrecipitation": false }, "Night": { "Icon": 33, "IconPhrase": "Clear", "HasPrecipitation": false }, "Sources": ["AccuWeather"], "MobileLink": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=1&unit=c&lang=en-us", "Link": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=1&unit=c&lang=en-us" }, { "Date": "2021-09-03T07:00:00+03:00", "EpochDate": 1630641600, "Temperature": { "Minimum": { "Value": 21.3, "Unit": "C", "UnitType": 17 }, "Maximum": { "Value": 35.7, "Unit": "C", "UnitType": 17 } }, "Day": { "Icon": 1, "IconPhrase": "Sunny", "HasPrecipitation": false }, "Night": { "Icon": 33, "IconPhrase": "Clear", "HasPrecipitation": false }, "Sources": ["AccuWeather"], "MobileLink": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=2&unit=c&lang=en-us", "Link": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=2&unit=c&lang=en-us" }, { "Date": "2021-09-04T07:00:00+03:00", "EpochDate": 1630728000, "Temperature": { "Minimum": { "Value": 21.8, "Unit": "C", "UnitType": 17 }, "Maximum": { "Value": 36.3, "Unit": "C", "UnitType": 17 } }, "Day": { "Icon": 1, "IconPhrase": "Sunny", "HasPrecipitation": false }, "Night": { "Icon": 33, "IconPhrase": "Clear", "HasPrecipitation": false }, "Sources": ["AccuWeather"], "MobileLink": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=3&unit=c&lang=en-us", "Link": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=3&unit=c&lang=en-us" }, { "Date": "2021-09-05T07:00:00+03:00", "EpochDate": 1630814400, "Temperature": { "Minimum": { "Value": 21.8, "Unit": "C", "UnitType": 17 }, "Maximum": { "Value": 36.2, "Unit": "C", "UnitType": 17 } }, "Day": { "Icon": 1, "IconPhrase": "Sunny", "HasPrecipitation": false }, "Night": { "Icon": 33, "IconPhrase": "Clear", "HasPrecipitation": false }, "Sources": ["AccuWeather"], "MobileLink": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=4&unit=c&lang=en-us", "Link": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=4&unit=c&lang=en-us" }, { "Date": "2021-09-06T07:00:00+03:00", "EpochDate": 1630900800, "Temperature": { "Minimum": { "Value": 21.5, "Unit": "C", "UnitType": 17 }, "Maximum": { "Value": 35.5, "Unit": "C", "UnitType": 17 } }, "Day": { "Icon": 1, "IconPhrase": "Sunny", "HasPrecipitation": false }, "Night": { "Icon": 33, "IconPhrase": "Clear", "HasPrecipitation": false }, "Sources": ["AccuWeather"], "MobileLink": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=5&unit=c&lang=en-us", "Link": "http://www.accuweather.com/en/il/mezada/215751/daily-weather-forecast/215751?day=5&unit=c&lang=en-us" }]}');
-    var weatherStats = returnWeatherStats.DailyForecasts.map(x => {
-        return { "Date": new Date(x.Date).toLocaleDateString("he-IL"), "Temperature": x.Temperature.Maximum.Value };
-    });
-    drawWeatherBar(weatherStats);
-    drawBusyHourScatter(weatherStats);
-    */
-
-    // GET weather from api
+    // GET weather for current location from api
     $.ajax({
         type: "GET",
-        url: "TODO/@this.Model.Id",
-        contentType: "application/json; charset=utf-8",
+        url: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=UG9eCATbiOuFKCnsXSG1hv9gBx3qytKF&details=false&q=@this.Model.Lat,@this.Model.Lon",
         dataType: "json",
         success: function (result) {
-            var returnWeatherStats = JSON.parse(result);
-            var weatherStats = returnWeatherStats.DailyForecasts.map(x => {
-                return { "Date": new Date(x.Date).toLocaleDateString("he-IL"), "Temperature": x.Temperature.Maximum.Value };
-                drawWeatherBar(weatherStats);
-        }
+            $.ajax({
+                type: "GET",
+                url: "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + result.Key,
+                data: {
+                    "apikey": "UG9eCATbiOuFKCnsXSG1hv9gBx3qytKF",
+                    "metric": "true"
+                },
+                dataType: "json",
+                success: function (result) {
+                    var weatherStats = result.DailyForecasts.map(x => {
+                        return { "Date": new Date(x.Date).toLocaleDateString("he-IL"), "Temperature": x.Temperature.Maximum.Value };
+                    });
+                    drawWeatherBar(weatherStats);
+                },
+                error: function (msg) {
+                    alert("שגיאה בשירות מזג האוויר");
+                }
+            });
+        },
         error: function (msg) {
             alert("שגיאה בשירות מזג האוויר");
         }
@@ -70,78 +75,73 @@
     // GET busy hours from api
     $.ajax({
         type: "GET",
-        url: "TODO",
+        url: "/VisitorsAttendances/Busy/@this.Model.Id",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (result) {
-            var returnBusyHours = JSON.parse(result);
-            var busyHours = returnBusyHours.map(x => {
-                return { "Date": new Date(x.Date).toLocaleDateString("he-IL"), "Count": x.Count };
-                drawBusyHourScatter(busyHours);
-            }
+            var busyHours = result.map(x => {
+                return { "Date": new Date(x.date).toLocaleDateString("he-IL"), "Count": x.attendance };
+            });
+            drawBusyHourScatter(busyHours);
+        },
         error: function (msg) {
-                alert("שגיאה בשירות מזג האוויר");
-            }
+            alert("שגיאה בשירות עומס טיולים");
+        }
     });
 
     function drawBusyHourScatter(jsonData) {
-
-        // set the dimensions and margins of the graph
         var margin = { top: 20, right: 20, bottom: 30, left: 40 },
             width = 400 - margin.left - margin.right,
             height = 300 - margin.top - margin.bottom;
 
+        // set the ranges
+        var x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.1);
+        var y = d3.scaleLinear()
+            .range([height, 0]);
+
+        // get some color in
+        var color = d3.schemeCategory10;
+
         // append the svg object to the body of the page
-        var svg = d3.select("#busy_hours")
-            .append("svg")
+        // append a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var svg = d3.select("#busy_hours").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
-        //Read the data
-        d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/connectedscatter.csv",
-            // When reading the csv, I must format variables:
-            function (d) {
-                return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
-            },
-            // Now I can use this dataset:
-            function (data) {
-                // Add X axis --> it is a date format
-                var x = d3.scaleTime()
-                    .domain(d3.extent(data, function (d) { return d.date; }))
-                    .range([0, width]);
-                svg.append("g")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x));
-                // Add Y axis
-                var y = d3.scaleLinear()
-                    .domain([8000, 9200])
-                    .range([height, 0]);
-                svg.append("g")
-                    .call(d3.axisLeft(y));
-                // Add the line
-                svg.append("path")
-                    .datum(data)
-                    .attr("fill", "none")
-                    .attr("stroke", "#69b3a2")
-                    .attr("stroke-width", 1.5)
-                    .attr("d", d3.line()
-                        .x(function (d) { return x(d.date) })
-                        .y(function (d) { return y(d.value) })
-                    )
-                // Add the points
-                svg.append("g")
-                    .selectAll("dot")
-                    .data(data)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function (d) { return x(d.date) })
-                    .attr("cy", function (d) { return y(d.value) })
-                    .attr("r", 5)
-                    .attr("fill", "#69b3a2")
-            })
+        // Scale the range of the data in the domains
+        x.domain(jsonData.map(function (d) { return d.Date; }));
+        y.domain([d3.min(jsonData.map(function (d) { return d.Count; })) * 0.8, d3.max(jsonData.map(function (d) { return d.Count; })) * 1.2]);
+
+        // append the rectangles for the bar chart
+        var bars = svg.selectAll("#busy_hours")
+            .data(jsonData)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function (d) { return x(d.Date); })
+            .attr("width", x.bandwidth())
+            .attr("y", function (d) { return y(d.Count); })
+            .attr("height", function (d) { return height - y(d.Count); })
+            .attr('fill', function (d, i) { return color[i]; });
+
+        // add the x Axis
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        // add the y Axis
+        svg.append("g")
+            .call(d3.axisLeft(y))
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "-35px")
+            .text("Calories");
     }
 
     function drawWeatherBar(jsonData) {
@@ -171,7 +171,7 @@
 
         // Scale the range of the data in the domains
         x.domain(jsonData.map(function (d) { return d.Date; }));
-        y.domain([d3.min(jsonData.map(function (d) { return d.Temperature; })) - 1, d3.max(jsonData.map(function (d) { return d.Temperature; })) + 1]);
+        y.domain([d3.min(jsonData.map(function (d) { return d.Temperature; })) * 0.8, d3.max(jsonData.map(function (d) { return d.Temperature; })) * 1.1]);
 
         // append the rectangles for the bar chart
         var bars = svg.selectAll("#weather_graph")
