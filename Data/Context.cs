@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using mr_shtrahman.enums;
 using mr_shtrahman.Models;
-using mr_shtrahman.enums;
 
 namespace mr_shtrahman.Data
 {
@@ -32,14 +30,11 @@ namespace mr_shtrahman.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // TODO: Add to here for data seeding
-            modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
-
             addImg(modelBuilder);
             addProducts(modelBuilder);
-            addVisitorsAttendance(modelBuilder);
-            addTrips(modelBuilder);
-            addShops(modelBuilder);
+            //addVisitorsAttendance(modelBuilder);
+            //addTrips(modelBuilder);
+            //addShops(modelBuilder);
         }
 
         private void addTrips(ModelBuilder modelBuilder)
@@ -48,27 +43,24 @@ namespace mr_shtrahman.Data
                 new Trip {
                     Id = 1,
                     ImgId = 7,
-                    Name = "avdaat",
+                    Name = "Avdat National Park",
                     Destination = Destination.CentralNegev,
                     Details = "A site of a ruined Nabataean city",
-                    Difficulty = Difficulty.SuitableForChildren,
+                    Difficulty = Difficulty.Medium,
                     Location = "Negev desert in southern Israel",
                     Price = 25 ,
                     Rating = 1,
                     TripType = TripType.Field,
-                    Lon = 34.77339940229901,
                     Lat= 30.794573169710944,
-                    RelevantProducts =new List<Product>
-                    {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First() 
-                    },
-                    VisitorsAttendance= new List<VisitorsAttendance>()
+                    Lon = 34.77339940229901,
+                    //RelevantProducts = new List<Product>(),
+                    //VisitorsAttendance= new List<VisitorsAttendance>()
                 },
                  new Trip
                  {
                      Id = 2,
                      ImgId = 12,
-                     Name = "mesada",
+                     Name = "Masada",
                      Destination = Destination.TheDeadSea,
                      Details = "An ancient fortification",
                      Difficulty = Difficulty.Difficult,
@@ -76,18 +68,16 @@ namespace mr_shtrahman.Data
                      Price = 50,
                      Rating = 4,
                      TripType = TripType.Field,
-                     Lon = 35.363164732954814,
                      Lat = 31.31073847403702,
-                     RelevantProducts = new List<Product>
-                    {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
-                    },
-                     VisitorsAttendance = new List<VisitorsAttendance>()
-                 }, new Trip
+                     Lon = 35.363164732954814,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                 }, 
+                 new Trip
                  {
                      Id = 3,
                      ImgId = 9,
-                     Name = "ein-gedi",
+                     Name = "Ein Gedi",
                      Destination = Destination.TheDeadSea,
                      Details = "Meaning `spring of the kid` is an oasis and a nature reserve in",
                      Difficulty = Difficulty.SuitableForChildren,
@@ -95,18 +85,16 @@ namespace mr_shtrahman.Data
                      Price = 0,
                      Rating = 5,
                      TripType = TripType.WaterEnteringOption,
-                     Lon = 35.398741797896776,
                      Lat = 31.45828598077046,
-                     RelevantProducts = new List<Product>
-                    {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
-                    },
-                     VisitorsAttendance = new List<VisitorsAttendance>()
-                 }, new Trip
+                     Lon = 35.398741797896776,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                 },
+                 new Trip
                  {
                      Id = 4,
                      ImgId = 28,
-                     Name = "jerusalem",
+                     Name = "Jerusalem",
                      Destination = Destination.Jerusalem,
                      Details = "Israel's capital",
                      Difficulty = Difficulty.Accessible,
@@ -114,34 +102,120 @@ namespace mr_shtrahman.Data
                      Price = 0  ,
                      Rating = 5,
                      TripType = TripType.Urban,
-                     Lon =35.201420085577446,
                      Lat = 31.766019862597236,
-                     RelevantProducts = new List<Product>
-                    {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
-                    },
-                     VisitorsAttendance = new List<VisitorsAttendance>()
-                 }, new Trip
+                     Lon = 35.201420085577446,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                 }, 
+                 new Trip
                  {
                      Id = 5,
                      ImgId = 33,
-                     Name = "poleg",
-                     Destination = Destination.TelAviv,
+                     Name = "Polag River",
+                     Destination = Destination.CentralIsrael,
                      Details = "A stream that drains the area of ​​the Sharon region in Israel",
                      Difficulty = Difficulty.SuitableForChildren,
                      Location = "Netanya",
                      Price = 100,
+                     Rating = 3,
+                     TripType = TripType.WaterEnteringOption,
+                     Lat = 32.27306129106049,
+                     Lon = 34.832977154632864,
+                    // RelevantProducts = new List<Product>
+                    //{
+                    //    Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
+                    //},
+                    // VisitorsAttendance = new List<VisitorsAttendance>()
+                 },
+                 new Trip
+                 {
+                     Id = 6,
+                     ImgId = 25,
+                     Name = "Florentin",
+                     Destination = Destination.TelAviv,
+                     Details = " Discover the charming neighbourhood of Florentin on this self-guided tour that takes in all its sights, aromas and flavours.",
+                     Difficulty = Difficulty.Accessible,
+                     Location = "Florentin Street",
+                     Price = 150,
+                     Rating = 5,
+                     TripType = TripType.Urban,
+                     Lat = 32.05870,
+                     Lon = 34.76725,
+                    // RelevantProducts = new List<Product>
+                    //{
+                    //    Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
+                    //},
+                    // VisitorsAttendance = new List<VisitorsAttendance>()
+                 },
+                 new Trip
+                 {
+                     Id = 7,
+                     ImgId = 14,
+                     Name = "Ein Prat",
+                     Destination = Destination.TheDeadSea,
+                     Details = "Desert canyon with an ancient drinking water spring, plus a 4th-century monastery & cliff climbs.",
+                     Difficulty = Difficulty.Medium,
+                     Location = "Ein Prat Nature Reserve",
+                     Price = 0,
+                     Rating = 2,
+                     TripType = TripType.Tracks,
+                     Lat = 31.87607,
+                     Lon = 35.31243,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                 },
+                 new Trip
+                 {
+                     Id = 8,
+                     ImgId = 47,
+                     Name = "Nakhal Kziv",
+                     Destination = Destination.Galilee,
+                     Details = "Tranquil forested area with a stream, hiking trails & the remains of a medieval castle.",
+                     Difficulty = Difficulty.SuitableForChildren,
+                     Location = "Nakhal Kziv Reserve",
+                     Price = 0,
                      Rating = 2,
                      TripType = TripType.WaterEnteringOption,
-                     Lon = 34.832977154632864,
-                     Lat = 32.27306129106049,
-                     RelevantProducts = new List<Product>
-                    {
-                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
-                    },
-                     VisitorsAttendance = new List<VisitorsAttendance>()
+                     Lat = 33.04594,
+                     Lon = 35.17804,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                 },
+                 new Trip
+                 {
+                     Id = 9,
+                     ImgId = 21,
+                     Name = "Alexander River",
+                     Destination = Destination.CentralIsrael,
+                     Details = "a beautifully restored river which runs the width of Israel to its estuary near the moshav of Beit Yannai.",
+                     Difficulty = Difficulty.SuitableForChildren,
+                     Location = "Ma'abarot",
+                     Price = 60,
+                     Rating = 4,
+                     TripType = TripType.Family,
+                     Lat = 32.37037,
+                     Lon = 34.90452,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
+                 },
+                 new Trip
+                 {
+                     Id = 10,
+                     ImgId = 11,
+                     Name = "Makhtesh Ramon",
+                     Destination = Destination.NorthNegev,
+                     Details = "Dramatic geological feature & 40 - km - long erosion landform of Israel's Negev desert.",
+                     Difficulty = Difficulty.Easy,
+                     Location = "Ein Mor St 5, Mitzpe Ramon",
+                     Price = 40,
+                     Rating = 5,
+                     TripType = TripType.Photography,
+                     Lat = 30.61052,
+                     Lon = 34.79715,
+                     //RelevantProducts = new List<Product>(),
+                     //VisitorsAttendance = new List<VisitorsAttendance>()
                  }
-                 );
+            );
         }
 
         private void addVisitorsAttendance(ModelBuilder modelBuilder)
@@ -1862,21 +1936,21 @@ namespace mr_shtrahman.Data
                     OpeningSaturday= "10:30",
                     ClosingSaturday= "22:00",
                     ImgId = 55,
-                    Products = new List<Product>
-                    {
-                        Product.Where(p => p.Id == 1).First(), 
-                        Product.Where(p => p.Id == 2).First(),
-                        Product.Where(p => p.Id == 3).First(),
-                        Product.Where(p => p.Id == 4).First(),
-                        Product.Where(p => p.Id == 10).First(),
-                        Product.Where(p => p.Id == 11).First(),
-                        Product.Where(p => p.Id == 12).First(),
-                        Product.Where(p => p.Id == 14).First(),
-                        Product.Where(p => p.Id == 15).First(),
-                        Product.Where(p => p.Id == 20).First(),
-                        Product.Where(p => p.Id == 22).First(),
-                        Product.Where(p => p.Id == 23).First()
-                    }
+                    //Products = new List<Product>
+                    //{
+                    //    Product.Where(p => p.Id == 1).First(), 
+                    //    Product.Where(p => p.Id == 2).First(),
+                    //    Product.Where(p => p.Id == 3).First(),
+                    //    Product.Where(p => p.Id == 4).First(),
+                    //    Product.Where(p => p.Id == 10).First(),
+                    //    Product.Where(p => p.Id == 11).First(),
+                    //    Product.Where(p => p.Id == 12).First(),
+                    //    Product.Where(p => p.Id == 14).First(),
+                    //    Product.Where(p => p.Id == 15).First(),
+                    //    Product.Where(p => p.Id == 20).First(),
+                    //    Product.Where(p => p.Id == 22).First(),
+                    //    Product.Where(p => p.Id == 23).First()
+                    //}
                 },
                 new Shop
                 {
@@ -1896,21 +1970,21 @@ namespace mr_shtrahman.Data
                     OpeningSaturday = "20:30",
                     ClosingSaturday = "22:00",
                     ImgId = 56,
-                    Products = new List<Product>
-                    {
-                    Product.Where(p => p.Id == 1).First(),
-                    Product.Where(p => p.Id == 2).First(),
-                    Product.Where(p => p.Id == 3).First(),
-                    Product.Where(p => p.Id == 4).First(),
-                    Product.Where(p => p.Id == 11).First(),
-                    Product.Where(p => p.Id == 12).First(),
-                    Product.Where(p => p.Id == 13).First(),
-                    Product.Where(p => p.Id == 14).First(),
-                    Product.Where(p => p.Id == 21).First(),
-                    Product.Where(p => p.Id == 22).First(),
-                    Product.Where(p => p.Id == 23).First(),
-                    Product.Where(p => p.Id == 24).First()
-                  },
+                  //  Products = new List<Product>
+                  //  {
+                  //  Product.Where(p => p.Id == 1).First(),
+                  //  Product.Where(p => p.Id == 2).First(),
+                  //  Product.Where(p => p.Id == 3).First(),
+                  //  Product.Where(p => p.Id == 4).First(),
+                  //  Product.Where(p => p.Id == 11).First(),
+                  //  Product.Where(p => p.Id == 12).First(),
+                  //  Product.Where(p => p.Id == 13).First(),
+                  //  Product.Where(p => p.Id == 14).First(),
+                  //  Product.Where(p => p.Id == 21).First(),
+                  //  Product.Where(p => p.Id == 22).First(),
+                  //  Product.Where(p => p.Id == 23).First(),
+                  //  Product.Where(p => p.Id == 24).First()
+                  //},
                 },
                 new Shop
                 {
@@ -1930,21 +2004,21 @@ namespace mr_shtrahman.Data
                     OpeningSaturday = "11:00",
                     ClosingSaturday = "22:00",
                     ImgId = 57,
-                    Products = new List<Product>
-                    {
-                    Product.Where(p => p.Id == 1).First(),
-                    Product.Where(p => p.Id == 5).First(),
-                    Product.Where(p => p.Id == 6).First(),
-                    Product.Where(p => p.Id == 7).First(),
-                    Product.Where(p => p.Id == 8).First(),
-                    Product.Where(p => p.Id == 12).First(),
-                    Product.Where(p => p.Id == 13).First(),
-                    Product.Where(p => p.Id == 14).First(),
-                    Product.Where(p => p.Id == 16).First(),
-                    Product.Where(p => p.Id == 20).First(),
-                    Product.Where(p => p.Id == 21).First(),
-                    Product.Where(p => p.Id == 24).First()
-                    },
+                    //Products = new List<Product>
+                    //{
+                    //Product.Where(p => p.Id == 1).First(),
+                    //Product.Where(p => p.Id == 5).First(),
+                    //Product.Where(p => p.Id == 6).First(),
+                    //Product.Where(p => p.Id == 7).First(),
+                    //Product.Where(p => p.Id == 8).First(),
+                    //Product.Where(p => p.Id == 12).First(),
+                    //Product.Where(p => p.Id == 13).First(),
+                    //Product.Where(p => p.Id == 14).First(),
+                    //Product.Where(p => p.Id == 16).First(),
+                    //Product.Where(p => p.Id == 20).First(),
+                    //Product.Where(p => p.Id == 21).First(),
+                    //Product.Where(p => p.Id == 24).First()
+                    //},
                 },
                 new Shop
                    {
@@ -1998,20 +2072,20 @@ namespace mr_shtrahman.Data
                         OpeningSaturday = "20:30",
                         ClosingSaturday = "22:00",
                         ImgId = 59,
-                        Products = new List<Product>
-                         {
-                            Product.Where(p => p.Id == 1).First(),
-                            Product.Where(p => p.Id == 2).First(),
-                            Product.Where(p => p.Id == 3).First(),
-                            Product.Where(p => p.Id == 5).First(),
-                            Product.Where(p => p.Id == 6).First(),
-                            Product.Where(p => p.Id == 10).First(),
-                            Product.Where(p => p.Id == 11).First(),
-                            Product.Where(p => p.Id == 15).First(),
-                            Product.Where(p => p.Id == 16).First(),
-                            Product.Where(p => p.Id == 22).First(),
-                            Product.Where(p => p.Id == 23).First(),
-                        }
+                        //Products = new List<Product>
+                        // {
+                        //    Product.Where(p => p.Id == 1).First(),
+                        //    Product.Where(p => p.Id == 2).First(),
+                        //    Product.Where(p => p.Id == 3).First(),
+                        //    Product.Where(p => p.Id == 5).First(),
+                        //    Product.Where(p => p.Id == 6).First(),
+                        //    Product.Where(p => p.Id == 10).First(),
+                        //    Product.Where(p => p.Id == 11).First(),
+                        //    Product.Where(p => p.Id == 15).First(),
+                        //    Product.Where(p => p.Id == 16).First(),
+                        //    Product.Where(p => p.Id == 22).First(),
+                        //    Product.Where(p => p.Id == 23).First(),
+                        //}
                     },
                 new Shop
                 {
@@ -2029,18 +2103,18 @@ namespace mr_shtrahman.Data
                     OpeningFriday = "09:00",
                     ClosingFriday = "15:00",
                     ImgId = 60,
-                    Products = new List<Product>
-                    {
-                    Product.Where(p => p.Id == 10).First(),
-                    Product.Where(p => p.Id == 11).First(),
-                    Product.Where(p => p.Id == 12).First(),
-                    Product.Where(p => p.Id == 13).First(),
-                    Product.Where(p => p.Id == 14).First(),
-                    Product.Where(p => p.Id == 15).First(),
-                    Product.Where(p => p.Id == 16).First(),
-                    Product.Where(p => p.Id == 17).First(),
-                    Product.Where(p => p.Id == 18).First(),
-                    },
+                    //Products = new List<Product>
+                    //{
+                    //Product.Where(p => p.Id == 10).First(),
+                    //Product.Where(p => p.Id == 11).First(),
+                    //Product.Where(p => p.Id == 12).First(),
+                    //Product.Where(p => p.Id == 13).First(),
+                    //Product.Where(p => p.Id == 14).First(),
+                    //Product.Where(p => p.Id == 15).First(),
+                    //Product.Where(p => p.Id == 16).First(),
+                    //Product.Where(p => p.Id == 17).First(),
+                    //Product.Where(p => p.Id == 18).First(),
+                    //},
                 },
                 new Shop
                 {
@@ -2060,23 +2134,23 @@ namespace mr_shtrahman.Data
                     OpeningSaturday = "10:30",
                     ClosingSaturday = "22:00",
                     ImgId = 61,
-                    Products = new List<Product>
-                    {
-                    Product.Where(p => p.Id == 2).First(),
-                    Product.Where(p => p.Id == 3).First(),
-                    Product.Where(p => p.Id == 13).First(),
-                    Product.Where(p => p.Id == 14).First(),
-                    Product.Where(p => p.Id == 15).First(),
-                    Product.Where(p => p.Id == 16).First(),
-                    Product.Where(p => p.Id == 17).First(),
-                    Product.Where(p => p.Id == 18).First(),
-                    Product.Where(p => p.Id == 19).First(),
-                    Product.Where(p => p.Id == 20).First(),
-                    Product.Where(p => p.Id == 21).First(),
-                    Product.Where(p => p.Id == 22).First(),
-                    Product.Where(p => p.Id == 23).First(),
-                    Product.Where(p => p.Id == 24).First(),
-                    },
+                    //Products = new List<Product>
+                    //{
+                    //Product.Where(p => p.Id == 2).First(),
+                    //Product.Where(p => p.Id == 3).First(),
+                    //Product.Where(p => p.Id == 13).First(),
+                    //Product.Where(p => p.Id == 14).First(),
+                    //Product.Where(p => p.Id == 15).First(),
+                    //Product.Where(p => p.Id == 16).First(),
+                    //Product.Where(p => p.Id == 17).First(),
+                    //Product.Where(p => p.Id == 18).First(),
+                    //Product.Where(p => p.Id == 19).First(),
+                    //Product.Where(p => p.Id == 20).First(),
+                    //Product.Where(p => p.Id == 21).First(),
+                    //Product.Where(p => p.Id == 22).First(),
+                    //Product.Where(p => p.Id == 23).First(),
+                    //Product.Where(p => p.Id == 24).First(),
+                    //},
                 },
                 new Shop
                 {
@@ -2096,17 +2170,17 @@ namespace mr_shtrahman.Data
                     OpeningSaturday = "10:30",
                     ClosingSaturday = "22:00",
                     ImgId = 62,
-                    Products = new List<Product>
-                    {
-                    Product.Where(p => p.Id == 15).First(),
-                    Product.Where(p => p.Id == 16).First(),
-                    Product.Where(p => p.Id == 17).First(),
-                    Product.Where(p => p.Id == 18).First(),
-                    Product.Where(p => p.Id == 21).First(),
-                    Product.Where(p => p.Id == 22).First(),
-                    Product.Where(p => p.Id == 23).First(),
-                    Product.Where(p => p.Id == 24).First(),
-                    },
+                    //Products = new List<Product>
+                    //{
+                    //Product.Where(p => p.Id == 15).First(),
+                    //Product.Where(p => p.Id == 16).First(),
+                    //Product.Where(p => p.Id == 17).First(),
+                    //Product.Where(p => p.Id == 18).First(),
+                    //Product.Where(p => p.Id == 21).First(),
+                    //Product.Where(p => p.Id == 22).First(),
+                    //Product.Where(p => p.Id == 23).First(),
+                    //Product.Where(p => p.Id == 24).First(),
+                    //},
                 },
                 new Shop
                 {
@@ -2122,33 +2196,33 @@ namespace mr_shtrahman.Data
                     OpeningSundayTilThursday = "09:30",
                     ClosingSundayTilThursday = "22:00",
                     ImgId = 63,
-                    Products = new List<Product>
-                        {
-                        Product.Where(p => p.Id == 1).First(),
-                        Product.Where(p => p.Id == 2).First(),
-                        Product.Where(p => p.Id == 3).First(),
-                        Product.Where(p => p.Id == 4).First(),
-                        Product.Where(p => p.Id == 5).First(),
-                        Product.Where(p => p.Id == 6).First(),
-                        Product.Where(p => p.Id == 7).First(),
-                        Product.Where(p => p.Id == 8).First(),
-                        Product.Where(p => p.Id == 9).First(),
-                        Product.Where(p => p.Id == 10).First(),
-                        Product.Where(p => p.Id == 11).First(),
-                        Product.Where(p => p.Id == 12).First(),
-                        Product.Where(p => p.Id == 13).First(),
-                        Product.Where(p => p.Id == 14).First(),
-                        Product.Where(p => p.Id == 15).First(),
-                        Product.Where(p => p.Id == 16).First(),
-                        Product.Where(p => p.Id == 17).First(),
-                        Product.Where(p => p.Id == 18).First(),
-                        Product.Where(p => p.Id == 19).First(),
-                        Product.Where(p => p.Id == 20).First(),
-                        Product.Where(p => p.Id == 21).First(),
-                        Product.Where(p => p.Id == 22).First(),
-                        Product.Where(p => p.Id == 23).First(),
-                        Product.Where(p => p.Id == 24).First(),
-                    }
+                    //Products = new List<Product>
+                    //    {
+                    //    Product.Where(p => p.Id == 1).First(),
+                    //    Product.Where(p => p.Id == 2).First(),
+                    //    Product.Where(p => p.Id == 3).First(),
+                    //    Product.Where(p => p.Id == 4).First(),
+                    //    Product.Where(p => p.Id == 5).First(),
+                    //    Product.Where(p => p.Id == 6).First(),
+                    //    Product.Where(p => p.Id == 7).First(),
+                    //    Product.Where(p => p.Id == 8).First(),
+                    //    Product.Where(p => p.Id == 9).First(),
+                    //    Product.Where(p => p.Id == 10).First(),
+                    //    Product.Where(p => p.Id == 11).First(),
+                    //    Product.Where(p => p.Id == 12).First(),
+                    //    Product.Where(p => p.Id == 13).First(),
+                    //    Product.Where(p => p.Id == 14).First(),
+                    //    Product.Where(p => p.Id == 15).First(),
+                    //    Product.Where(p => p.Id == 16).First(),
+                    //    Product.Where(p => p.Id == 17).First(),
+                    //    Product.Where(p => p.Id == 18).First(),
+                    //    Product.Where(p => p.Id == 19).First(),
+                    //    Product.Where(p => p.Id == 20).First(),
+                    //    Product.Where(p => p.Id == 21).First(),
+                    //    Product.Where(p => p.Id == 22).First(),
+                    //    Product.Where(p => p.Id == 23).First(),
+                    //    Product.Where(p => p.Id == 24).First(),
+                    //}
                 }
             );
         }
