@@ -20,6 +20,9 @@ namespace mr_shtrahman.Models
         public short Rating { get; set; }
         public Destination Destination { get; set; }
 
+        public double Lon   { get; set; }
+        public double Lat { get; set; }
+
         [Display(Name = "Trip Type")]
         public TripType TripType { get; set; }
         public Difficulty Difficulty { get; set; }

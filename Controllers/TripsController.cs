@@ -35,9 +35,10 @@ namespace mr_shtrahman.Controllers
         }
 
         // GET: Trips/Map
-        public IActionResult Map()
+        public async Task<IActionResult> Map()
         {
-            return View();
+            ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
+            return View(await _context.Trip.ToListAsync());
         }
 
     public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
@@ -96,7 +97,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Rating,Destination,Lon,Lat,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
             if (ModelState.IsValid)
             {
@@ -139,7 +140,7 @@ namespace mr_shtrahman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Rating,Destination,Lon,Lat,TripType,Difficulty,Location,Details,ImgId")] Trip trip, int[] RelevantProducts, int[] visitorsAttendances)
         {
             if (id != trip.Id)
             {
