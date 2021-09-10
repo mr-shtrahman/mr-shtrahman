@@ -48,7 +48,7 @@ namespace mr_shtrahman
             {
                 options.Cookie.Name = "MyTempDataCookie";
             });
-            //services.AddSession();
+            
             services.AddHttpContextAccessor();
             services.AddDbContext<Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Context")));

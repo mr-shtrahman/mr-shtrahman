@@ -103,8 +103,6 @@ namespace mr_shtrahman.Controllers
 
             HttpContext.Session.Set<User>("User", currentUser);
 
-            //return Json(currentUser);
-            //return Redirect("/");
             return View(currentUser);
         }
 
