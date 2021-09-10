@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var user = (mr_shtrahman.Models.User)TempData["User"];
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,36 +26,51 @@
     <script type="text/javascript">
 
         function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
+                var profile = googleUser.getBasicProfile();
 
-            var user = new Object();
-            user.Id = profile.getId();
-            user.Name = profile.getName();
-            user.Email = profile.getEmail();
+                var newUser = new Object();
+                newUser.Id = profile.getId();
+                newUser.Name = profile.getName();
+                newUser.Email = profile.getEmail();
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Users/Login',
+                    data: JSON.stringify(newUser),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (responseUser) {
+                        user = responseUser;
+                    },
+                    failure: function (response) {
+                    },
+                    error: function (response) {
+                    }
+                });
+            }
+        
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            });
 
             $.ajax({
-                type: "POST",
-                url: '/Users/Login',
-                data: JSON.stringify(user),
+                type: "GET",
+                url: '/Users/Logout',
+                data: JSON.stringify(@user),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (responseUser) {
                     user = responseUser;
                 },
                 failure: function (response) {
-                    alert(response.responseText);
                 },
                 error: function (response) {
-                    alert(response.responseText);
                 }
             });
         }
 
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            });
-        }
     </script>
 </head>
 <body>
@@ -82,9 +101,6 @@
                             <a class="nav-link" asp-area="" asp-controller="Imgs" asp-action="Index">IMAGES</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">USERS</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#" onclick="signOut();">SIGN OUT</a>
                         </li>
                         <li class="nav-item">
@@ -109,7 +125,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

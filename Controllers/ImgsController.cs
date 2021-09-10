@@ -16,12 +16,19 @@ namespace mr_shtrahman.Controllers
 
         public ImgsController(Context context)
         {
+
             _context = context;
         }
 
         // GET: Imgs
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             var context = _context.Img.Include(i => i.Trip);
             return View(await context.ToListAsync());
         }
@@ -30,6 +37,13 @@ namespace mr_shtrahman.Controllers
         // GET: Imgs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -49,6 +63,12 @@ namespace mr_shtrahman.Controllers
         // GET: Imgs/Create
         public IActionResult Create()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             return View();
         }
 
@@ -59,6 +79,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Src,Description")] Img img)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(img);
@@ -72,6 +98,12 @@ namespace mr_shtrahman.Controllers
         // GET: Imgs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -92,6 +124,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Src,Description")] Img img)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id != img.Id)
             {
                 return NotFound();
@@ -123,6 +161,12 @@ namespace mr_shtrahman.Controllers
         // GET: Imgs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -143,6 +187,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             var img = await _context.Img.FindAsync(id);
             _context.Img.Remove(img);
             await _context.SaveChangesAsync();
