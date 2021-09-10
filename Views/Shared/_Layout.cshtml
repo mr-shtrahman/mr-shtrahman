@@ -54,6 +54,21 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
             });
+
+            $.ajax({
+                type: "GET",
+                url: '/Users/Logout',
+                data: JSON.stringify(@user),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (responseUser) {
+                    user = responseUser;
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
         }
 
     </script>
@@ -86,10 +101,12 @@
                             <a class="nav-link" asp-area="" asp-controller="Imgs" asp-action="Index">IMAGES</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="signOut();">SIGN OUT</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link g-signin2" data-onsuccess="onSignIn"></a>
                         </li>
                     </ul>
-                    @Html.Partial("_LoginPartial", user)
                 </div>
             </nav>
         </div>
