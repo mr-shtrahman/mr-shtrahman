@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using mr_shtrahman.enums;
 using mr_shtrahman.Models;
 using mr_shtrahman.enums;
 
@@ -35,8 +36,112 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<Img>().HasOne(t => t.Trip).WithOne( );
 
             addImg(modelBuilder);
+            addProduct(modelBuilder);
             addVisitorsAttendance(modelBuilder);
+            addTrips(modelBuilder);
 
+        }
+
+        private void addTrips(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Trip>().HasData(
+                new Trip {
+                    Id = 1,
+                    ImgId = 7,
+                    Name = "avdaat",
+                    Destination = Destination.CentralNegev,
+                    Details = "A site of a ruined Nabataean city",
+                    Difficulty = Difficulty.SuitableForChildren,
+                    Location = "Negev desert in southern Israel",
+                    Price = 25 ,
+                    Rating = 1,
+                    TripType = TripType.Field,
+                    Lon = 34.77339940229901,
+                    Lat= 30.794573169710944,
+                    RelevantProducts =new List<Product>
+                    {
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First() 
+                    },
+                    VisitorsAttendance= new List<VisitorsAttendance>()
+                },
+                 new Trip
+                 {
+                     Id = 2,
+                     ImgId = 12,
+                     Name = "mesada",
+                     Destination = Destination.TheDeadSea,
+                     Details = "An ancient fortification",
+                     Difficulty = Difficulty.Difficult,
+                     Location = "Southern District",
+                     Price = 50,
+                     Rating = 4,
+                     TripType = TripType.Field,
+                     Lon = 35.363164732954814,
+                     Lat = 31.31073847403702,
+                     RelevantProducts = new List<Product>
+                    {
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
+                    },
+                     VisitorsAttendance = new List<VisitorsAttendance>()
+                 }, new Trip
+                 {
+                     Id = 3,
+                     ImgId = 9,
+                     Name = "ein-gedi",
+                     Destination = Destination.TheDeadSea,
+                     Details = "Meaning `spring of the kid` is an oasis and a nature reserve in",
+                     Difficulty = Difficulty.SuitableForChildren,
+                     Location = "Negev desert in southern Israel",
+                     Price = 0,
+                     Rating = 5,
+                     TripType = TripType.WaterEnteringOption,
+                     Lon = 35.398741797896776,
+                     Lat = 31.45828598077046,
+                     RelevantProducts = new List<Product>
+                    {
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
+                    },
+                     VisitorsAttendance = new List<VisitorsAttendance>()
+                 }, new Trip
+                 {
+                     Id = 4,
+                     ImgId = 28,
+                     Name = "jerusalem",
+                     Destination = Destination.Jerusalem,
+                     Details = "Israel's capital",
+                     Difficulty = Difficulty.Accessible,
+                     Location = "Middle of Israel",
+                     Price = 0  ,
+                     Rating = 5,
+                     TripType = TripType.Urban,
+                     Lon =35.201420085577446,
+                     Lat = 31.766019862597236,
+                     RelevantProducts = new List<Product>
+                    {
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
+                    },
+                     VisitorsAttendance = new List<VisitorsAttendance>()
+                 }, new Trip
+                 {
+                     Id = 5,
+                     ImgId = 33,
+                     Name = "poleg",
+                     Destination = Destination.TelAviv,
+                     Details = "A stream that drains the area of ​​the Sharon region in Israel",
+                     Difficulty = Difficulty.SuitableForChildren,
+                     Location = "Netanya",
+                     Price = 100,
+                     Rating = 2,
+                     TripType = TripType.WaterEnteringOption,
+                     Lon = 34.832977154632864,
+                     Lat = 32.27306129106049,
+                     RelevantProducts = new List<Product>
+                    {
+                        Product.Where(p => p.Id == 1).First(), Product.Where(p => p.Id == 2).First()
+                    },
+                     VisitorsAttendance = new List<VisitorsAttendance>()
+                 }
+                 );
         }
 
         private void addVisitorsAttendance(ModelBuilder modelBuilder)
@@ -44,7 +149,7 @@ namespace mr_shtrahman.Data
             modelBuilder.Entity<VisitorsAttendance>().HasData(
                 new VisitorsAttendance
                 {
-                     Id =1,
+                     Id = 1,
                      TripId = 1,
                      Attendance = 20,
                      Date= new DateTime(2021,9,10)
@@ -578,7 +683,7 @@ namespace mr_shtrahman.Data
                     Date = new DateTime(2021, 9, 19)
                 }, new VisitorsAttendance
                 {
-                    Id = 91,
+                    Id = 90,
                     TripId = 9,
                     Attendance =  26,
                     Date = new DateTime(2021, 9, 10)
@@ -1465,7 +1570,7 @@ namespace mr_shtrahman.Data
                 },
                 new Product
                 {
-                    Id = 8,
+                    Id = 25,
                     Name = "Uniform Belt",
                     Rating = 3,
                     Category = Category.Soldiers,
@@ -1719,7 +1824,7 @@ namespace mr_shtrahman.Data
                     Trips = new List<Trip>()
                 }, new Product
                 {
-                    Id = 23,
+                    Id = 24,
                     Name = "Sleeping Bag",
                     Rating = 4,
                     Category = Category.Camping,
