@@ -65,15 +65,12 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
+            var products = _context.Trip.Include(c => c.RelevantProducts).Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
             
-            var products = _context.Trip.Include(c => c.RelevantProducts).ToList();
-            
-
-
-            ViewData["Products"] = products != null ? products : new List<Product>();
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
+            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
 
-            var trip = await _context.Trip
+          var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (trip == null)
             {
@@ -132,6 +129,9 @@ namespace mr_shtrahman.Controllers
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
             ViewData["VisitorsAttendance"] = new SelectList(_context.VisitorsAttendance, nameof(VisitorsAttendance.Id), nameof(VisitorsAttendance.Date));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && (i.TripId == id || i.TripId == null) && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
+            _context.RemoveRange(_context.Trip.Include(t => t.RelevantProducts).Where(t => t.Id == id).ToList());
+            _context.Update(trip);
+            await _context.SaveChangesAsync();
             return View(trip);
         }
 
@@ -150,23 +150,12 @@ namespace mr_shtrahman.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
-
-                    var RelevantProductsAsList = RelevantProducts.ToList();
-
-                    var ProductWithTrips = _context.Product.Include(p => p.Trips).AsNoTracking();
-                    foreach (var item in ProductWithTrips)
-                    {
-                        if (item.Trips.Any(t => t.Id == id))
-                        {
-                            RelevantProductsAsList.Remove(item.Id);
-                        };
-                    }
-                    
+                {        
                     trip.VisitorsAttendance = new List<VisitorsAttendance>();
                     trip.RelevantProducts = new List<Product>();
                     trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
-                    trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProductsAsList.Contains(product.Id)));
+                    trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
+
                     _context.Update(trip);
                     await _context.SaveChangesAsync();
                     await UpdateIMGAsync(trip);
