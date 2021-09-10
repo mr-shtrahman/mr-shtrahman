@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mr_shtrahman.Data;
+using mr_shtrahman.enums;
 using mr_shtrahman.Models;
 
 namespace mr_shtrahman.Controllers
@@ -37,10 +38,11 @@ namespace mr_shtrahman.Controllers
         {
             string imageSrc = _context.Img.Where(i => i.ProductId.ToString() == id).FirstOrDefault().Src.Substring(1);
             return Json(imageSrc);
+
         }
 
         // GET: Products/Category/Shoes
-        public async Task<IActionResult> Category(mr_shtrahman.enums.Category category)
+        public async Task<IActionResult> Category(Category category)
         {                               
             ViewData["Category"] = category.ToString();
             var categoryProducts = _context.Product.Where(p => p.Category == category);
