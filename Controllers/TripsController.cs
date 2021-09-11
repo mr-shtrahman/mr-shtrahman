@@ -66,6 +66,9 @@ namespace mr_shtrahman.Controllers
 
         public async Task<IActionResult> Filter(string destination = null, string tripType = null, string difficulty = null)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
+
             var tripsWithSearchContext = _context.Trip.Where(t =>
             (destination == null || ((int)t.Destination).ToString() == destination) &&
             (tripType == null || ((int)t.TripType).ToString() == tripType) &&

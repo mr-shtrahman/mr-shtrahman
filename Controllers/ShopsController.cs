@@ -42,7 +42,10 @@ namespace mr_shtrahman.Controllers
         }
 
         public async Task<IActionResult> Filter(string city = null, string rating = null, string days = null)
-        { 
+        {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
+
             var productWithSearchContext = _context.Shop.Where(t =>
             (city == null || ((int)t.City).ToString() == city) &&
             (rating == null || (t.Rating).ToString() == rating) &&
