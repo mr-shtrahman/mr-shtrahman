@@ -64,7 +64,11 @@
                 dataType: "json",
                 success: function (result) {
                     var weatherStats = result.DailyForecasts.map(x => {
-                        return { "Date": new Date(x.Date).toLocaleDateString("he-IL"), "Temperature": x.Temperature.Maximum.Value };
+                        var dateObj = new Date(x.Date);
+                        var dateMonth = dateObj.getUTCMonth() + 1;
+                        var dateDay = dateObj.getUTCDate();
+
+                        return { "Date": dateDay + "/" + dateMonth, "Temperature": x.Temperature.Maximum.Value };
                     });
                     drawWeatherBar(weatherStats);
                 },
@@ -86,7 +90,11 @@
         dataType: "json",
         success: function (result) {
             var busyHours = result.map(x => {
-                return { "Date": new Date(x.date).toLocaleDateString("he-IL"), "Count": x.attendance };
+                var dateObj = new Date(x.date);
+                var dateMonth = dateObj.getUTCMonth() + 1;
+                var dateDay = dateObj.getUTCDate();
+
+                return { "Date": dateDay + "/" + dateMonth, "Count": x.attendance };
             });
             drawBusyHourScatter(busyHours);
         },
