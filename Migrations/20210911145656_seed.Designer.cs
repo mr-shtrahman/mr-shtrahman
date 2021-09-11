@@ -10,7 +10,7 @@ using mr_shtrahman.Data;
 namespace mr_shtrahman.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210911091856_seed")]
+    [Migration("20210911145656_seed")]
     partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2401,9 +2401,9 @@ namespace mr_shtrahman.Migrations
                             Details = "Israel's capital",
                             Difficulty = 4,
                             ImgId = 28,
-                            Lat = 31.766019862597236,
+                            Lat = 31.75206,
                             Location = "Middle of Israel",
-                            Lon = 35.201420085577446,
+                            Lon = 35.186990000000002,
                             Name = "Jerusalem",
                             Price = 0.0,
                             Rating = (short)5,

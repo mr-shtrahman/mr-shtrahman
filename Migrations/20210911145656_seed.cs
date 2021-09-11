@@ -343,7 +343,7 @@ namespace mr_shtrahman.Migrations
                     { 3, 7, "Meaning `spring of the kid` is an oasis and a nature reserve in", 3, 9, 31.458285980770459, "Negev desert in southern Israel", 35.398741797896776, "Ein Gedi", 0.0, (short)5, 8 },
                     { 2, 7, "An ancient fortification", 2, 12, 31.31073847403702, "Southern District", 35.363164732954814, "Masada", 50.0, (short)4, 0 },
                     { 1, 9, "A site of a ruined Nabataean city", 1, 7, 30.794573169710944, "Negev desert in southern Israel", 34.773399402299013, "Avdat National Park", 25.0, (short)1, 0 },
-                    { 4, 6, "Israel's capital", 4, 28, 31.766019862597236, "Middle of Israel", 35.201420085577446, "Jerusalem", 0.0, (short)5, 4 }
+                    { 4, 6, "Israel's capital", 4, 28, 31.75206, "Middle of Israel", 35.186990000000002, "Jerusalem", 0.0, (short)5, 4 }
                 });
 
             migrationBuilder.InsertData(

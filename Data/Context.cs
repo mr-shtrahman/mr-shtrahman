@@ -312,8 +312,8 @@ namespace mr_shtrahman.Data
                      Price = 0  ,
                      Rating = 5,
                      TripType = TripType.Urban,
-                     Lat = 31.766019862597236,
-                     Lon = 35.201420085577446
+                     Lat = 31.75206,
+                     Lon = 35.18699,
                  }, 
                  new Trip
                  {
