@@ -24,11 +24,16 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
+
             return View(await _context.Shop.ToListAsync());
         }
 
         public async Task<IActionResult> Search(string query)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
 
             var shopsWithSearchContext = _context.Shop.Where(s => s.Name.Contains(query) ||
                                                           query == null);
@@ -64,8 +69,17 @@ namespace mr_shtrahman.Controllers
             }
 
             var products = _context.Shop.Include(c => c.Products).Where(s => s.Id == id).FirstOrDefault().Products;
+            var productImages = new Dictionary<Product, Img>();
 
-            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
+            if (products != null)
+            {
+                foreach (Product p in products)
+                {
+                    productImages[p] = _context.Img.Where(i => i.ProductId == p.Id).FirstOrDefault();
+                }
+            }
+
+            ViewData["ProductImages"] = productImages;
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == id && i.TripId == null && i.ProductId == null).FirstOrDefault();
 
             var shop = await _context.Shop

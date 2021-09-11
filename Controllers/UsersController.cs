@@ -96,11 +96,19 @@ namespace mr_shtrahman.Controllers
                 currentUser = user;
                 _context.Add(user);
                 await _context.SaveChangesAsync();
+            } else 
+            {
+                var adminTest = _context.User.Where(u => u.Id != currentUser.Id && u.Email == currentUser.Email && u.Name == "ADMIN").FirstOrDefault();
+                if (adminTest != null)
+                {
+                    currentUser.isAdmin = adminTest.isAdmin;
+                    user = currentUser;
+                    _context.Update(user);
+                }
             }
             
             ViewBag.User = currentUser;
             TempData["User"] = currentUser;
-
             HttpContext.Session.Set<User>("User", currentUser);
 
             return View(currentUser);
@@ -109,7 +117,7 @@ namespace mr_shtrahman.Controllers
         // GET: Users/Logout
         public async Task<IActionResult> Logout([FromBody] User user)
         {
-            HttpContext.Session.Set<User>("user", null);
+            HttpContext.Session.Remove("User");
 
             return Json(null);
         }

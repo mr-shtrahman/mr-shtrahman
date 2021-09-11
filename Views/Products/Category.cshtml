@@ -13,7 +13,7 @@
         <h1>@ViewBag.Category.ToUpper()</h1>
         <a asp-action="Index">Go Back</a>
     </div>
-    <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD PRODUCT +</a>
+    <a asp-action="Create" name="admin-function" class="btn btn-lg btn-outline-info add-item">ADD PRODUCT +</a>
 
     <div class="row justify-content-between">
         @foreach (var item in Model)
@@ -49,8 +49,8 @@
                                 }
                             </div>
                             <div class="card-actions col">
-                                <a class="btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                <a class="btn-outline-dark btn-sm" href="none" data-toggle="modal" data-target="#deleteModal" onclick="saveIdToDelete(@item.Id)">Delete</a>
+                                <a class="btn-outline-dark btn-sm" name="admin-function" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn-outline-dark btn-sm" name="admin-function" href="none" data-toggle="modal" data-target="#deleteModal" onclick="saveIdToDelete(@item.Id)">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -85,8 +85,14 @@
     console.log(category);
     var path = "/Assets/categories/" + category + ".jpg";
         document.getElementsByName("headerImg")[0].src = path;
-</script>
-<script type="text/javascript">
+
+    var adminFunctions = document.getElementsByName('admin-function');
+    if (@ViewBag.isAdmin.ToString().ToLower() == false) {
+        adminFunctions.forEach(e => {
+            e.style.display = 'none';
+        });
+    }
+
     function loadImage() {
 
         var productIds = [];

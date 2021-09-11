@@ -23,12 +23,19 @@ namespace mr_shtrahman.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             ViewData["Categories"] = Enum.GetValues(typeof(Category));
+
             return View(await _context.Product.ToListAsync());
 
         }
         public async Task<IActionResult> Search(string query)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             ViewData["Categories"] = query != null ? Enum.GetValues(typeof(Category)).Cast<Category>().ToList().Select(i => i.ToString().ToLower()).Where(i => i.Contains(query.ToLower())) : Enum.GetValues(typeof(Category));
 
             return View("Index", await _context.Product.ToListAsync());
@@ -44,7 +51,10 @@ namespace mr_shtrahman.Controllers
 
         // GET: Products/Category/Shoes
         public async Task<IActionResult> Category(Category category)
-        {                               
+        {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             ViewData["Category"] = category.ToString();
             var categoryProducts = _context.Product.Where(p => p.Category == category);
             
@@ -59,7 +69,6 @@ namespace mr_shtrahman.Controllers
                 return NotFound();
             }
 
-            ViewData["Shops"] = _context.Shop.ToList(); // TODO get all shops where a product can be found
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == id).FirstOrDefault();
             var product = await _context.Product
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -80,6 +89,7 @@ namespace mr_shtrahman.Controllers
             {
                 return Redirect("/");
             }
+
             ViewData["trips"] = new SelectList(_context.Trip, nameof(Trip.Id), nameof(Trip.Name));
             ViewData["Shops"] = new SelectList(_context.Shop, nameof(Shop.Id), nameof(Shop.Name));
             ViewData["Images"] = new SelectList(_context.Img.Where(i => i.ShopId == null && i.TripId == null && i.ProductId == null), nameof(Img.Id), nameof(Img.Src));
@@ -246,8 +256,6 @@ namespace mr_shtrahman.Controllers
         {
             return _context.Product.Any(e => e.Id == id);
         }
-
-
 
         private async Task<bool> UpdateIMGAsync(Product product)
         {

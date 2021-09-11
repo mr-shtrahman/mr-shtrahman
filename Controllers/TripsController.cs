@@ -23,11 +23,17 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
             return View(await _context.Trip.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             var tripsWithSearchContext = _context.Trip.Where(t => t.Name.Contains(query) ||
                                                          query == null);
 
@@ -38,7 +44,6 @@ namespace mr_shtrahman.Controllers
         public async Task<IActionResult> Map()
         {
             var markers = await _context.Trip.ToListAsync();
-
 
             var giftshops = _context.Trip
                 .GroupJoin(
@@ -84,9 +89,18 @@ namespace mr_shtrahman.Controllers
             }
 
             var products = _context.Trip.Include(c => c.RelevantProducts).Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
-            
+            var productImages = new Dictionary<Product, Img>();
+
+            if (products != null)
+            {
+                foreach (Product p in products)
+                {
+                    productImages[p] = _context.Img.Where(i => i.ProductId == p.Id).FirstOrDefault();
+                }
+            }
+
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
-            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
+            ViewData["ProductImages"] = productImages;
 
           var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);
