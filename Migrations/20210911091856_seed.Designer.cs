@@ -10,7 +10,7 @@ using mr_shtrahman.Data;
 namespace mr_shtrahman.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210910183607_seed")]
+    [Migration("20210911091856_seed")]
     partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,32 +23,961 @@ namespace mr_shtrahman.Migrations
 
             modelBuilder.Entity("ProductShop", b =>
                 {
-                    b.Property<int>("ProductsId")
+                    b.Property<int>("ShopId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShopsId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductsId", "ShopsId");
+                    b.HasKey("ShopId", "ProductId");
 
-                    b.HasIndex("ShopsId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductShop");
+
+                    b.HasData(
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 16
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 22
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 24
+                        },
+                        new
+                        {
+                            ShopId = 1,
+                            ProductId = 25
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 16
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 19
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 16
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 19
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 22
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            ProductId = 23
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 16
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            ShopId = 4,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 22
+                        },
+                        new
+                        {
+                            ShopId = 5,
+                            ProductId = 25
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 22
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 23
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 24
+                        },
+                        new
+                        {
+                            ShopId = 6,
+                            ProductId = 25
+                        },
+                        new
+                        {
+                            ShopId = 7,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ShopId = 7,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            ShopId = 7,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            ShopId = 7,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            ShopId = 7,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 16
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 19
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 23
+                        },
+                        new
+                        {
+                            ShopId = 8,
+                            ProductId = 25
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 22
+                        },
+                        new
+                        {
+                            ShopId = 9,
+                            ProductId = 23
+                        });
                 });
 
             modelBuilder.Entity("ProductTrip", b =>
                 {
-                    b.Property<int>("RelevantProductsId")
+                    b.Property<int>("TripId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TripsId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("RelevantProductsId", "TripsId");
+                    b.HasKey("TripId", "ProductId");
 
-                    b.HasIndex("TripsId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductTrip");
+
+                    b.HasData(
+                        new
+                        {
+                            TripId = 1,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 1,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            TripId = 1,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            TripId = 1,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            TripId = 1,
+                            ProductId = 19
+                        },
+                        new
+                        {
+                            TripId = 2,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 2,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            TripId = 2,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            TripId = 2,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            TripId = 2,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            TripId = 2,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            TripId = 3,
+                            ProductId = 23
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 16
+                        },
+                        new
+                        {
+                            TripId = 4,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            TripId = 5,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            TripId = 6,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 6,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            TripId = 6,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            TripId = 6,
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            TripId = 6,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            TripId = 7,
+                            ProductId = 24
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            TripId = 8,
+                            ProductId = 19
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            TripId = 9,
+                            ProductId = 19
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 17
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 18
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 20
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 21
+                        },
+                        new
+                        {
+                            TripId = 10,
+                            ProductId = 22
+                        });
                 });
 
             modelBuilder.Entity("mr_shtrahman.Models.Img", b =>
@@ -2338,13 +3267,13 @@ namespace mr_shtrahman.Migrations
                 {
                     b.HasOne("mr_shtrahman.Models.Product", null)
                         .WithMany()
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("mr_shtrahman.Models.Shop", null)
                         .WithMany()
-                        .HasForeignKey("ShopsId")
+                        .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -2353,13 +3282,13 @@ namespace mr_shtrahman.Migrations
                 {
                     b.HasOne("mr_shtrahman.Models.Product", null)
                         .WithMany()
-                        .HasForeignKey("RelevantProductsId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("mr_shtrahman.Models.Trip", null)
                         .WithMany()
-                        .HasForeignKey("TripsId")
+                        .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

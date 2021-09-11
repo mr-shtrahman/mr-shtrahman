@@ -176,10 +176,16 @@ select option:disabled {
 
 .relevant-product {
     border: 1px solid silver;
-    padding: 2px;
+    padding: 7px;
+    text-align: center;
+    font-weight: 500;
 }
 
 .relevant-product > img {
     width: 8rem;
     height: 10rem;
+}
+
+.product-name {
+    margin-top: 5px;
 }

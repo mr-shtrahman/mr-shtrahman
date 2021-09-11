@@ -39,7 +39,6 @@ namespace mr_shtrahman.Controllers
         {
             var markers = await _context.Trip.ToListAsync();
 
-
             var giftshops = _context.Trip
                 .GroupJoin(
                     _context.Shop,
@@ -84,9 +83,18 @@ namespace mr_shtrahman.Controllers
             }
 
             var products = _context.Trip.Include(c => c.RelevantProducts).Where(t => t.Id == id).FirstOrDefault().RelevantProducts;
-            
+            var productImages = new Dictionary<Product, Img>();
+
+            if (products != null)
+            {
+                foreach (Product p in products)
+                {
+                    productImages[p] = _context.Img.Where(i => i.ProductId == p.Id).FirstOrDefault();
+                }
+            }
+
             ViewData["Image"] = _context.Img.Where(i => i.ShopId == null && i.TripId == id && i.ProductId == null).FirstOrDefault();
-            ViewData["ProductImages"] = products != null ? _context.Img.Where(i => products.Select(x => x.Id).ToList().Contains(i.ProductId.GetValueOrDefault())).ToList() : new List<Product>();
+            ViewData["ProductImages"] = productImages;
 
           var trip = await _context.Trip
                 .FirstOrDefaultAsync(m => m.Id == id);

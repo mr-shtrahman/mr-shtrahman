@@ -30,12 +30,227 @@ namespace mr_shtrahman.Data
         {
             base.OnModelCreating(modelBuilder);
 
+           
+
             addImg(modelBuilder);
             addProducts(modelBuilder);
             addTrips(modelBuilder);
             addVisitorsAttendance(modelBuilder);
             addShops(modelBuilder);
             addUsers(modelBuilder);
+
+            modelBuilder.Entity<Product>()
+              .HasMany(p => p.Shops)
+              .WithMany(s => s.Products)
+              .UsingEntity<Dictionary<string, object>>(
+                  "ProductShop",
+                  r => r.HasOne<Shop>().WithMany().HasForeignKey("ShopId"),
+                  l => l.HasOne<Product>().WithMany().HasForeignKey("ProductId"),
+                  je =>
+                  {
+                      je.HasKey("ShopId", "ProductId");
+                      je.HasData(
+                          new { ShopId = 1, ProductId = 1 },
+                          new { ShopId = 1, ProductId = 2 },
+                          new { ShopId = 1, ProductId = 5 },
+                          new { ShopId = 1, ProductId = 6 },
+                          new { ShopId = 1, ProductId = 7 },
+                          new { ShopId = 1, ProductId = 8 },
+                          new { ShopId = 1, ProductId = 10},
+                          new { ShopId = 1, ProductId = 12},
+                          new { ShopId = 1, ProductId = 15},
+                          new { ShopId = 1, ProductId = 16},
+                          new { ShopId = 1, ProductId = 17},
+                          new { ShopId = 1, ProductId = 20},
+                          new { ShopId = 1, ProductId = 21},
+                          new { ShopId = 1, ProductId = 22},
+                          new { ShopId = 1, ProductId = 24},
+                          new { ShopId = 1, ProductId = 25},
+                          new { ShopId = 2, ProductId = 1 },
+                          new { ShopId = 2, ProductId = 2 },
+                          new { ShopId = 2, ProductId = 3 },
+                          new { ShopId = 2, ProductId = 4 },
+                          new { ShopId = 2, ProductId = 7 },
+                          new { ShopId = 2, ProductId = 8 },
+                          new { ShopId = 2, ProductId = 9 },
+                          new { ShopId = 2, ProductId = 10 },
+                          new { ShopId = 2, ProductId = 11},
+                          new { ShopId = 2, ProductId = 12},
+                          new { ShopId = 2, ProductId = 13},
+                          new { ShopId = 2, ProductId = 14},
+                          new { ShopId = 2, ProductId = 15},
+                          new { ShopId = 2, ProductId = 16},
+                          new { ShopId = 2, ProductId = 17},
+                          new { ShopId = 2, ProductId = 18},
+                          new { ShopId = 2, ProductId = 19},
+                          new { ShopId = 2, ProductId = 20},
+                          new { ShopId = 3, ProductId = 3 },
+                          new { ShopId = 3, ProductId = 4 },
+                          new { ShopId = 3, ProductId = 6 },
+                          new { ShopId = 3, ProductId = 10},
+                          new { ShopId = 3, ProductId = 11},
+                          new { ShopId = 3, ProductId = 12},
+                          new { ShopId = 3, ProductId = 13},
+                          new { ShopId = 3, ProductId = 14},
+                          new { ShopId = 3, ProductId = 16},
+                          new { ShopId = 3, ProductId = 19},
+                          new { ShopId = 3, ProductId = 20},
+                          new { ShopId = 3, ProductId = 22},
+                          new { ShopId = 3, ProductId = 23},
+                          new { ShopId = 4, ProductId = 9 },
+                          new { ShopId = 4, ProductId = 10 },
+                          new { ShopId = 4, ProductId = 11 },
+                          new { ShopId = 4, ProductId = 12 },
+                          new { ShopId = 4, ProductId = 13 },
+                          new { ShopId = 4, ProductId = 14 },
+                          new { ShopId = 4, ProductId = 15 },
+                          new { ShopId = 4, ProductId = 16 },
+                          new { ShopId = 4, ProductId = 17 },
+                          new { ShopId = 4, ProductId = 18 },
+                          new { ShopId = 5, ProductId = 3 },
+                          new { ShopId = 5, ProductId = 4 },
+                          new { ShopId = 5, ProductId = 5 },
+                          new { ShopId = 5, ProductId = 7 },
+                          new { ShopId = 5, ProductId = 8 },
+                          new { ShopId = 5, ProductId = 11 },
+                          new { ShopId = 5, ProductId = 13 },
+                          new { ShopId = 5, ProductId = 14 },
+                          new { ShopId = 5, ProductId = 15 },
+                          new { ShopId = 5, ProductId = 21 },
+                          new { ShopId = 5, ProductId = 22 },
+                          new { ShopId = 5, ProductId = 25 },
+                          new { ShopId = 6, ProductId = 2 },
+                          new { ShopId = 6, ProductId = 3 },
+                          new { ShopId = 6, ProductId = 4 },
+                          new { ShopId = 6, ProductId = 5 },
+                          new { ShopId = 6, ProductId = 14 },
+                          new { ShopId = 6, ProductId = 15 },
+                          new { ShopId = 6, ProductId = 20 },
+                          new { ShopId = 6, ProductId = 21 },
+                          new { ShopId = 6, ProductId = 22 },
+                          new { ShopId = 6, ProductId = 23 },
+                          new { ShopId = 6, ProductId = 24 },
+                          new { ShopId = 6, ProductId = 25 },
+                          new { ShopId = 7, ProductId = 4 },
+                          new { ShopId = 7, ProductId = 5 },
+                          new { ShopId = 7, ProductId = 6 },
+                          new { ShopId = 7, ProductId = 7 },
+                          new { ShopId = 7, ProductId = 13 },
+                          new { ShopId = 8, ProductId = 3 },
+                          new { ShopId = 8, ProductId = 5 },
+                          new { ShopId = 8, ProductId = 6 },
+                          new { ShopId = 8, ProductId = 7 },
+                          new { ShopId = 8, ProductId = 8 },
+                          new { ShopId = 8, ProductId = 11 },
+                          new { ShopId = 8, ProductId = 12 },
+                          new { ShopId = 8, ProductId = 13 },
+                          new { ShopId = 8, ProductId = 14 },
+                          new { ShopId = 8, ProductId = 15 },
+                          new { ShopId = 8, ProductId = 16 },
+                          new { ShopId = 8, ProductId = 19 },
+                          new { ShopId = 8, ProductId = 20 },
+                          new { ShopId = 8, ProductId = 21 },
+                          new { ShopId = 8, ProductId = 23 },
+                          new { ShopId = 8, ProductId = 25 },
+                          new { ShopId = 9, ProductId = 1 },
+                          new { ShopId = 9, ProductId = 2 },
+                          new { ShopId = 9, ProductId = 3 },
+                          new { ShopId = 9, ProductId = 11 },
+                          new { ShopId = 9, ProductId = 12 },
+                          new { ShopId = 9, ProductId = 13 },
+                          new { ShopId = 9, ProductId = 21 },
+                          new { ShopId = 9, ProductId = 22 },
+                          new { ShopId = 9, ProductId = 23 }
+                        );
+                  });
+
+            modelBuilder.Entity<Product>()
+              .HasMany(p => p.Trips)
+              .WithMany(t => t.RelevantProducts)
+              .UsingEntity<Dictionary<string, object>>(
+                  "ProductTrip",
+                  r => r.HasOne<Trip>().WithMany().HasForeignKey("TripId"),
+                  l => l.HasOne<Product>().WithMany().HasForeignKey("ProductId"),
+                  je =>
+                  {
+                      je.HasKey("TripId", "ProductId");
+                      je.HasData(
+                          new { TripId = 1, ProductId = 1 },
+                          new { TripId = 1, ProductId = 4 },
+                          new { TripId = 1, ProductId = 5 },
+                          new { TripId = 1, ProductId = 13 },
+                          new { TripId = 1, ProductId = 19 },
+                          new { TripId = 2, ProductId = 1 },
+                          new { TripId = 2, ProductId = 2 },
+                          new { TripId = 2, ProductId = 5 },
+                          new { TripId = 2, ProductId = 6 },
+                          new { TripId = 2, ProductId = 12 },
+                          new { TripId = 2, ProductId = 21 },
+                          new { TripId = 3, ProductId = 2 },
+                          new { TripId = 3, ProductId = 3 },
+                          new { TripId = 3, ProductId = 4 },
+                          new { TripId = 3, ProductId = 7 },
+                          new { TripId = 3, ProductId = 15 },
+                          new { TripId = 3, ProductId = 17 },
+                          new { TripId = 3, ProductId = 18 },
+                          new { TripId = 3, ProductId = 23 },
+                          new { TripId = 4, ProductId = 1 },
+                          new { TripId = 4, ProductId = 4 },
+                          new { TripId = 4, ProductId = 6 },
+                          new { TripId = 4, ProductId = 7 },
+                          new { TripId = 4, ProductId = 10 },
+                          new { TripId = 4, ProductId = 16 },
+                          new { TripId = 4, ProductId = 20 },
+                          new { TripId = 5, ProductId = 1 },
+                          new { TripId = 5, ProductId = 3 },
+                          new { TripId = 5, ProductId = 4 },
+                          new { TripId = 5, ProductId = 6 },
+                          new { TripId = 5, ProductId = 12 },
+                          new { TripId = 5, ProductId = 13 },
+                          new { TripId = 5, ProductId = 17 },
+                          new { TripId = 5, ProductId = 21 },
+                          new { TripId = 6, ProductId = 1 },
+                          new { TripId = 6, ProductId = 2 },
+                          new { TripId = 6, ProductId = 7 },
+                          new { TripId = 6, ProductId = 14 },
+                          new { TripId = 6, ProductId = 20 },
+                          new { TripId = 7, ProductId = 1 },
+                          new { TripId = 7, ProductId = 3 },
+                          new { TripId = 7, ProductId = 5 },
+                          new { TripId = 7, ProductId = 6 },
+                          new { TripId = 7, ProductId = 7 },
+                          new { TripId = 7, ProductId = 10 },
+                          new { TripId = 7, ProductId = 15 },
+                          new { TripId = 7, ProductId = 17 },
+                          new { TripId = 7, ProductId = 18 },
+                          new { TripId = 7, ProductId = 24 },
+                          new { TripId = 8, ProductId = 2 },
+                          new { TripId = 8, ProductId = 4 },
+                          new { TripId = 8, ProductId = 6 },
+                          new { TripId = 8, ProductId = 9 },
+                          new { TripId = 8, ProductId = 13 },
+                          new { TripId = 8, ProductId = 18 },
+                          new { TripId = 8, ProductId = 19 },
+                          new { TripId = 9, ProductId = 2 },
+                          new { TripId = 9, ProductId = 4 },
+                          new { TripId = 9, ProductId = 6 },
+                          new { TripId = 9, ProductId = 9 },
+                          new { TripId = 9, ProductId = 13 },
+                          new { TripId = 9, ProductId = 18 },
+                          new { TripId = 9, ProductId = 19 },
+                          new { TripId = 10, ProductId = 1 },
+                          new { TripId = 10, ProductId = 2 },
+                          new { TripId = 10, ProductId = 5 },
+                          new { TripId = 10, ProductId = 10 },
+                          new { TripId = 10, ProductId = 12 },
+                          new { TripId = 10, ProductId = 15 },
+                          new { TripId = 10, ProductId = 17 },
+                          new { TripId = 10, ProductId = 18 },
+                          new { TripId = 10, ProductId = 20 },
+                          new { TripId = 10, ProductId = 21 },
+                          new { TripId = 10, ProductId = 22 }
+                        );
+                  });
         }
 
         private void addTrips(ModelBuilder modelBuilder)
@@ -1502,9 +1717,7 @@ namespace mr_shtrahman.Data
                     Size = Size.L,
                     Description = "Most sought after for a reason. Everything you love about our Original boots, turned up to max.",
                     Details = "",
-                    ImgId = 95,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 95
                 },
                 new Product{
                     Id = 2,
@@ -1516,9 +1729,7 @@ namespace mr_shtrahman.Data
                     Size = Size.M,
                     Description = "Best shoes to feel like your floating while running.",
                     Details = "",
-                    ImgId = 96,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 96
                 },
                 new Product
                 {
@@ -1531,9 +1742,7 @@ namespace mr_shtrahman.Data
                     Size = Size.S,
                     Description = "The beloved Israeli sandals for hiking, entering the water and looking like a nerd.",
                     Details = "",
-                    ImgId = 97,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 97
                 },
                 new Product
                 {
@@ -1546,9 +1755,7 @@ namespace mr_shtrahman.Data
                     Size = Size.L,
                     Description = "The beloved Israeli sandals for hiking, entering the water and looking like a nerd.",
                     Details = "",
-                    ImgId = 98,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 98
                 },
                 new Product 
                 {
@@ -1561,9 +1768,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "The device that will save you from the heat and scare the mosquitos away. A must-have for every camp!",
                     Details = "",
-                    ImgId = 99,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 99
                 },
                 new Product
                 {
@@ -1576,9 +1781,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Protect your equipmment the way it deserves.",
                     Details = "",
-                    ImgId = 100,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 100
                 },
                 new Product
                 {
@@ -1591,9 +1794,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Go classy with this vintage compass, while getting to your destination fast and safely.",
                     Details = "",
-                    ImgId = 101,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 101
                 },
                 new Product
                 {
@@ -1606,9 +1807,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Don't settle for the rusty old belt you got.",
                     Details = "",
-                    ImgId = 102,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 102
                 },
                 new Product
                 {
@@ -1621,9 +1820,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Lost yours at the bus? Ww got you.",
                     Details = "",
-                    ImgId = 103,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 103
                 },
                 new Product
                 {
@@ -1636,9 +1833,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "The great watch everyone's talking about. Get it at our shops with a discount!",
                     Details = "",
-                    ImgId = 104,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 104
                 },
                 new Product
                 {
@@ -1651,9 +1846,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Cook, fix and protect yourself. All with one device.",
                     Details = "",
-                    ImgId = 105,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 105
                 },
                 new Product
                 {
@@ -1666,9 +1859,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Basic T-Shirt to wear under uniform.",
                     Details = "",
-                    ImgId = 106,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 106
                 },
                 new Product
                 {
@@ -1681,9 +1872,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "The most comfortable backpack in vibrant colors.",
                     Details = "",
-                    ImgId = 64,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 64
                 },
                 new Product
                 {
@@ -1696,9 +1885,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Support your back while exploring the world.",
                     Details = "",
-                    ImgId = 65,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 65
                 },
                 new Product
                 {
@@ -1711,9 +1898,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "The most comfortable backpack in vibrant colors.",
                     Details = "",
-                    ImgId = 66,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 66
                 },
                 new Product
                 {
@@ -1726,9 +1911,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Comes with a set of walking sticks and an amazing support for your back.",
                     Details = "",
-                    ImgId = 72,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 72
                 },
                 new Product
                 {
@@ -1741,9 +1924,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "You won't even feel that's it's there!",
                     Details = "",
-                    ImgId = 74,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 74
                 },
                 new Product
                 {
@@ -1756,9 +1937,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Give your legs some rest while toasting some marshmellows.",
                     Details = "",
-                    ImgId = 80,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 80
                 },
                 new Product
                 {
@@ -1771,9 +1950,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Have a great time with your family, making memories with a dinner under the moonlight.",
                     Details = "",
-                    ImgId = 84,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 84
                 },
                 new Product
                 {
@@ -1786,9 +1963,7 @@ namespace mr_shtrahman.Data
                     Size = Size.M,
                     Description = "Stay warm at your next hike, with this great coat.",
                     Details = "",
-                    ImgId = 89,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 89
                 },
                 new Product
                 {
@@ -1801,9 +1976,7 @@ namespace mr_shtrahman.Data
                     Size = Size.S,
                     Description = "Stay warm at your next hike, with this great coat.",
                     Details = "",
-                    ImgId = 93,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 93
                 },
                 new Product
                 {
@@ -1816,9 +1989,7 @@ namespace mr_shtrahman.Data
                     Size = Size.S,
                     Description = "The most comforatble pants, with zippers to adjust length on a hot weather!",
                     Details = "",
-                    ImgId = 94,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 94
                 },
                 new Product
                 {
@@ -1831,9 +2002,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Feel at home with our soft, warm collection of sleeping bags.",
                     Details = "",
-                    ImgId = 86,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 86
                 },
                 new Product
                 {
@@ -1846,9 +2015,7 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Our best sleeping bag ever, now back in more colors!",
                     Details = "",
-                    ImgId = 87,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 87
                 }, new Product
                 {
                     Id = 24,
@@ -1860,11 +2027,9 @@ namespace mr_shtrahman.Data
                     Size = Size.OneSize,
                     Description = "Sleep better than ever, anywhere, anytime.",
                     Details = "",
-                    ImgId = 88,
-                    Shops = new List<Shop>(),
-                    Trips = new List<Trip>()
+                    ImgId = 88
                 }
-        );
+            );
 
         }
 
