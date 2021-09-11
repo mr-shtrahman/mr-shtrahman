@@ -64,6 +64,12 @@ namespace mr_shtrahman.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();

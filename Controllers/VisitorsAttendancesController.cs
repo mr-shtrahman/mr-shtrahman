@@ -22,12 +22,19 @@ namespace mr_shtrahman.Controllers
         // GET: VisitorsAttendances
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             return View(await _context.VisitorsAttendance.ToListAsync());
         }
 
         // GET: VisitorsAttendances/Busy/5
         public async Task<IActionResult> Busy(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
@@ -46,6 +53,12 @@ namespace mr_shtrahman.Controllers
         // GET: VisitorsAttendances/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -64,6 +77,12 @@ namespace mr_shtrahman.Controllers
         // GET: VisitorsAttendances/Create
         public IActionResult Create()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             return View();
         }
 
@@ -74,6 +93,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Date,Attendance,TripId")] VisitorsAttendance visitorsAttendance)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(visitorsAttendance);
@@ -86,6 +111,12 @@ namespace mr_shtrahman.Controllers
         // GET: VisitorsAttendances/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -106,6 +137,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Attendance,TripId")] VisitorsAttendance visitorsAttendance)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id != visitorsAttendance.Id)
             {
                 return NotFound();
@@ -137,6 +174,12 @@ namespace mr_shtrahman.Controllers
         // GET: VisitorsAttendances/Delete/5
         public async Task<IActionResult>  Delete(int? id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -157,6 +200,12 @@ namespace mr_shtrahman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            if (currentUser == null || !currentUser.isAdmin)
+            {
+                return Redirect("/");
+            }
             var visitorsAttendance = await _context.VisitorsAttendance.FindAsync(id);
             _context.VisitorsAttendance.Remove(visitorsAttendance);
             await _context.SaveChangesAsync();
