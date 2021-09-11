@@ -10,7 +10,7 @@ using mr_shtrahman.Data;
 namespace mr_shtrahman.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210910174152_seed")]
+    [Migration("20210910183607_seed")]
     partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1595,31 +1595,31 @@ namespace mr_shtrahman.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "454212542124541",
+                            Id = "1",
                             Email = "mikimeerson44@gmail.com",
-                            Name = "Miki",
+                            Name = "ADMIN",
                             isAdmin = true
                         },
                         new
                         {
-                            Id = "534545123154",
+                            Id = "2",
                             Email = "orelz16@gmail.com",
-                            Name = "Orel",
+                            Name = "ADMIN",
                             isAdmin = true
                         },
                         new
                         {
-                            Id = "15645165841",
+                            Id = "3",
                             Email = "tshuvanm@gmail.com",
-                            Name = "Noam",
+                            Name = "ADMIN",
                             isAdmin = true
                         },
                         new
                         {
-                            Id = "354315410541",
+                            Id = "4",
                             Email = "jackzaf96@hotmail.com",
-                            Name = "Jack",
-                            isAdmin = false
+                            Name = "ADMIN",
+                            isAdmin = true
                         });
                 });
 

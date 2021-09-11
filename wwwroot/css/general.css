@@ -1,4 +1,15 @@
-﻿body {
+﻿@font-face {
+    font-family: "Roboto";
+    src: url(/fonts/Roboto-Regular.eot);
+    src: url(/fonts/Roboto-Regular.eot?#iefix) format('embedded-opentype'), 
+         url(/fonts/Roboto-Regular.woff2) format('woff2'), 
+         url(/fonts/Roboto-Regular.woff) format('woff'), 
+         url("/fonts/Roboto-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
     text-align: left;
 }
 
@@ -8,7 +19,9 @@ h1 {
     text-align: center;
     margin: 50px;
     font-size: 55px;
-    text-shadow: #FC0 1px 0 4px;
+    text-shadow: black 1px 0 6px;
+    font-family: "Roboto";
+    font-weight: 600;
 }
 
 .header, .specific-header {
@@ -47,11 +60,12 @@ h1 {
     border: solid 1px white;
     border-radius: 5%;
     padding: 5px;
+    background-color: rgb(0, 0, 0, 0.3);
 }
 
 .header > a:hover, .specific-header > a:hover, .buttons-container > a:hover {
     color: white;
-    background-color: rgb(0, 0, 0, 0.5);
+    background-color: rgb(0, 0, 0, 0.7);
     text-decoration: none;
 }
 
@@ -62,6 +76,7 @@ h1 {
     text-align: center;
     border: 1px solid white;
     border-radius: 5%;
+    background-color: rgb(0, 0, 0, 0.3);
 }
 
 .search {

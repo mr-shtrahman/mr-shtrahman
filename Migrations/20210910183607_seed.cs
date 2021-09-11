@@ -351,10 +351,10 @@ namespace mr_shtrahman.Migrations
                 columns: new[] { "Id", "Email", "Name", "isAdmin" },
                 values: new object[,]
                 {
-                    { "15645165841", "tshuvanm@gmail.com", "Noam", true },
-                    { "454212542124541", "mikimeerson44@gmail.com", "Miki", true },
-                    { "534545123154", "orelz16@gmail.com", "Orel", true },
-                    { "354315410541", "jackzaf96@hotmail.com", "Jack", false }
+                    { "3", "tshuvanm@gmail.com", "ADMIN", true },
+                    { "1", "mikimeerson44@gmail.com", "ADMIN", true },
+                    { "2", "orelz16@gmail.com", "ADMIN", true },
+                    { "4", "jackzaf96@hotmail.com", "ADMIN", true }
                 });
 
             migrationBuilder.InsertData(
