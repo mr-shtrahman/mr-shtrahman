@@ -24,11 +24,16 @@ namespace mr_shtrahman.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
+
             return View(await _context.Shop.ToListAsync());
         }
 
         public async Task<IActionResult> Search(string query)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
 
             var shopsWithSearchContext = _context.Shop.Where(s => s.Name.Contains(query) ||
                                                           query == null);

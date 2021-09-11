@@ -32,3 +32,9 @@ img {
 .pos-f-t {
     margin-bottom: 1rem;
 }
+
+#signin {
+    position: absolute;
+    right: 0;
+    transform: translateX(-50%);
+}

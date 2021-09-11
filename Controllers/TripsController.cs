@@ -23,11 +23,17 @@ namespace mr_shtrahman.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             ViewData["Images"] = new List<Img>(_context.Img.Where(i => i.TripId != null));
             return View(await _context.Trip.ToListAsync());
         }
         public async Task<IActionResult> Search(string query)
         {
+            var currentUser = HttpContext.Session.Get<User>("User");
+
+            ViewData["isAdmin"] = (currentUser != null) && (currentUser.isAdmin);
             var tripsWithSearchContext = _context.Trip.Where(t => t.Name.Contains(query) ||
                                                          query == null);
 

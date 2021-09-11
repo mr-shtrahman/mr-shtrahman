@@ -30,7 +30,7 @@
 
     </div>
 
-    <a asp-action="Create" class="btn btn-lg btn-outline-info add-item">ADD TRIP +</a>
+    <a asp-action="Create" name="admin-function" class="btn btn-lg btn-outline-info add-item">ADD TRIP +</a>
 
     @using (Html.BeginForm("Filter", "Trips", FormMethod.Get))
     {
@@ -103,8 +103,8 @@
                                 }
                             </div>
                             <div class="card-actions col">
-                                <a class="btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                <a class="btn-outline-dark btn-sm" href="none" data-toggle="modal" data-target="#deleteModal" onclick="saveIdToDelete(@item.Id)">Delete</a>
+                                <a class="btn-outline-dark btn-sm" name="admin-function" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn-outline-dark btn-sm" href="none" name="admin-function" data-toggle="modal" data-target="#deleteModal" onclick="saveIdToDelete(@item.Id)">Delete</a>
                             </div>
                         </section>
                     </div>
@@ -135,6 +135,14 @@
     </div>
 </body>
 <script type="text/javascript">
+
+    var adminFunctions = document.getElementsByName('admin-function');
+    if (@ViewBag.isAdmin.ToString().ToLower() == false) {
+        adminFunctions.forEach(e => {
+            e.style.display = 'none';
+        });
+    }
+
     function loadImage() {
         var tripIds = [];
 
