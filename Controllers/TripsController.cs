@@ -79,7 +79,14 @@ namespace mr_shtrahman.Controllers
         // GET: TripImage
         public ActionResult TripImage(string id)
         {
-            string imageSrc = _context.Img.Where(i => i.TripId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            Img img = _context.Img.Where(i => i.TripId.ToString() == id).FirstOrDefault();
+            string imageSrc = "";
+
+            if (img != null)
+            {
+                imageSrc = img.Src.Substring(1);
+            }
+
             return Json(imageSrc);
         }
 
@@ -149,7 +156,7 @@ namespace mr_shtrahman.Controllers
                 trip.RelevantProducts = new List<Product>();
                 trip.VisitorsAttendance.AddRange(_context.VisitorsAttendance.Where(visitorsAttendance => visitorsAttendances.Contains(visitorsAttendance.Id)));
                 trip.RelevantProducts.AddRange(_context.Product.Where(product => RelevantProducts.Contains(product.Id)));
-
+                
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
                 await UpdateIMGAsync(trip);

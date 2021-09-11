@@ -59,7 +59,14 @@ namespace mr_shtrahman.Controllers
         // GET: ShopImage
         public ActionResult ShopImage(string id)
         {
-            string imageSrc = _context.Img.Where(i => i.ShopId.ToString() == id).FirstOrDefault().Src.Substring(1);
+            Img img = _context.Img.Where(i => i.ShopId.ToString() == id).FirstOrDefault();
+            string imageSrc = "";
+
+            if (img != null)
+            {
+                imageSrc = img.Src.Substring(1);
+            }
+            
             return Json(imageSrc);
         }
         

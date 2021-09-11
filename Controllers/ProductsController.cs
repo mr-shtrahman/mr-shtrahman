@@ -44,9 +44,15 @@ namespace mr_shtrahman.Controllers
         // GET: ProductImage
         public ActionResult ProductImage(string id)
         {
-            string imageSrc = _context.Img.Where(i => i.ProductId.ToString() == id).FirstOrDefault().Src.Substring(1);
-            return Json(imageSrc);
+            Img img = _context.Img.Where(i => i.ProductId.ToString() == id).FirstOrDefault();
+            string imageSrc = "";
 
+            if (img != null)
+            {
+                imageSrc = img.Src.Substring(1);
+            }
+            
+            return Json(imageSrc);
         }
 
         // GET: Products/Category/Shoes
