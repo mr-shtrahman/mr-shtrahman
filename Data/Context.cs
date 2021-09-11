@@ -2229,7 +2229,7 @@ namespace mr_shtrahman.Data
                 new User
                 {
                     Id = "4",
-                    Email = "jackzaf96@hotmail.com",
+                    Email = "jackzaf96@gmail.com",
                     Name = "ADMIN",
                     isAdmin = true
                 }
